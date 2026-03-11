@@ -1,0 +1,1 @@
+Чтобы всё работало без проблем, <strong> папка pages была добавлена в корень </strong> в соответствии с документацией FSD (https://feature-sliced.github.io/documentation/ru/docs/guides/tech/with-nextjs)

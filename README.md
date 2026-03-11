@@ -8,4 +8,4 @@
 
 ## Внутрення структура:
 Проект сделан на Next.js с использованием архитектуры FSD (Feature-Sliced Design), из-за чего были проблемы на этапе построения самой архитектуры.
-Чтобы всё работало без проблем, <strong> папка pages была переименована во views </strong> в соответствии с документацией FSD (https://feature-sliced.github.io/documentation/ru/docs/guides/tech/with-nextjs)
+Чтобы всё работало без проблем, <strong> папка pages была добавлена в корень </strong> в соответствии с документацией FSD (https://feature-sliced.github.io/documentation/ru/docs/guides/tech/with-nextjs)

@@ -1,0 +1,30 @@
+.page {
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+}
+.app {
+    min-height: 100vh;
+}
+
+
+.articleWrapper {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto 0 auto;
+    position: relative;
+}
+
+@media (max-width: 1230px) {
+    .articleWrapper {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .articleSidebar {
+        display: none;
+    }
+}
+
