@@ -1,0 +1,82 @@
+.adminCategoriesColumn {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    padding: 22px 26px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.adminCategoriesTitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.adminCategoriesContent {
+    width: 100%;
+}
+
+.adminCategoriesList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+.adminCategoriesItem:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.adminCategoriesDesc {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.adminCategoriesSearch {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    flex-direction: column;
+}
+
+.adminCategoriesSearchBtn {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.adminCategoriesSearchInput {
+    margin-top: 15px;
+    max-width: 362px;
+}
+
+.adminTextarea {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    resize: vertical;
+    border: 1px solid var(--foreground);
+    border-radius: 15px;
+    background: rgba(var(--foregroundRGBA), 0.08);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    padding: 20px;
+    width: 100%;
+    min-height: 150px;
+    outline: none;
+}
+
+.adminTextarea::placeholder {
+    color: rgba(var(--foregroundRGBA), 0.5);
+}
+
+
+.adminEditSearchItems {
+    margin-top: 15px;
+}

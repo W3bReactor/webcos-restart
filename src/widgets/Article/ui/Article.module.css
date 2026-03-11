@@ -1,0 +1,147 @@
+
+.articleColumn {
+    max-width: 800px;
+    width: 100%;
+}
+.article {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    padding: 22px 26px;
+    border-radius: 5px;
+}
+
+.articlePreviewImage {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.articleTop {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.articleTitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.articleShare {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--foreground);
+}
+
+.articleShareIcon {
+    margin-left: 25px;
+}
+
+.articleInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.articleText {
+    font-weight: 400;
+    font-size: 12px;
+    color: #828282;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.articleViewsIcon {
+    margin-right: 6px;
+}
+
+.articleContent {
+    margin-top: 25px;
+}
+
+.articleDesc {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--foreground);
+}
+.articleRecommend {
+    margin-top: 20px;
+}
+
+.articleRecommendTitle {
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--foreground);
+    margin-bottom: 10px;
+}
+
+.articleRecommendList {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 60px;
+}
+
+.articleRecommendItem {
+    grid-column: 6 span;
+}
+
+@media (max-width: 1230px) {
+    .articleRecommendList {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .articleColumn {
+        max-width: 100%;
+    }
+}
+@media (max-width: 796px) {
+    .articlePreviewImage {
+        height: 250px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 564px) {
+    .articleRecommendItem {
+        grid-column: 12 span;
+    }
+    .article {
+        padding: 15px;
+    }
+    .articleTop {
+        margin-top: 15px;
+        align-items: flex-start;
+    }
+    .articleTitle {
+        font-size: 16px;
+    }
+    .articleDesc {
+        font-size: 12px;
+    }
+    .articleInfo {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .articleShare {
+        margin-top: 5px;
+    }
+    .articleShareIcon {
+        margin-left: 10px;
+    }
+}

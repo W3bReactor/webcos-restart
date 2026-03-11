@@ -1,0 +1,45 @@
+
+.orbitInner {
+    position: absolute;
+    width: 1200px;
+    height: 1200px;
+    border-radius: 100%;
+    z-index: 1;
+    background-size: cover;
+}
+
+
+.picker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30px;
+    margin-top: -15px;
+    width: 50%;
+
+    -webkit-transform-origin: center left;
+    -moz-transform-origin: center left;
+    -ms-transform-origin: center left;
+    -o-transform-origin: center left;
+    transform-origin: center left;
+    transition: all 0.1s;
+}
+
+.innerOrbitCircle {
+    content: '';
+    height: 28px;
+    width: 28px;
+    border-radius: 100%;
+    background-color: #9F98E6;
+    margin: 0 -13px 0 auto;
+    cursor: move;
+
+}
+
+
+@media (max-width: 630px) {
+    .orbitInner {
+        display: none;
+    }
+}
+

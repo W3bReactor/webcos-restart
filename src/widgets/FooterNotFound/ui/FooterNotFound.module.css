@@ -1,0 +1,125 @@
+.footer {
+    padding: 50px 0;
+    position: relative;
+    z-index: -1;
+    padding-top: 200px;
+}
+
+.footerHomePosition {
+    position: absolute;
+    z-index: -1;
+}
+
+.footerWrapper {
+    max-width: 1200px;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+}
+
+.footerItems {
+    position: relative;
+    z-index: 10;
+}
+.footerTop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+}
+.footerTitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 160%;
+    color: var(--foreground);
+}
+.footerList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.footerItem:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.footerItemTitle {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 160%;
+    color: var(--foreground);
+}
+
+.footerItemLink {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 171%;
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.footerBottom {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footerCopyright {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 185%;
+    color: var(--foreground);
+}
+
+.footerSocial {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.footerSocialItem:not(:last-child) {
+    margin-right: 15px;
+}
+
+.footerSocialLink {
+    text-decoration: none;
+}
+
+.footerSocialIcon {
+    width: 36px;
+    height: 36px;
+}
+
+.footerColumns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+@media (max-width: 1280px) {
+    .footerWrapper {
+        padding: 0 15px;
+    }
+}
+@media (max-width: 796px) {
+    .footerColumns {
+        margin-left: 60px;
+    }
+}
+@media (max-width: 564px) {
+    .footerTop {
+        flex-direction: column;
+    }
+    .footerBottom {
+        margin-top: 30px;
+    }
+    .footerColumns {
+        margin-top: 20px;
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+}

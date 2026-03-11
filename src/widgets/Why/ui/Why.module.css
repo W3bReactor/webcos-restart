@@ -1,0 +1,69 @@
+.why {
+    max-width: 1200px;
+    margin: 60px auto 60px auto;
+}
+
+.whyTitle {
+    margin-bottom: 60px;
+}
+
+.whyWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.whyImage {
+    border-radius: 20px;
+}
+
+.whyContent {
+    display: flex;
+    flex-direction: column;
+    max-width: 543px;
+
+}
+
+.whyText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 131%;
+    color: var(--foreground);
+}
+
+.whyText:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1230px) {
+    .why {
+        padding: 0 15px;
+    }
+    .whyImage {
+        width: 400px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 1024px) {
+    .whyWrapper {
+        flex-direction: column;
+    }
+    .whyImage {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 564px) {
+    .whyTitle {
+        margin-bottom: 30px;
+    }
+    .whyText {
+        font-size: 14px;
+    }
+    .whyImage {
+        height: 300px;
+        width: 100%;
+    }
+}

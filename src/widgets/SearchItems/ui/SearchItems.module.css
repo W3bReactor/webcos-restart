@@ -1,0 +1,23 @@
+.searchItemsList {
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(var(--foregroundRGBA), 0.08);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.searchItemsBtn {
+    border-radius: 15px;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.searchItemsBtn:hover {
+    background-color: var(--hover);
+}

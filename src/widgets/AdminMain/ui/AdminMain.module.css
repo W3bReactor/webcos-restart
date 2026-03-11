@@ -1,0 +1,39 @@
+.adminMainColumn {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    padding: 22px 26px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.adminMainTitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.adminMainContent {
+    width: 100%;
+}
+
+.adminMainList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+.adminMainItem:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.adminMainDesc {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}

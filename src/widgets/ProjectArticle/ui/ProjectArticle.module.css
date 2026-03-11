@@ -1,0 +1,144 @@
+.projectArticleWrapper {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto 0 auto;
+    position: relative;
+}
+
+.projectArticleColumn {
+    max-width: 800px;
+}
+.projectArticle {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    padding: 22px 26px;
+    border-radius: 5px;
+}
+
+.projectArticlePreviewImage {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.projectArticleTop {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.projectArticleTitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.projectArticleShare {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--foreground);
+}
+
+.projectArticleShareIcon {
+    margin-left: 25px;
+}
+
+.projectArticleInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.projectArticleText {
+    font-weight: 400;
+    font-size: 12px;
+    color: #828282;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.projectArticleViewsIcon {
+    margin-right: 6px;
+}
+
+.projectArticleContent {
+    margin-top: 25px;
+}
+
+.projectArticleDesc {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--foreground);
+}
+
+
+
+.projectArticleBtn {
+    margin: 50px auto 0 auto;
+}
+
+@media (max-width: 1230px) {
+    .projectArticleWrapper {
+        padding: 0 15px;
+    }
+    .projectArticleRecommendList {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .projectArticleSidebar {
+        display: none;
+    }
+    .projectArticleColumn {
+        max-width: 100%;
+    }
+}
+@media (max-width: 796px) {
+    .projectArticlePreviewImage {
+        height: 250px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 564px) {
+    .projectArticleRecommendItem {
+        grid-column: 12 span;
+    }
+    .projectArticle {
+        padding: 15px;
+    }
+    .projectArticleTop {
+        margin-top: 15px;
+        align-items: flex-start;
+    }
+    .projectArticleTitle {
+        font-size: 16px;
+    }
+    .projectArticleDesc {
+        font-size: 12px;
+    }
+    .projectArticleInfo {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .projectArticleShare {
+        margin-top: 5px;
+    }
+    .projectArticleShareIcon {
+        margin-left: 10px;
+    }
+}

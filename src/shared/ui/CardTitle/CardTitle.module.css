@@ -1,0 +1,7 @@
+.cardTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--foreground);
+    margin-bottom: 8px;
+}

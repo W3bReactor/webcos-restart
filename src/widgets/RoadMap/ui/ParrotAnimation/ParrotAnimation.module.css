@@ -1,0 +1,236 @@
+.parrot {
+    width: 125px;
+    height: 185px;
+    margin: auto;
+    position: relative;
+    left: 0;
+    top: 0px;
+    animation: waggon 1s linear infinite alternate;
+}
+
+.parrotBody {
+    width: 100%;
+    height: 100%;
+    border-radius: 150px 150px 0 220px;
+    background: #6bcc59;
+
+}
+
+.parrotHead {
+    width: 100%;
+    height: 125px;
+    border-radius: 50%;
+    position: relative;
+    animation: head 20s linear infinite;
+    animation-delay: 1s;
+    background: #e4fa40;
+
+}
+
+
+.parrotHead>.eye {
+    width: 12px;
+    height: 12px;
+    background: #1f404f;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    animation: 5s wink linear infinite;
+
+}
+
+.parrotHead>.eye:after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+
+}
+
+.parrotHead>.eyeLeft {
+    left: 0;
+}
+
+.parrotHead>.eyeRight {
+    right: 50px;
+}
+
+.parrotNose {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    border-radius: 0 0 0 100%;
+    animation: nose 10s linear infinite;
+    background: #f69358;
+
+}
+
+.parrotNose>.nostril {
+    width: 50%;
+    height: 19px;
+    position: absolute;
+    top: -10px;
+    background: #6ab1ff;
+}
+
+.parrotNose>.nostril:after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #1f414d;
+}
+
+.parrotNose>.nostrilLeft {
+    border-radius: 50% 0 50% 50%;
+    left: 0;
+}
+
+.parrotNose>.nostrilRight {
+    border-radius: 0 50% 50% 50%;
+    right: 0;
+}
+
+.parrotTail {
+    width: 30px;
+    height: 170px;
+    position: absolute;
+    right: 0;
+    bottom: -170px;
+    border-radius: 0 0 0 100% / 0 0 0 25%;
+    background: #68c956;
+}
+
+.parrotTail:after {
+    width: 15px;
+    height: 0;
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 0;
+    border-top: 15px solid #17784f;
+    border-left: 15px solid transparent;
+    border-right: 0 solid transparent;
+}
+
+.parrotLump {
+    width: 90px;
+    height: 110px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+
+}
+
+.parrotLumpContainer {
+    display: table;
+    width: 100%;
+    margin-bottom: 5px;
+    position: relative;
+    right: -15px;
+
+}
+
+.parrotLumpContainer:nth-child(4) {
+    right: -5px;
+}
+
+.parrotLumpContainer:nth-child(6) {
+    right: -5px;
+}
+
+.parrotLumpItem {
+    float: right;
+    width: 20px;
+    height: 10px;
+    background: #17784f;
+    margin-right: 2px;
+    border-radius:  0 0 100% 100% / 0 0 200% 200%;
+
+}
+
+@keyframes waggon {
+    100% {
+        transform: rotateX(-10deg);
+    }
+
+}
+
+
+@keyframes wink {
+    0% {
+        height: 12px;
+    }
+
+    2% {
+        height: 0;
+    }
+    3% {
+        height: 12px;
+    }
+    100% {
+        height: 12px;
+    }
+}
+
+@keyframes nose {
+    0% {
+        height: 35px;
+    }
+    2% {
+        height: 30px;
+    }
+    3% {
+        height: 35px;
+    }
+    4% {
+        height: 30px;
+    }
+    5% {
+        height: 35px;
+    }
+    100% {
+        height: 35px;
+    }
+
+}
+
+@keyframes head {
+    0% {
+        transform: rotate(0);
+    }
+    1% {
+        transform: rotate(15deg);
+    }
+    20% {
+        transform: rotate(15deg);
+    }
+    21% {
+        transform: rotate(0);
+    }
+    65% {
+        transform: rotate(0);
+    }
+    66% {
+        transform: rotate(-10deg);
+    }
+    80% {
+        transform: rotate(-10deg);
+    }
+    81% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}

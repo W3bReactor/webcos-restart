@@ -1,0 +1,83 @@
+.smallSliderWrapper {
+    max-width: 1200px;
+    margin: 60px auto 60px auto;
+    position: relative;
+}
+.smallSliderItem {
+    position: relative;
+}
+.smallSliderTitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.smallSliderButtons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    z-index: 0;
+}
+
+.smallSliderPrev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0, 0.2);
+    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    border-radius: 100%;
+    padding: 20px;
+    cursor: pointer;
+    outline: none;
+    margin-right: 10px;
+    z-index: 50;
+    transition: all 0.3s;
+}
+
+.smallSliderNext{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    display: block;
+    background-color: rgba(0,0,0, 0.2);
+    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    border-radius: 100%;
+    padding: 20px;
+    cursor: pointer;
+    outline: none;
+    z-index: 50;
+    transition: all 0.3s;
+
+}
+
+.smallSliderPrev:hover {
+    background-color: #bebebe4d;
+}
+
+.smallSliderNext:hover {
+    background-color: #bebebe4d;
+
+}
+
+.smallSliderNextImage {
+    transform: rotate(180deg);
+
+}
+
+@media (max-width: 1230px) {
+    .smallSliderWrapper {
+        padding: 0 15px;
+    }
+
+}
+
+.noSwiping {
+    display: none;
+}

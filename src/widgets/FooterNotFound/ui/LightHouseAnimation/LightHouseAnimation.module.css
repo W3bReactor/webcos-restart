@@ -1,0 +1,735 @@
+.scene {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.mountains {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    bottom: 65px;
+    z-index: 3;
+}
+
+.mountains .mountain {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: 50px;
+    bottom: -40px;
+    background-color: #717ae1;
+    transform: rotate(45deg);
+    border-radius: 3px;
+}
+
+.mountains .mountain:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-image: linear-gradient(
+            135deg,
+            #4c4b82 0%,
+            #717ae1 20%,
+            #75e2fa 40%
+    );
+}
+
+.mountains .mountain:nth-child(2) {
+    width: 240px;
+    height: 240px;
+    right: 220px;
+    z-index: 2;
+}
+
+.mountains .mountain:nth-child(3) {
+    width: 260px;
+    height: 260px;
+    right: 350px;
+}
+
+.mountains .mountain:nth-child(4) {
+    width: 200px;
+    height: 200px;
+    right: 130px;
+    bottom: -70px;
+    z-index: 3;
+}
+
+.mountains .mountain:nth-child(4):after {
+    background-image: linear-gradient(
+            135deg,
+            #4c4b82 0%,
+            #717ae1 6%,
+            #75e2fa 20%
+    );
+}
+
+.sea {
+    position: absolute;
+    width: 100%;
+    height: 170px;
+    bottom: 0;
+    left: 0;
+    background: #29284c;
+    background-image: linear-gradient(
+            to top,
+            #29284c 0%,
+            #4c4b82 30%,
+            #717ae1 60%,
+            #75e2fa 90%
+    );
+    z-index: 4;
+}
+
+.sea .wave {
+    position: absolute;
+    height: 3px;
+    background-color: #d6d9f6;
+    border-radius: 100%;
+    opacity: 0.2;
+    animation: wave 5s linear infinite;
+}
+
+.sea .wave:nth-of-type(1) {
+    width: 98px;
+    bottom: 146px;
+    left: 33vw;
+    opacity: 0.4;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(2) {
+    width: 71px;
+    bottom: 149px;
+    left: 36vw;
+    opacity: 0.4;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(3) {
+    width: 67px;
+    bottom: 99px;
+    left: 13vw;
+    opacity: 0.4;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(4) {
+    width: 139px;
+    bottom: 31px;
+    left: 69vw;
+    opacity: 0.5;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(5) {
+    width: 116px;
+    bottom: 163px;
+    left: 66vw;
+    opacity: 0.2;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(6) {
+    width: 116px;
+    bottom: 91px;
+    left: 57vw;
+    opacity: 0.5;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(7) {
+    width: 113px;
+    bottom: 164px;
+    left: 61vw;
+    opacity: 0.5;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(8) {
+    width: 106px;
+    bottom: 161px;
+    left: 71vw;
+    opacity: 0.5;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(9) {
+    width: 78px;
+    bottom: 160px;
+    left: 63vw;
+    opacity: 0.2;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(10) {
+    width: 130px;
+    bottom: 92px;
+    left: 44vw;
+    opacity: 0.5;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(11) {
+    width: 96px;
+    bottom: 27px;
+    left: 6vw;
+    opacity: 0.3;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(12) {
+    width: 71px;
+    bottom: 83px;
+    left: 12vw;
+    opacity: 0.5;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(13) {
+    width: 59px;
+    bottom: 149px;
+    left: 44vw;
+    opacity: 0.4;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(14) {
+    width: 76px;
+    bottom: 137px;
+    left: 97vw;
+    opacity: 0.1;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(15) {
+    width: 74px;
+    bottom: 14px;
+    left: 40vw;
+    opacity: 0.5;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(16) {
+    width: 122px;
+    bottom: 90px;
+    left: 39vw;
+    opacity: 0.4;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(17) {
+    width: 143px;
+    bottom: 80px;
+    left: 77vw;
+    opacity: 0.2;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(18) {
+    width: 95px;
+    bottom: 110px;
+    left: 80vw;
+    opacity: 0.3;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(19) {
+    width: 96px;
+    bottom: 142px;
+    left: 47vw;
+    opacity: 0.3;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(20) {
+    width: 104px;
+    bottom: 105px;
+    left: 45vw;
+    opacity: 0.1;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(21) {
+    width: 122px;
+    bottom: 99px;
+    left: 55vw;
+    opacity: 0.4;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(22) {
+    width: 90px;
+    bottom: 35px;
+    left: 62vw;
+    opacity: 0.1;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(23) {
+    width: 150px;
+    bottom: 7px;
+    left: 69vw;
+    opacity: 0.4;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(24) {
+    width: 54px;
+    bottom: 7px;
+    left: 26vw;
+    opacity: 0.2;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(25) {
+    width: 72px;
+    bottom: 79px;
+    left: 16vw;
+    opacity: 0.2;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(26) {
+    width: 97px;
+    bottom: 98px;
+    left: 57vw;
+    opacity: 0.2;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(27) {
+    width: 53px;
+    bottom: 74px;
+    left: 47vw;
+    opacity: 0.4;
+    animation-delay: 3s;
+}
+
+.sea .wave:nth-of-type(28) {
+    width: 122px;
+    bottom: 32px;
+    left: 28vw;
+    opacity: 0.1;
+    animation-delay: 2s;
+}
+
+.sea .wave:nth-of-type(29) {
+    width: 150px;
+    bottom: 54px;
+    left: 29vw;
+    opacity: 0.2;
+    animation-delay: 1s;
+}
+
+.sea .wave:nth-of-type(30) {
+    width: 59px;
+    bottom: 11px;
+    left: 55vw;
+    opacity: 0.2;
+    animation-delay: 2s;
+}
+
+.boat {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    bottom: 90px;
+    animation: boat 100s linear infinite;
+}
+
+.boat:after {
+    position: absolute;
+    background-image: linear-gradient(
+            90deg,
+            rgba(214, 217, 246, 0.7) 30%,
+            rgba(255, 255, 255, 0) 100%
+    );
+    width: 200px;
+    height: 8px;
+    top: 105px;
+    left: 20px;
+    border-radius: 40%;
+    z-index: -1;
+}
+
+.boat:before {
+    position: absolute;
+    width: 92px;
+    height: 50px;
+    left: 25px;
+    bottom: -70px;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(41, 40, 76, 0.8) 30%,
+            rgba(41, 40, 76, 0) 100%
+    );
+    z-index: -1;
+    animation: boatShadow 100s linear infinite;
+}
+
+.boat .base {
+    position: absolute;
+    width: 110px;
+    height: 25px;
+    bottom: -20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+    background-color: #4c4b82;
+}
+
+.boat .sail:nth-child(1) {
+    position: absolute;
+    width: 90px;
+    height: 80px;
+    left: 5px;
+    clip-path: polygon(50% 0%, 0% 100%, 50% 100%);
+    background: linear-gradient(#b9befa 0%, #4c4b82 60%);
+}
+
+.boat .sail:nth-child(2) {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    left: 15px;
+    bottom: 10px;
+    transform: scaleX(-1);
+    clip-path: polygon(50% 0%, 0% 100%, 50% 100%);
+    background: linear-gradient(#b9befa 0%, #4c4b82 60%);
+}
+
+.moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 25%;
+    right: 10%;
+    border-radius: 50%;
+    z-index: 2;
+    background-color: #d6d9f6;
+    box-shadow: 0 0 10px #d6d9f6, 0 0 20px #d6d9f6, 0 0 30px #d6d9f6,
+    0 0 40px #d6d9f6, 0 0 50px #75e2fa, 0 0 100px #d6d9f6;
+}
+
+
+.lighthouseGroup {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.land {
+    position: absolute;
+    width: 400px;
+    height: 60px;
+    left: -30px;
+    bottom: 0;
+    background-image: linear-gradient(to top, #29284c 80%, #717ae1 100%);
+    transform: skewX(35deg);
+    border-radius: 10px;
+}
+
+.lighthouseHolder {
+    position: absolute;
+    width: 100px;
+    height: 480px;
+    bottom: 80px;
+    left: 180px;
+}
+
+.lighthouseHolder .shadow {
+    position: absolute;
+    width: 117px;
+    height: 50px;
+    left: -32px;
+    bottom: -70px;
+    background: #29284c;
+    transform: skewX(-45deg);
+}
+
+.lighthouseHolder .lighthouse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: perspective(600px) rotateX(20deg);
+    background-color: #d6d9f6;
+    background-image: repeating-linear-gradient(
+            -40deg,
+            transparent,
+            transparent 60px,
+            #4c4b82 60px,
+            #4c4b82 120px
+    );
+}
+
+.lighthouseHolder .lighthouse:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+            90deg,
+            rgba(214, 217, 246, 0.6) 0%,
+            #29284c 8%,
+            transparent 70%,
+            rgba(214, 217, 246, 0.4) 100%
+    );
+}
+
+.lighthouseHolder .top {
+    position: absolute;
+    width: 94px;
+    height: 60px;
+    left: 3px;
+    top: -15px;
+}
+
+.lighthouseHolder .top .lightContainer {
+    position: absolute;
+    height: 40px;
+    min-width: 300px;
+    width: 35vw;
+    bottom: 4px;
+    left: 40px;
+    transform-style: preserve-3d;
+    transform-origin: left bottom;
+    transform: perspective(500px) rotateY(0);
+    animation: lightRotate 20s linear infinite;
+}
+
+.lighthouseHolder .top .lightContainer .light {
+    display: var(--not-found);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transform: perspective(500px) rotateY(-35deg);
+    background: linear-gradient(90deg, #f7f2b4 40%, rgba(255, 255, 255, 0) 100%);
+}
+
+.lighthouseHolder .top .rail {
+    position: absolute;
+    width: 100%;
+    height: 17px;
+    bottom: 1px;
+    border: 3px solid #29284c;
+    border-radius: 1px;
+    transform: perspective(1000px) rotateX(-35deg);
+    background-image: repeating-linear-gradient(
+            90deg,
+            #29284c,
+            #29284c 3px,
+            #9e9ebe 3px,
+            #f7f2b4 10px
+    );
+    background-position: -2px 0;
+}
+
+.lighthouseHolder .top .middle {
+    position: absolute;
+    width: 88px;
+    height: 35px;
+    left: 3px;
+    bottom: 14px;
+    border: 2px solid #29284c;
+    border-radius: 3px;
+    background-image: repeating-linear-gradient(
+            90deg,
+            #29284c,
+            #29284c 4px,
+            #9e9ebe 4px,
+            rgba(255, 255, 255, 0) 21px
+    );
+    background-position: -2px 0;
+}
+
+.lighthouseHolder .top .middle:before {
+    display: var(--not-found);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #f7f2b4;
+    box-shadow: 0 0 10px #d6d9f6, 0 0 20px #f7f2b4, 0 0 30px #f7f2b4,
+    0 0 40px #f7f2b4, 0 0 70px #f7f2b4;
+}
+
+.lighthouseHolder .top .roof {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 45px;
+    left: -3px;
+    border-left: 50px solid rgba(255, 255, 255, 0);
+    border-right: 50px solid rgba(255, 255, 255, 0);
+    border-bottom: 40px solid #29284c;
+}
+
+.lighthouseHolder .top .roof:before {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    bottom: -7px;
+    left: -7px;
+    background-color: #29284c;
+    border-radius: 50%;
+}
+
+.lighthouseHolder .top .roof:after {
+    position: absolute;
+    width: 4px;
+    height: 14px;
+    left: -2px;
+    bottom: 5px;
+    background-color: #29284c;
+    border-radius: 3px;
+}
+
+.lighthouseHolder .top .roof .roof-light {
+    display: var(--not-found);
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: -50px;
+    clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+    background-image: linear-gradient(
+            135deg,
+            #29284c 40%,
+            rgba(247, 242, 180, 0.5) 100%
+    );
+}
+
+.lighthouseHolder .top .glow {
+    display: var(--not-found);
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 50%;
+    background-color: #f7f2b4;
+    box-shadow: 0 0 10px #f7f2b4, 0 0 20px #f7f2b4, 0 0 30px #f7f2b4,
+    0 0 40px #f7f2b4, 0 0 50px #f7f2b4, 0 0 60px #f7f2b4, 0 0 70px #f7f2b4,
+    0 0 80px #f7f2b4;
+    animation: lightGlow 20s linear infinite;
+}
+
+.lighthouseHolder .windows {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.lighthouseHolder .windows .window {
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    left: 43px;
+    background-color: #29284c;
+    border-bottom: 2px solid rgba(185, 190, 250, 0.7);
+    border-radius: 25px 25px 0 0;
+}
+
+.lighthouseHolder .windows .window:nth-of-type(1) {
+    bottom: 90px;
+}
+
+.lighthouseHolder .windows .window:nth-of-type(2) {
+    bottom: 180px;
+}
+
+.lighthouseHolder .windows .window:nth-of-type(3) {
+    bottom: 270px;
+}
+
+.lighthouseHolder .windows .window:nth-of-type(4) {
+    bottom: 360px;
+}
+
+.lighthouseHolder .door {
+    position: absolute;
+    width: 25px;
+    height: 40px;
+    background-color: #29284c;
+    left: 38px;
+    bottom: -2px;
+    border-radius: 2px 2px 0 0;
+}
+
+.lighthouseHolder .door .stairs {
+    position: absolute;
+    width: 27px;
+    height: 28px;
+    top: 34px;
+    left: -1px;
+    background-color: #29284c;
+    transform: perspective(100px) rotateX(45deg);
+    background-image: repeating-linear-gradient(
+            to bottom,
+            #29284c,
+            #29284c 4px,
+            #b9befa 4px,
+            rgba(255, 255, 255, 0.1) 5px
+    );
+}
+
+@keyframes twinkle {
+    50% {
+        opacity: 0.3;
+    }
+}
+@keyframes wave {
+    50% {
+        transform: translateX(-10px);
+    }
+}
+@keyframes lightRotate {
+    25% {
+        transform: perspective(500px) rotateY(35deg);
+    }
+    75% {
+        transform: perspective(500px) rotateY(-35deg);
+    }
+}
+@keyframes lightGlow {
+    50% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+}
+@keyframes boat {
+    0% {
+        transform: translateX(120vw) scale(0.8);
+    }
+    80%,
+    100% {
+        transform: translateX(-25vw) scale(0.8);
+    }
+}
+@keyframes boatShadow {
+    0% {
+        transform: skewX(35deg) translateX(15px);
+    }
+    50%,
+    100% {
+        transform: skewX(-55deg) translateX(-40px);
+    }
+}

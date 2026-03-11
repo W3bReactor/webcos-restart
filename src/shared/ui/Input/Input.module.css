@@ -1,0 +1,22 @@
+.input {
+    width: 100%;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 58%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+    border-bottom: 1px solid var(--foreground);
+    padding: 5px;
+}
+
+.input::placeholder {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 58%;
+    letter-spacing: 0.01em;
+    color: var(--placeholder);
+}

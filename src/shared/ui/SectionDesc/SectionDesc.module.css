@@ -1,0 +1,14 @@
+.sectionDesc {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 167%;
+    text-align: center;
+    color: var(--description);
+    transition: all 0.3s;
+}
+
+@media (max-width: 564px) {
+    .sectionDesc {
+        font-size: 16px;
+    }
+}

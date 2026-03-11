@@ -1,0 +1,223 @@
+.roadList {
+    max-width: 1200px;
+    list-style: none;
+    min-width: 295px;
+}
+
+
+.roadItem {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.roadItemTitle {
+    margin-top: 17px;
+    font-weight: 400;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: var(--foreground);
+    position: relative;
+    z-index: 20;
+    text-align: center;
+}
+
+.roadItemContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.roadItemContent:after {
+    content: '';
+    position: absolute;
+    top: 23px;
+    left: 50%;
+    background-color: #00B292;
+    height: 3px;
+    width: calc(100% + 30px);
+
+}
+.roadItem:last-child .roadItemContent:after {
+    width: 0;
+
+}
+.roadItemDescPreview {
+    margin-top: 19px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    text-transform: lowercase;
+    background: var(--carditem);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 20;
+    display: block;
+    display: -webkit-box;
+    height: 60px;
+    -webkit-line-clamp: 3; /* количество строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.roadItemDesc {
+    margin-top: 19px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    text-transform: lowercase;
+    background: var(--carditem);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 20;
+
+}
+
+.roadItemImage {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.3s;
+    height: 47px;
+    opacity: 1;
+    animation: fade 0.5s linear;
+
+}
+.roadItemImageActive {
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    transition: all 0.3s;
+    height: 47px;
+    animation: opacity 1s linear;
+}
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.roadItemCard {
+    padding: 50px 18px 20px 18px;
+    width: 280px;
+    height: 290px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    left: 5px;
+    top: 5px;
+    z-index: 18;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 20px 0 rgba(82, 255, 245, 0.45);
+    border: 2px solid #00D6DA;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin-bottom: 39px;
+
+}
+.roadItem:last-child .roadItemCard {
+    left: -125px;
+}
+
+.roadItem:first-child .roadItemCard {
+    left: 5px;
+}
+
+.roadItemCard:before {
+    content: '';
+    width: calc(100% - 10px);
+    height: calc(100% - 20px);
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 5px;
+    border-radius: 8px;
+
+    background:  var(--cardbg);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+
+
+.roadItemCard:hover:before {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 19;
+}
+.roadItemCard:hover {
+    transform: translate(10px, 10px);
+}
+.roadItemDescBottom {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 111%;
+    text-transform: lowercase;
+    color: var(--foreground);
+    position: relative;
+    z-index: 20;
+}
+
+.roadItemNext {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.roadItemPrev {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.roadItemButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+}
+.roadItemPrevImage {
+    transform: rotate(180deg);
+    fill: #FFFFFF;
+}
+
+@media (max-width: 564px) {
+    .roadItem .roadItemCard {
+        left: 15px;
+    }
+    .roadItem:last-child .roadItemCard {
+        left: 0;
+    }
+}
+
+.roadItemCardActive {
+    display: flex;
+}

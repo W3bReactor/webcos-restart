@@ -1,0 +1,27 @@
+// Правила: с большой буквы + в конце приписка Image/Icon/Font/etc
+export { default as LogoIcon } from "./icons/logo.svg";
+export { default as LogoBlackIcon } from "./icons/logo-black.svg";
+export { default as DropdownIcon } from "./icons/dropdown.svg";
+export { default as DropdownBlackIcon } from "./icons/dropdown-black.svg";
+export { default as MoonIcon } from "./icons/moon.svg";
+export { default as SunIcon } from "./icons/sun.svg";
+export { default as TgIcon } from "./icons/tg.svg";
+export { default as TgWhiteIcon } from "./icons/tg-white.svg";
+export { default as VkIcon } from "./icons/vk.svg";
+export { default as VkWhiteIcon } from "./icons/vk-white.svg";
+export { default as DzenBlackIcon } from "./icons/dzen-black.svg";
+export { default as DzenIcon } from "./icons/dzen.svg";
+export { default as TiktokIcon } from "./icons/tiktok.svg";
+export { default as TiktokWhiteIcon } from "./icons/tiktok-white.svg";
+export { default as SliderArrowIcon } from "./icons/slider-arrow.svg";
+export { default as EyeIcon } from "./icons/eye.svg";
+export { default as ShareIcon } from "./icons/share.svg";
+export { default as HomeIcon } from "./icons/home.svg";
+export { default as WhiteArrowIcon } from "./icons/white-arrow.svg";
+export { default as NextjsIcon } from "./icons/nextjs.svg";
+export { default as BigDropdownIcon } from "./icons/sort-dropdown.svg";
+export { default as CloseIcon } from "./icons/close.svg";
+export { default as PlusIcon } from "./icons/plus.svg";
+export { default as UploadIcon } from "./icons/upload.svg";
+export { default as EditIcon } from "./icons/edit.svg";
+export { default as DeleteIcon } from "./icons/delete.svg";

@@ -1,0 +1,192 @@
+.who {
+    max-width: 1200px;
+    margin: 30px auto 60px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.whoItem {
+    max-width: 369px;
+    position: relative;
+}
+
+.whoCardLink {
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 20px 0 rgba(82, 255, 245, 0.45);
+    border: 2px solid #00D6DA;
+    transition: all 0.3s;
+    margin-bottom: 39px;
+    position: relative;
+    padding: 20px;
+    text-decoration: none;
+
+}
+
+
+
+.whoCardLink:before {
+    content: '';
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    position: absolute;
+    z-index: -1;
+    top: 5px;
+    left: 5px;
+    border-radius: 8px;
+    background: var(--cardbg);
+    transition: all 0.3s;
+}
+
+.whoCardAvatarWrapper {
+    position: relative;
+}
+
+.whoCardCircle {
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    transition: all 1s;
+}
+
+.whoCardLink:hover:before {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.whoCardLink:hover .whoCardCircle {
+    transform: rotate(180deg);
+}
+
+
+.whoCardAvatar {
+    width: 178px;
+    height: 179px;
+    border-radius: 100%;
+}
+
+.whoCardName {
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+    color: var(--foreground);
+
+}
+.whoCardPost {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 271%;
+    text-align: center;
+    background: var(--carditem);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.whoCardContent {
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.whoContent {
+    max-width: 737px;
+}
+
+.whoTitle {
+    font-weight: 400;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: var(--foreground);
+    margin-bottom: 48px;
+}
+
+.whoTitle span{
+    background: linear-gradient(149deg, #00b292 0%, #2dffd9 29.05%, #54ffe0 63.59%, #03776f 97.8%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+}
+
+.whoDesc{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--foreground);
+
+}
+
+.whoDesc:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.whoDesc span {
+    color: #00b292;
+
+}
+
+.whoPrev {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 40px;
+}
+.whoPrevImage {
+    transform: rotate(180deg);
+}
+.whoNext {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.whoButtons {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+}
+
+@media (max-width: 1230px) {
+    .who {
+        padding: 0 15px;
+    }
+    .whoContent {
+        max-width: 600px;
+    }
+}
+@media (max-width: 1024px) {
+    .who {
+        flex-direction: column;
+    }
+    .whoContent {
+        max-width: 600px;
+    }
+}
+
+
+@media (max-width: 564px) {
+    .whoTitle {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    .whoDesc {
+        font-size: 16px;
+    }
+    .whoItem {
+        max-width: 300px;
+    }
+    .whoCardLink {
+        padding: 20px 5px;
+    }
+}

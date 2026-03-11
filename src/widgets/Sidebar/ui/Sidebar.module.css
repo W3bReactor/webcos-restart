@@ -1,0 +1,62 @@
+.sidebar {
+    position: sticky;
+    top: 15px;
+    right: 0;
+    margin-left: 15px;
+    max-width: 271px;
+    width: 100%;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    height: max-content;
+    padding: 25px 30px;
+}
+
+.sidebarTitle {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 7px;
+
+}
+
+.sidebarList {
+    list-style: none;
+    text-overflow: ellipsis;
+}
+
+.sidebarItem {
+    padding: 13px 5px;
+    transition: all 0.3s;
+
+}
+.sidebarItem:hover {
+    background-color: var(--hover);
+}
+
+.sidebarItem:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebarName {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+
+
+}
+
+.sidebarLink {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: var(--foreground);
+
+}
+

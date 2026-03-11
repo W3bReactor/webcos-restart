@@ -1,0 +1,17 @@
+.background {
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    background: transparent;
+    top: 0;
+    left: 0;
+}
+
+.backgroundGradient {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    background: transparent;
+    top: 0;
+    left: 0;
+}

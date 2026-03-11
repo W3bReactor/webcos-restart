@@ -1,0 +1,59 @@
+.adminStoryList {
+    width: 100%;
+    background: rgba(var(--foregroundRGBA), 0.08);
+    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.adminStoryPositionItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    cursor: grab;
+
+}
+
+.adminStoryPositionItemContent {
+    display: flex;
+    align-items: center;
+}
+
+.adminStoryPositionIndex {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 108%;
+    letter-spacing: 0.02em;
+    color: var(--foreground);
+}
+
+.adminStoryPositionItemTitle {
+    margin-left: 15px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 108%;
+    letter-spacing: 0.02em;
+    color: var(--foreground);
+}
+
+.adminStoryPositionYear {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 108%;
+    letter-spacing: 0.02em;
+    color: var(--foreground);
+}
+.adminStoryPositionInstrument {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.adminStoryPositionIcon {
+    width: 24px;
+    height: 24px;
+}

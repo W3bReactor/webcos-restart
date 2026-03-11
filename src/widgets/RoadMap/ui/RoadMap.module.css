@@ -1,0 +1,45 @@
+.roadMapWrapper {
+    max-width: 1200px;
+    margin: 200px auto 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.roadMapTitle {
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.roadMapDesc {
+    margin-bottom: 120px;
+}
+
+.roadMapImage {
+    display: block;
+}
+.roadMapParrotPosition {
+    position: absolute;
+    right: 10px;
+    top: -170px;
+}
+.roadMapImageWrapper {
+    margin-bottom: -30px;
+    position: relative;
+    z-index: -1;
+}
+
+
+@media (max-width: 1280px) {
+    .roadMapWrapper {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 796px) {
+    .roadMapDesc {
+        margin-bottom: 60px;
+    }
+}

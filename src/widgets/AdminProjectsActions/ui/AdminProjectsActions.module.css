@@ -1,0 +1,30 @@
+.adminArticlesInstrumentsTitle {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground)
+}
+.adminArticlesInstrumentsButtons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.adminArticlesInstrumentsBtn {
+    margin-right: 25px;
+
+}
+
+.adminArticlesInstrumentsSearch {
+    max-width: 300px;
+    padding-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.adminArticlesInstrumentsSearchBtn {
+    margin-top: 25px;
+    margin-left: auto;
+}

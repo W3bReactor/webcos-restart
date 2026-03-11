@@ -1,0 +1,35 @@
+.BreadCrumbs {
+    display: flex;
+    align-items: flex-start;
+}
+
+.BreadCrumbsItemWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.BreadCrumbsItem {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+@media (max-width: 564px) {
+    .BreadCrumbs {
+        align-items: flex-start;
+    }
+    .BreadCrumbsItem {
+        font-size: 16px;
+
+    }
+    h1.BreadCrumbsItem {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+}

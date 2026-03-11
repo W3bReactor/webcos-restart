@@ -1,0 +1,126 @@
+.adminBannersTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.adminBannersTitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground)
+}
+.adminBannersItem {
+    position: relative;
+}
+.adminBannersItemWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.adminBannersImageWrapper {
+    position: relative;
+}
+
+
+.adminBannersNew {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.adminBannersImage {
+    width: 358px;
+    height: 162px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adminBannersInstruments {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.adminBannersImageWrapper:hover .adminBannersInstruments {
+    opacity: 1;
+}
+
+.adminBannersDelete {
+    margin-top: 15px;
+}
+
+.adminBannersContent {
+    text-align: left;
+}
+
+.adminBannersInfo {
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.adminBannersButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adminBannersPrev {
+    background-color: #fff;
+    border-radius: 100%;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-right: 10px;
+    position: absolute;
+    left: 15px;
+
+    top: 90px;
+    transform: translateY(-50%);
+    z-index: 50;
+}
+
+.adminBannersNext{
+    background-color: #fff;
+    border-radius: 100%;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 90px;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 50;
+
+}
+
+.adminBannersNextImage {
+    transform: rotate(180deg);
+
+}
+
+.adminBannersSwiper {
+    align-items: flex-start;
+}
+
+.adminBannersSlide {
+    margin-top: 0;
+}
+
+.noSwiping {
+    display: none;
+}

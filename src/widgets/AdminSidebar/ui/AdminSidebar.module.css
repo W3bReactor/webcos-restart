@@ -1,0 +1,69 @@
+.adminSidebar {
+    position: sticky;
+    top: 15px;
+    right: 0;
+    margin-left: 15px;
+    max-width: 271px;
+    width: 100%;
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.35);
+    background: var(--card);
+    height: max-content;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adminSidebarTitle {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    padding: 7px;
+    background: rgba(var(--foregroundRGBA), 0.08);
+    width: max-content;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    margin-bottom: 15px;
+}
+
+.adminSidebarList {
+    list-style: none;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.adminSidebarItem {
+    transition: all 0.3s;
+    width: 100%;
+
+}
+.adminSidebarItem:hover {
+    background-color: var(--hover);
+}
+
+.adminSidebarItem:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adminSidebarName {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    text-align: center;
+}
+
+.adminSidebarLink {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: var(--foreground);
+    padding: 13px 5px;
+
+}
+

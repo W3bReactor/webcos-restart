@@ -1,0 +1,28 @@
+.adminStoryTitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    margin-bottom: 25px;
+}
+
+.adminStoryForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 362px;
+}
+
+.adminStoryInput {
+    margin-bottom: 20px;
+}
+
+.adminStoryButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.adminStoryBtn {
+    margin-top: 15px;
+}

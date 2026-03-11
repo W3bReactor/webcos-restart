@@ -1,0 +1,199 @@
+.Clouds {
+    position: absolute;
+    top: -35px; right: 0; left: 0;
+    z-index: -1;
+    height: 45%;
+    margin: auto;
+    overflow: hidden;
+    animation: FadeIn 3.1s ease-out;
+    user-select: none;
+
+}
+
+.Clouds:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /*background-color: #13a7d433;*/
+    background-image: radial-gradient(circle, rgba(29, 57, 181, 0.3) 0%, rgba(19, 167, 212, 0.2) 70%, rgb(182, 193, 233, 0.5) 100%);
+
+    filter: blur(15px);
+}
+
+@keyframes FadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+.Cloud {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: 70px;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-name: Float, FadeFloat;
+    z-index: 1;
+}
+
+.Cloud.Foreground {
+    height: 10%;
+    min-height: 20px;
+    z-index: 3;
+}
+.Cloud.Background {
+    height: calc(10% / 1.1);
+    min-height: 8px;
+    animation-duration: calc(120s * 1.75);
+    animation-delay: -2s;
+}
+
+@keyframes Float {
+    from { transform: translateX(100%) translateZ(0); }
+    to { transform: translateX(-15%) translateZ(0); }
+}
+@keyframes FloatInverse {
+    from { transform: translateX(-15%) translateZ(0); }
+    to { transform: translateX(100%) translateZ(0); }
+}
+/*
+@keyframes Float {
+  from { transform: translateX(100%) translateY(-100%) translateZ(0); }
+  50% { transform: translateX(55%) translateY(0) translateZ(0); }
+  to { transform: translateX(-5%) translateY(-100%) translateZ(0); }
+}
+*/
+
+@keyframes FadeFloat {
+    0%, 100% { opacity: 0; }
+    5%, 90% { opacity: 1; }
+}
+
+.Cloud.Foreground:nth-child(1) {
+    animation-duration: 130s;
+    height: 11%;
+    top: 5px;
+
+}
+.Cloud.Foreground:nth-child(2) {
+    animation-duration: 250s;
+    -webkit-animation-delay: -100s;
+    animation-delay: -100s;
+    top: 10%;
+    height: 14%;
+}
+
+
+.Cloud.Foreground:nth-child(3) {
+    -webkit-animation-delay: -50s;
+    animation-delay: -50s;
+    top: 50%;
+    height: 20%;
+    animation-duration: 250s;
+
+}
+
+/*.Cloud.Foreground:nth-child(4) {*/
+/*    -webkit-animation-delay: -50s;*/
+/*    animation-delay: -50s;*/
+/*    top: 80%;*/
+/*    height: 15%;*/
+/*    animation-duration: 150s;*/
+
+/*}*/
+
+/*.Cloud.Foreground:nth-child(5) {*/
+/*    -webkit-animation-delay: -100s;*/
+/*    animation-delay: -100s;*/
+/*    top: 50%;*/
+/*    height: 15%;*/
+/*    animation-duration: 180s;*/
+
+/*}*/
+
+/*.Cloud.Foreground:nth-child(6) {*/
+/*    -webkit-animation-delay: -150s;*/
+/*    animation-delay: -150s;*/
+/*    top: 20%;*/
+/*    height: 20%;*/
+/*    animation-duration: 200s;*/
+
+/*}*/
+
+/*.Cloud.Foreground:nth-child(7) {*/
+/*    -webkit-animation-delay: -200s;*/
+/*    animation-delay: -200s;*/
+/*    top: 70%;*/
+/*    height: 20%;*/
+/*    animation-duration: 230s;*/
+/*}*/
+
+.Cloud.Foreground:nth-child(4) {
+    animation-duration: 130s;
+    height: 11%;
+    top: 5px;
+
+}
+.Cloud.Foreground:nth-child(5) {
+    animation-name: FloatInverse, FadeFloat;
+    animation-duration: 250s;
+    -webkit-animation-delay: -100s;
+    animation-delay: -100s;
+    top: 10%;
+    height: 14%;
+}
+
+
+.Cloud.Foreground:nth-child(6) {
+    -webkit-animation-delay: -50s;
+    animation-delay: -50s;
+    top: 50%;
+    height: 20%;
+    animation-duration: 250s;
+
+}
+
+.Cloud.Foreground:nth-child(7) {
+    -webkit-animation-delay: -50s;
+    animation-delay: -50s;
+    top: 80%;
+    height: 15%;
+    animation-duration: 150s;
+
+}
+
+.Cloud.Foreground:nth-child(8) {
+    -webkit-animation-delay: -100s;
+    animation-delay: -100s;
+    top: 50%;
+    height: 15%;
+    animation-duration: 180s;
+
+}
+
+.Cloud.Foreground:nth-child(9) {
+    -webkit-animation-delay: -150s;
+    animation-delay: -150s;
+    top: 20%;
+    height: 20%;
+    animation-duration: 200s;
+
+}
+
+.Cloud.Foreground:nth-child(10) {
+    -webkit-animation-delay: -200s;
+    animation-delay: -200s;
+    top: 70%;
+    height: 20%;
+    animation-duration: 230s;
+}
+

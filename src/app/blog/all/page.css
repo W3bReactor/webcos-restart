@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    [data-categories="open"] [data-on-open-categories='sidebar'] {
+        transform: translateX(0);
+    }
+}
