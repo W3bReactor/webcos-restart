@@ -3,7 +3,7 @@ import "@/app/styles/globals.css";
 import { Inter } from "next/font/google";
 import {ThemeProvider} from "@/app/providers";
 import React from "react";
-import {Background, ThemeAnimation, TopLoader} from "@/shared/ui";
+import {Background, CookieBanner, ThemeAnimation, TopLoader} from "@/shared/ui";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +30,7 @@ export default function RootLayout({
               <ThemeProvider>
                   <ThemeAnimation/>
                   <Background/>
+                  <CookieBanner />
                   {children}
               </ThemeProvider>
           </body>

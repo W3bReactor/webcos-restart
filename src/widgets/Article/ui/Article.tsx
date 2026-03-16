@@ -10,6 +10,9 @@ import { cookies } from 'next/headers'
 import {ApiResult} from "@/shared/model";
 import {apiFetch} from "@/shared/api";
 import {IArticle as IArticleApi} from "@/widgets/Blog";
+import {getRecommendedArticlesApi} from "@/widgets/Blog/api/articlesApi";
+import {BlogItem} from "@/entities/BlogItem";
+import {getDate} from "@/shared/lib";
 
 interface IArticle {
     id: string
@@ -48,6 +51,7 @@ const getArticleApi = async (articleId: string): Promise<ApiResult<IArticleApi>>
 
 export const Article = async ({id}: IArticle) => {
     const response = await getArticleApi(id)
+    const responseRecommend = await getRecommendedArticlesApi({size: 2})
     // TODO: Сделать рекомендованные статьи
     // const recommends = await getRecommendArticlesApi()
     const items = [
@@ -71,7 +75,7 @@ export const Article = async ({id}: IArticle) => {
                         <button className={styles.articleShare}><Image src={ShareIcon} alt={'Поделиться'} className={styles.articleShareIcon}/></button>
                     </div>
                     <div className={styles.articleInfo}>
-                        <time className={styles.articleText}>21.06.2020</time>
+                        <time className={styles.articleText}>{getDate(new Date(response.data.createdAt))}</time>
                         {responseCategory.success &&
                             <p className={styles.articleText}>{responseCategory.data.title}</p>
                         }
@@ -80,20 +84,16 @@ export const Article = async ({id}: IArticle) => {
                     <div className={`${styles.articleContent}`} >
                         <div className={`${styles.articleDesc} ck-content ck-content--theme`} dangerouslySetInnerHTML={{__html: response.data.content}}></div>
                     </div>
-
-                    {/*<div className={styles.articleContent}>*/}
-                    {/*    <p className={styles.articleDesc}>{response.data.content}</p>*/}
-                    {/*</div>*/}
-                    {/*TODO: Сделать рекомендованные статьи*/}
-                    {/*<div className={styles.articleRecommend}>*/}
-                    {/*    <h2 className={styles.articleRecommendTitle}>Рекомендуем</h2>*/}
-                    {/*    <ul className={styles.articleRecommendList}>*/}
-                    {/*        {recommends.map(recommend =>*/}
-                    {/*            <BlogItem key={recommend.id} image={recommend.thumbnailUrl} id={String(recommend.id)} className={styles.articleRecommendItem} title={recommend.title} description={'hello'}/>*/}
-
-                    {/*        )}*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
+                    {responseRecommend.success && responseRecommend.data.length > 0 &&
+                        <div className={styles.articleRecommend}>
+                            <h2 className={styles.articleRecommendTitle}>Рекомендуем</h2>
+                            <ul className={styles.articleRecommendList}>
+                                {responseRecommend.data.map(recommend =>
+                                    <BlogItem key={recommend.id} image={recommend.image} id={String(recommend.id)} className={styles.articleRecommendItem} title={recommend.title} description={recommend.description}/>
+                                )}
+                            </ul>
+                        </div>
+                    }
                 </article>
 
             </div>

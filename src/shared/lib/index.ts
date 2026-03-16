@@ -2,3 +2,4 @@ export { getRandomNumber, getFullRandomRgba, getRandomColor, getChances, getChan
 export { debounce, throttle } from './utils/limitors/limitors'
 export { useCurrentTheme } from './hooks/useCurrentTheme/useCurrentTheme'
 export { useDebounce } from './hooks/useDebounce/useDebounce'
+export { getDate } from './utils/date/date'

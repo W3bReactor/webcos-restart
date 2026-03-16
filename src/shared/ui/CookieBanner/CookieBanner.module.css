@@ -1,7 +1,47 @@
-.cardTitle {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 133%;
-    color: var(--foreground);
-    margin-bottom: 8px;
+.cookieBanner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    max-width: 450px;
+
+    background: #1e1e1e;
+    color: white;
+
+    padding: 16px;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+}
+
+.desc {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.btns {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.cookieBanner button {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cookieBanner button:first-child {
+    background: #4f46e5;
+    color: white;
+}
+
+.link {
+    color: mediumpurple;
+}
+
+.cookieBanner button:last-child {
+    background: #333;
+    color: white;
 }

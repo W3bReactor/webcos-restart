@@ -1,40 +1,62 @@
 'use client';
 import styles from './CookieBanner.module.css'
 import React, {useEffect, useState} from "react";
+import Link from "next/link";
+import {StandardBtn} from "@/shared/ui";
 
+export const CookieBanner = () => {
 
-interface ICardTitle {
-    children: React.ReactNode;
-    className?: string;
-}
-
-// TODO: Сделать баннер для куки
-export const CookieBanner = ({children, className}: ICardTitle) => {
-
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(false)
 
     useEffect(() => {
-        const consent = localStorage.getItem("cookie_consent");
-        if (!consent) setVisible(true);
-    }, []);
+        const consent = localStorage.getItem("cookie_consent")
+        if (!consent) {
+            setVisible(true)
+        }
+    }, [])
 
-    const accept = () => {
-        localStorage.setItem("cookie_consent", "true");
-        setVisible(false);
-    };
+    const acceptAll = () => {
+        localStorage.setItem("cookie_consent", "accepted")
+        setVisible(false)
+        enableAnalytics()
+    }
 
-    if (!visible) return null;
+    const acceptNecessary = () => {
+        localStorage.setItem("cookie_consent", "necessary")
+        setVisible(false)
+    }
 
+    const enableAnalytics = () => {
+        if (window.ym) return
+
+        const script = document.createElement("script")
+        script.src = "https://mc.yandex.ru/metrika/tag.js"
+        script.async = true
+        document.head.appendChild(script)
+    }
+
+    if (!visible) return null
 
     return (
-        <div className="cookieBanner">
-            <p>
-                Мы используем cookie для аналитики и персонализации рекомендаций.
+        <div className={styles.cookieBanner}>
+            <p className={styles.desc}>
+                Мы используем cookie для работы сайта, аналитики и персонализации рекомендаций.
+                Продолжая использовать сайт, вы соглашаетесь с использованием cookie.
+            </p>
+            <p className={styles.desc}>
+
+                Подробнее — <Link className={styles.link} href={'/cookie-policy'}>в Политике использования cookie</Link>.
             </p>
 
-            <button onClick={accept}>
-                Принять
-            </button>
+            <div className={styles.btns}>
+                <StandardBtn type={'btn'} onClick={acceptAll}>
+                    Принять
+                </StandardBtn>
+                <StandardBtn type={'btn'} onClick={acceptNecessary}>
+                    Только необходимые
+                </StandardBtn>
+            </div>
+
         </div>
     );
 }

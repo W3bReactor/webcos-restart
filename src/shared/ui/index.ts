@@ -14,3 +14,4 @@ export { PurpleBtn } from "./PurpleBtn/PurpleBtn";
 export { Input } from "./Input/Input";
 export { RedBtn } from "./RedBtn/RedBtn";
 export { Upload } from "./Upload/Upload";
+export { CookieBanner } from "./CookieBanner/CookieBanner";
