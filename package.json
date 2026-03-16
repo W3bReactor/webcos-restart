@@ -23,6 +23,7 @@
     "nextjs-toploader": "^3.8.16",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-intersection-observer": "^10.0.3",
     "set-cookie-parser": "^3.0.1",
     "swiper": "^11.2.10",
     "swr": "^2.4.1"

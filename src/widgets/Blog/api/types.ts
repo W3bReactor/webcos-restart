@@ -7,6 +7,11 @@ export interface ArticleParams {
     page?: number;
 }
 
+export interface RecommendedArticlesParams {
+    size?: number;
+    page?: number;
+}
+
 export interface ArticleCreate {
     title: string;
     description: string;

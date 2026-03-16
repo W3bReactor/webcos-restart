@@ -1,9 +1,7 @@
 import styles from "./BlogFeedPage.module.css";
-import {Header, Footer} from "@/widgets";
+import {Header, Footer, BlogFeed} from "@/widgets";
 import {Sidebar} from "@/widgets/Sidebar";
-import {BlogItem} from "@/entities/BlogItem";
 import {BreadCrumbs} from "@/shared/ui";
-import {getArticlesApi} from "@/views/BlogFeedPage";
 
 const items = [
     {
@@ -18,7 +16,6 @@ const items = [
 ]
 
 export const BlogFeedPage = async () => {
-    const data = await getArticlesApi()
 
     return (
         <div className={styles.page}>
@@ -28,10 +25,7 @@ export const BlogFeedPage = async () => {
                     <div className={styles.blogLineColumn}>
                         <BreadCrumbs items={items}/>
                         <ul className={styles.blogLineList}>
-                            {data.map(item =>
-                                <BlogItem imageHeight={350} id={String(item.id)} key={item.id} className={styles.blogLineItem} title={item.title} image={item.url} description={'hello'}/>
-
-                            )}
+                            <BlogFeed/>
                         </ul>
                     </div>
                     <Sidebar className={styles.blogLineSidebar}/>

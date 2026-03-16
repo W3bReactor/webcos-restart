@@ -367,7 +367,7 @@ export default function NewEditor({onChange, value = '' }:INewEditor) {
                 style: {
                     definitions: [
                         {
-                            name: 'Article category',
+                            name: 'ArticleReadTracker category',
                             element: 'h3',
                             classes: ['category']
                         },

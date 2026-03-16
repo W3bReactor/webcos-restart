@@ -13,8 +13,7 @@ export const metadata: Metadata = {
   description: "Мы создаём будущее",
   icons: {
     icon: '/webcos-logo.svg'
-  },
-
+  }
 };
 
 

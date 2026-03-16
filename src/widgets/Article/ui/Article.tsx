@@ -1,14 +1,49 @@
+'use server';
 import React from "react";
 import styles from './Article.module.css'
 import Image from "next/image";
-import {getArticleApi, } from "@/widgets/Article";
 import {EyeIcon, ShareIcon} from "@/shared/assets";
 import {BreadCrumbs} from "@/shared/ui";
 import {getCategoryApi} from "@/views/BlogAllPage";
-
+import {ArticleReadTracker} from "@/widgets/Article/ui/ArticleReadTracker/ArticleReadTracker";
+import { cookies } from 'next/headers'
+import {ApiResult} from "@/shared/model";
+import {apiFetch} from "@/shared/api";
+import {IArticle as IArticleApi} from "@/widgets/Blog";
 
 interface IArticle {
     id: string
+}
+
+const getArticleApi = async (articleId: string): Promise<ApiResult<IArticleApi>>  => {
+    try {
+        const cookieStore = await cookies();
+        const cookieHeader = cookieStore.toString();
+        const response = await apiFetch(
+            `/api/v1/articles/${articleId}`,
+            {
+                headers: {
+                    Cookie: cookieHeader
+                },
+                cache: "force-cache",
+                next: { revalidate: 1 }
+            }
+        );
+
+        if (!response.ok) {
+            return { success: false, error: "Failed to fetch" };
+        }
+
+        return { success: true, data: await response.json() };
+
+    } catch (error) {
+        console.error("Backend unavailable:", error);
+
+        return {
+            success: false,
+            error: "Backend unavailable"
+        };
+    }
 }
 
 export const Article = async ({id}: IArticle) => {
@@ -27,6 +62,7 @@ export const Article = async ({id}: IArticle) => {
             <div className={styles.articleColumn}>
                 <BreadCrumbs items={items}/>
                 <article className={styles.article}>
+                    <ArticleReadTracker articleId={response.data.id}/>
                     {response.data.image &&
                         <Image src={response.data.image} width={734} height={332} className={styles.articlePreviewImage} alt={response.data.title} />
                     }

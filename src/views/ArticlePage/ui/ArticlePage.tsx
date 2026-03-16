@@ -16,7 +16,6 @@ export const ArticlePage = async ({articleId}: IArticlePage) => {
                     <Article id={articleId}/>
                     <Sidebar className={styles.articleSidebar}/>
                 </section>
-
             <Social href={'#'} platform={"Телеграм"} title={'Понравилась статья?'} description={'Заходите к нам в телеграм и узнавайте про новые продукты первыми!'}/>
             </main>
             <Footer/>

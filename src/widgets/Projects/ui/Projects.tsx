@@ -16,16 +16,16 @@ export const Projects = async () => {
             <div className={styles.productsRocketPosition}>
                 <RocketAnimation/>
             </div>
-            <SectionTitle className={styles.productsTitle}>Создаём новые продукты</SectionTitle>
-            <SectionDesc className={styles.productsDesc}>Мы облегчаем вашу жизнь нашими сервисами</SectionDesc>
+            <SectionTitle className={styles.productsTitle}>Создаём новые сервисы</SectionTitle>
+            <SectionDesc className={styles.productsDesc}>А также улучшаем уже готовые сервисы</SectionDesc>
             <ul className={styles.productsList}>
                 {response.success && response.data.content.length > 0 ? response.data.content.map(project =>
-                    <Project id={String(project.id)} key={project.id} className={styles.productItem} imageAnimation={styles.productInfinityRight} image={project.image} title={project.title} description={project.description} />
+                    <Project id={String(project.id)} key={project.id} className={styles.productItem} imageAnimation={styles.productInfinityRight} image={project.image} link={project.project_link} title={project.title} description={project.description} />
                 ) :
                     <p>На данный момент проектов нет : (</p>
                 }
             </ul>
-            <StandardBtn type={'site-link'} href={'/projects'} className={styles.productsBtn}>Посмотреть ещё</StandardBtn>
+            <StandardBtn type={'site-link'} href={'/projects'} className={styles.productsBtn}>Посмотреть всё</StandardBtn>
         </section>
     );
 }

@@ -36,9 +36,9 @@ export const   Header = () => {
                                 <li className={styles.navDropdownItem}>
                                     <Link href={'/blog/all'} className={styles.navDropdownItemLink}>Все статьи</Link>
                                 </li>
-                                {/*<li className={styles.navDropdownItem}>*/}
-                                {/*    <Link className={styles.navDropdownItemLink} href={'/blog/feed'}>Моя лента</Link>*/}
-                                {/*</li>*/}
+                                <li className={styles.navDropdownItem}>
+                                    <Link className={styles.navDropdownItemLink} href={'/blog/feed'}>Моя лента</Link>
+                                </li>
 
                             </ul>
 

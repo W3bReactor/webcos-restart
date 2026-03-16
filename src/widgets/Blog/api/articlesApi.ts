@@ -1,7 +1,13 @@
 import {ApiResult, PageResponse} from "@/shared/model";
 import {IArticle} from "@/widgets/Blog";
 import {apiFetch} from "@/shared/api";
-import {ArticleCreate, ArticleParams, ArticleUpdate, ArticleUploadImage} from "@/widgets/Blog/api/types";
+import {
+    ArticleCreate,
+    ArticleParams,
+    ArticleUpdate,
+    ArticleUploadImage,
+    RecommendedArticlesParams
+} from "@/widgets/Blog/api/types";
 
 export const getArticlesApi = async (params?: ArticleParams): Promise<ApiResult<PageResponse<IArticle>>>  => {
     try {
@@ -29,6 +35,35 @@ export const getArticlesApi = async (params?: ArticleParams): Promise<ApiResult<
         };
     }
 }
+
+export const getRecommendedArticlesApi = async (params?: RecommendedArticlesParams): Promise<ApiResult<IArticle[]>>  => {
+    try {
+        const response = await apiFetch(
+            `/api/v1/articles/recommendations?size=${params?.size ? params?.size : ""}${params?.page ? "&page=" + params?.page : ""}
+            `,
+            {
+                cache: "force-cache",
+                next: { revalidate: 1 }
+            }
+        );
+
+        if (!response.ok) {
+            return { success: false, error: "Failed to fetch" };
+        }
+
+        return { success: true, data: await response.json() };
+
+    } catch (error) {
+        console.error("Backend unavailable:", error);
+
+        return {
+            success: false,
+            error: "Backend unavailable"
+        };
+    }
+}
+
+
 
 export const createArticleApi = async (body: ArticleCreate): Promise<ApiResult<IArticle>>  => {
     try {

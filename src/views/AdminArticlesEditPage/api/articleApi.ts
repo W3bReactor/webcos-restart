@@ -24,5 +24,5 @@ export const getArticleApi = async (id: string): Promise<AxiosResponse<Article[]
 
 }
 // static fetchSwitches(params?: IQuery): Promise<AxiosResponse<ISwitch[]>> {
-//     return $api.get<Article[]>(`/switch?${params?.search ? 'search='+params.search : ''}`)
+//     return $api.get<ArticleReadTracker[]>(`/switch?${params?.search ? 'search='+params.search : ''}`)
 // }
