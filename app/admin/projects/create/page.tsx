@@ -1,4 +1,4 @@
-import {AdminProjectsCreatePage} from "@/views/AdminProjectsCreatePage";
+import {AdminProjectsCreatePage} from "@/pages/AdminProjectsCreatePage";
 
 export default function AdminProjectsCreate() {
     return (

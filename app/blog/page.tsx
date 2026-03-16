@@ -1,4 +1,4 @@
-import {BlogPage} from "@/views/BlogPage";
+import {BlogPage} from "@/pages/BlogPage";
 
 export default function Blog() {
     return (

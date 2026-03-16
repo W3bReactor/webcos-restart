@@ -1,4 +1,4 @@
-import {AdminArticlesEditPage} from "@/views/AdminArticlesEditPage";
+import {AdminArticlesEditPage} from "@/pages/AdminArticlesEditPage";
 
 export default async function AdminArticlesEdit({params}:
                                                 Readonly<{

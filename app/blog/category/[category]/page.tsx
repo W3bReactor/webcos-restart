@@ -1,4 +1,4 @@
-import {BlogAllPage} from "@/views/BlogAllPage";
+import {BlogAllPage} from "@/pages/BlogAllPage";
 
 
 

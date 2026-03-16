@@ -18,7 +18,7 @@ import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 import {redirect} from "next/navigation";
 import {toInteger} from "es-toolkit/compat";
 import {getArticleApi} from "@/widgets/Article";
-import {getCategoryApi} from "@/views/BlogAllPage";
+import {getCategoryApi} from "@/pages/BlogAllPage";
 
 
 interface IAdminArticlesEditPage {

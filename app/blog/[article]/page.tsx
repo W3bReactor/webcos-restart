@@ -1,4 +1,4 @@
-import {ArticlePage} from "@/views/ArticlePage";
+import {ArticlePage} from "@/pages/ArticlePage";
 
 
 export default async function Article({params}:

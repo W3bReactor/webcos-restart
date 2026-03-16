@@ -2,7 +2,7 @@ import styles from "./NotFoundPage.module.css";
 import {Header} from "@/widgets";
 import Link from "next/link";
 import Image from "next/image";
-import {NotFoundImage} from "@/views/NotFoundPage";
+import {NotFoundImage} from "@/pages/NotFoundPage";
 import {FooterNotFound} from "@/widgets/FooterNotFound";
 
 export const NotFoundPage = () => {

@@ -1,4 +1,4 @@
-import {AdminArticlesPage} from "@/views/AdminArticlesPage";
+import {AdminArticlesPage} from "@/pages/AdminArticlesPage";
 
 export default function AdminArticles() {
     return (

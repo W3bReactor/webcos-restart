@@ -1,4 +1,4 @@
-import {AdminProjectsPage} from "@/views/AdminProjectsPage";
+import {AdminProjectsPage} from "@/pages/AdminProjectsPage";
 
 export default function AdminProjects() {
     return (

@@ -1,4 +1,4 @@
-import {AdminLoginPage} from "@/views/AdminLoginPage";
+import {AdminLoginPage} from "@/pages/AdminLoginPage";
 
 export default function AdminLogin() {
     return (

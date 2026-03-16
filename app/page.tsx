@@ -1,4 +1,4 @@
-import {MainPage} from "@/views/MainPage";
+import {MainPage} from "@/pages/MainPage";
 import React from "react";
 
 export default function Home() {

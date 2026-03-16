@@ -4,7 +4,7 @@ import styles from './Article.module.css'
 import Image from "next/image";
 import {EyeIcon, ShareIcon} from "@/shared/assets";
 import {BreadCrumbs} from "@/shared/ui";
-import {getCategoryApi} from "@/views/BlogAllPage";
+import {getCategoryApi} from "@/pages/BlogAllPage";
 import {ArticleReadTracker} from "@/widgets/Article/ui/ArticleReadTracker/ArticleReadTracker";
 import { cookies } from 'next/headers'
 import {ApiResult} from "@/shared/model";

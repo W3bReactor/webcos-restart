@@ -3,7 +3,7 @@ import {Header, Footer} from "@/widgets";
 import {Sidebar} from "@/widgets/Sidebar";
 import {BlogItem} from "@/entities/BlogItem";
 import {BreadCrumbs} from "@/shared/ui";
-import {getArticlesApi} from "@/views/BlogFeedPage";
+import {getArticlesApi} from "@/pages/BlogFeedPage";
 
 const items = [
     {

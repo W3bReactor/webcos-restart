@@ -7,7 +7,7 @@ import {CategoriesSidebar} from "@/widgets/CategoriesSidebar";
 import {MoonIcon} from "@/shared/assets";
 import {ArticleControls} from "@/widgets/ArticleControls";
 import Image from "next/image";
-import {getCategoryApi} from "@/views/BlogAllPage/api/categoryApi";
+import {getCategoryApi} from "@/pages/BlogAllPage/api/categoryApi";
 import {getArticlesApi} from "@/widgets/Blog";
 
 

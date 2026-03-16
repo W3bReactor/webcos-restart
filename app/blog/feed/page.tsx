@@ -1,4 +1,4 @@
-import {BlogFeedPage} from "@/views/BlogFeedPage";
+import {BlogFeedPage} from "@/pages/BlogFeedPage";
 
 export default function BlogFeed() {
     return (

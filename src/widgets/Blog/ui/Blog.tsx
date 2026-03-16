@@ -15,7 +15,7 @@ export const Blog = async () => {
             <CloudAnimation/>
             <div className={styles.blogWrapper}>
                 <SectionTitle className={styles.blogTitle}>Блог</SectionTitle>
-                <SectionDesc className={styles.blogDesc}>Мы также ведём свой блог</SectionDesc>
+                <SectionDesc className={styles.blogDesc}>Даём ответы, которые тяжёло было найти в интернете</SectionDesc>
                 <StandardBtn type={'site-link'} href={'/blog'} className={styles.blogBtn}>Открыть блог</StandardBtn>
                 <ul className={styles.blogList}>
                     {response.success && response.data.content.length > 0 ? response.data.content.map(item =>

@@ -1,4 +1,4 @@
-import {DevelopersPage} from "@/views/DevelopersPage";
+import {DevelopersPage} from "@/pages/DevelopersPage";
 
 export default function Developers() {
     return (

@@ -52,6 +52,15 @@ export const Footer = () => {
                     </ul>
                     {/* Оставляю для стилей*/}
                     <ul className={styles.footerList}>
+                        <li className={styles.footerItem}>
+                            <h3 className={styles.footerItemTitle}>Документы</h3>
+                        </li>
+                        <li className={styles.footerItem}>
+                            <Link href={'/privacy-policy'} className={styles.footerItemLink}>Политика конфиденциальности</Link>
+                        </li>
+                        <li className={styles.footerItem}>
+                            <Link href={'/cookie-policy'} className={styles.footerItemLink}>Политика использования cookie</Link>
+                        </li>
                     </ul>
 
                 </div>
