@@ -28,11 +28,11 @@ export const CookieBanner = () => {
 
     const enableAnalytics = () => {
         if (window.ym) return
-
+        // TODO: Добавить метрику
         const script = document.createElement("script")
-        script.src = "https://mc.yandex.ru/metrika/tag.js"
-        script.async = true
-        document.head.appendChild(script)
+        // script.src = "https://mc.yandex.ru/metrika/tag.js"
+        // script.async = true
+        // document.head.appendChild(script)
     }
 
     if (!visible) return null

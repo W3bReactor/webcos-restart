@@ -10,6 +10,7 @@ export interface ArticleParams {
 export interface RecommendedArticlesParams {
     size?: number;
     page?: number;
+    exclude?: number[];
 }
 
 export interface ArticleCreate {

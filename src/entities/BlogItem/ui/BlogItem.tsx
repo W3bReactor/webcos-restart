@@ -16,6 +16,7 @@ interface IBlogItem {
 export const BlogItem = ({description, title, className, image, id, imageHeight}: IBlogItem) => {
     return (
         <li className={`${styles.blogItem} ${className ? className : ''}`}>
+
             <Link href={`/blog/${id}`} className={styles.blogItemLink}>
                 {image &&
                     <Image className={styles.blogItemImage} src={image} alt={title} width={150} height={imageHeight ? imageHeight : 244 }/>

@@ -1,7 +1,7 @@
 .btn {
-    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.05);
     border-radius: 32px;
-    background-color: rgba(var(--foregroundRGBA), 0.08);
+    background-color: rgba(var(--foregroundGlassRGBA), 0.1);
     padding: 10px 15px;
     font-weight: 600;
     font-size: 14px;

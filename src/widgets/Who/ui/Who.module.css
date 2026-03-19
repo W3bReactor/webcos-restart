@@ -106,7 +106,7 @@
 }
 
 .whoTitle span{
-    background: linear-gradient(149deg, #00b292 0%, #2dffd9 29.05%, #54ffe0 63.59%, #03776f 97.8%);
+    background: #38BDF8;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,7 +127,7 @@
 }
 
 .whoDesc span {
-    color: #00b292;
+    color: #38BDF8;
 
 }
 

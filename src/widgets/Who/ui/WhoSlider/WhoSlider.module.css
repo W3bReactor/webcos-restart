@@ -19,8 +19,13 @@
     align-items: center;
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
-    box-shadow: 0 0 20px 0 rgba(82, 255, 245, 0.45);
-    border: 2px solid #00D6DA;
+    /*box-shadow: 0 0 20px 0 rgba(82, 255, 245, 0.45);*/
+    box-shadow:
+            0 0 0 1px rgba(255,255,255,0.04),
+            0 10px 40px rgba(0,0,0,0.5),
+            0 0 30px rgba(79,124,255,0.08);
+    border: 1px solid rgba(79,124,255,0.35);
+    /*border: 2px solid #00D6DA;*/
     transition: all 0.3s;
     margin-bottom: 39px;
     position: relative;
@@ -106,7 +111,7 @@
 }
 
 .whoTitle span{
-    background: linear-gradient(149deg, #00b292 0%, #2dffd9 29.05%, #54ffe0 63.59%, #03776f 97.8%);
+    background: var(--carditem);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,7 +132,7 @@
 }
 
 .whoDesc span {
-    color: #00b292;
+    color: #60A5FA;
 
 }
 

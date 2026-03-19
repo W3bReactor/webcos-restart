@@ -13,6 +13,7 @@ import {IArticle as IArticleApi} from "@/widgets/Blog";
 import {getRecommendedArticlesApi} from "@/widgets/Blog/api/articlesApi";
 import {BlogItem} from "@/entities/BlogItem";
 import {getDate} from "@/shared/lib";
+import {toInteger} from "es-toolkit/compat";
 
 interface IArticle {
     id: string
@@ -51,9 +52,8 @@ const getArticleApi = async (articleId: string): Promise<ApiResult<IArticleApi>>
 
 export const Article = async ({id}: IArticle) => {
     const response = await getArticleApi(id)
-    const responseRecommend = await getRecommendedArticlesApi({size: 2})
-    // TODO: Сделать рекомендованные статьи
-    // const recommends = await getRecommendArticlesApi()
+
+    const responseRecommend = await getRecommendedArticlesApi({size: 2, exclude: [toInteger(id)]})
     const items = [
         {label: 'Блог', path: '/blog'},
         {label: response.success ? response.data.title : "Статья не найдена", path: '/blog/article'}

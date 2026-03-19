@@ -1,7 +1,13 @@
 .blogItem {
-    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    border: 1px solid rgba(var(--card-border), 0.12);
     border-radius: 15px;
     background: var(--card);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transition: all 0.3s;
+}
+
+.blogItem:hover {
+    transform: translateY(-3px);
 }
 
 .blogItemLink {

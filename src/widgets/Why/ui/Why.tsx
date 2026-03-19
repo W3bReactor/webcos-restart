@@ -14,8 +14,30 @@ export const Why = () => {
                     <Image src={WhyImage} alt={'Для чего мы это делаем?'} className={styles.whyImage} />
                 </div>
                 <div className={styles.whyContent}>
-                    <p className={styles.whyText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat.</p>
-                    <p className={styles.whyText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat.</p>
+                    <p className={styles.whyText}>Мы часто сталкивались с одной проблемой: <br/>
+                        <strong>многие важные вещи в разработке почему-то сложно найти в интернете.</strong></p>
+                    <p className={styles.whyText}>Например:</p>
+                    <ul className={styles.list}>
+                        <li>
+                            <p className={styles.whyText}>Production-ready backend на Java</p>
+                        </li>
+                        <li>
+                            <p className={styles.whyText}>Реальная архитектура проектов</p>
+                        </li>
+                        <li>
+                            <p className={styles.whyText}>Как не терять преимущества Next js</p>
+                        </li>
+                        <li>
+                            <p className={styles.whyText}>Работа с Canvas и сложной графикой</p>
+                        </li>
+                        <li>
+                            <p className={styles.whyText}>практические решения, а не только теорию</p>
+                        </li>
+
+                    </ul>
+
+                    <p className={styles.whyText}>Мы создаём этот проект, чтобы закрыть этот пробел.
+                        Показывать реальные решения, делиться опытом и делать знания доступнее.</p>
                 </div>
             </div>
         </section>

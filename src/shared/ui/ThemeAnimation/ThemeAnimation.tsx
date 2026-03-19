@@ -11,7 +11,7 @@ type StateMachineStep = StateMachineAction | Promise<StateMachineAction> | null;
 
 const COLORS = {
     white: '#FFF',
-    midnightBlack: '#0E0E11',
+    midnightBlack: '#121A2E',
 };
 
 const RADIUS_GROWTH_PER_MS = 0.025;

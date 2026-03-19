@@ -21,8 +21,7 @@ interface INewEditor {
 export default function NewEditor({onChange, value = '' }:INewEditor) {
     const editorWordCountRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
-    const cloud = useCKEditorCloud({ version: '47.6.0', translations: ['ru'] });
-
+    const cloud = useCKEditorCloud({ version: '47.6.1', translations: ['ru'] });
     useEffect(() => {
         setIsLayoutReady(true);
 

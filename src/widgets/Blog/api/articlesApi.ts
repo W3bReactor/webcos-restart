@@ -39,7 +39,7 @@ export const getArticlesApi = async (params?: ArticleParams): Promise<ApiResult<
 export const getRecommendedArticlesApi = async (params?: RecommendedArticlesParams): Promise<ApiResult<IArticle[]>>  => {
     try {
         const response = await apiFetch(
-            `/api/v1/articles/recommendations?size=${params?.size ? params?.size : ""}${params?.page ? "&page=" + params?.page : ""}
+            `/api/v1/articles/recommendations?size=${params?.size ? params?.size : ""}${params?.page ? "&page=" + params?.page : ""}${params?.exclude ? "&exclude=" + params?.exclude.join(",") : ""}
             `,
             {
                 cache: "force-cache",
