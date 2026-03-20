@@ -20,10 +20,15 @@ body {
     z-index: -1;
 }
 
+main {
+    margin-top: 80px;
+}
+
 :root {
     /* Your default theme */
     --background: #121A2E;
     --foreground: #E5E7EB;
+    --white: #E5E7EB;
     --foregroundRGBA: 230, 232, 238;
     --foregroundGlassRGBA: 255, 255, 255;
     --description: #9CA3AF;
@@ -32,9 +37,11 @@ body {
     --contacts: linear-gradient(136deg, rgba(0, 0, 0, 0.41) 0%, rgba(29, 28, 32, 0.2) 50%, rgba(31, 30, 33, 0.38) 97.8%);
     --contactsHover: linear-gradient(136deg, rgba(0, 0, 0, 0.5) 0%, rgba(29, 28, 32, 0.5) 50%, rgba(31, 30, 33, 0.38) 97.8%);
     --hover: #4A4B57;
+    --hoverGlass: #4A4B57;
     --shadow: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #0e0e11 51%);
     --cardbg: rgba(15,23,42,0.8);
     --carditem: #60A5FA;
+    --cardpost: #60A5FA;
     --footer: rgba(0, 0, 0, 0.2);
     --house-color: #1a3a75;
     --window-color: linear-gradient(to right, transparent 10%, transparent 90%, #333 90%), linear-gradient(to bottom, transparent 10%, #EEA624 10%, #EEA624 90%);
@@ -44,17 +51,22 @@ body {
 }
 
 [data-theme='light'] {
-    --background: white;
+    --background: #fff;
     --foreground: #0E0E11;
+    --white: #fff;
     --foregroundRGBA: 0, 0, 0;
+    /*--foregroundRGBA: 230, 232, 238;*/
+    --foregroundGlassRGBA: 0, 0, 0;
     --description: #151414;
-    --card: rgba(0, 0, 0, 0.08);
+    --card: #E5E7EB;
     --contacts: linear-gradient(136deg, rgba(0, 0, 0, 0.9) 0%, rgba(29, 28, 32, 0.9) 50%, rgba(31, 30, 33, 0.9) 97.8%);
     --contactsHover: linear-gradient(136deg, rgba(0, 0, 0, 1) 0%, rgba(29, 28, 32, 1) 50%, rgba(31, 30, 33, 1) 97.8%);
-    --hover: #ececef;
+    --hover: #d3d3d5;
+    --hoverGlass: #ffffff;
     --shadow: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 51%);
     --cardbg: linear-gradient(136deg, rgba(0, 178, 255, 0.5) 0.01%, rgba(16, 181, 204, 0.5) 50%, rgba(0, 255, 240, 0.5) 97.8%);
-    --carditem: linear-gradient(149deg, #00b292 0%, #00ac8d 15%, #00cea9 29.05%, #00af90 63.59%, #00fcea 97.8%);
+    --carditem: #60A5FA;
+    --cardpost: #fff;
     --footer: rgba(0, 0, 0, 0.08);
     --house-color: #1a689c;
     --window-color: linear-gradient(to right, transparent 10%, transparent 90%, #333 90%), linear-gradient(to bottom, transparent 10%, #aefef8 10%, #aefef8 90%);

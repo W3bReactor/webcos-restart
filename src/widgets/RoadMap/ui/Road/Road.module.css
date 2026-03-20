@@ -18,6 +18,17 @@
     font-weight: 400;
     font-size: 28px;
     text-transform: uppercase;
+    color: var(--white);
+    position: relative;
+    z-index: 20;
+    text-align: center;
+}
+
+.roadItemTitleMain {
+    margin-top: 17px;
+    font-weight: 400;
+    font-size: 28px;
+    text-transform: uppercase;
     color: var(--foreground);
     position: relative;
     z-index: 20;
@@ -176,7 +187,7 @@
     font-size: 18px;
     line-height: 111%;
     text-transform: lowercase;
-    color: var(--foreground);
+    color: var(--white);
     position: relative;
     z-index: 20;
 }

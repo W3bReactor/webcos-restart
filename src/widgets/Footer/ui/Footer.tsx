@@ -50,7 +50,7 @@ export const Footer = () => {
                             <Link href={'/#roadmap'} className={styles.footerItemLink}>Наш путь</Link>
                         </li>
                     </ul>
-                    {/* Оставляю для стилей*/}
+
                     <ul className={styles.footerList}>
                         <li className={styles.footerItem}>
                             <h3 className={styles.footerItemTitle}>Документы</h3>

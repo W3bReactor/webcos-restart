@@ -8,10 +8,11 @@ interface IBreadCrumbs {
         label: string;
         path: string;
     }[]
+    className?: string;
 }
-export const BreadCrumbs = ({items}: IBreadCrumbs) => {
+export const BreadCrumbs = ({items, className}: IBreadCrumbs) => {
     return (
-        <div className={styles.BreadCrumbs}>
+        <div className={`${styles.BreadCrumbs} ${className}`}>
             <Link href={'/'} className={styles.BreadCrumbsItem}><Image alt={'Главная'} src={HomeIcon}/></Link>
             {items.map((el, id) => {
                     if(id !== items.length - 1) {

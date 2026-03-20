@@ -1,7 +1,16 @@
 import styles from './FooterNotFound.module.css'
 import Image from "next/image";
 import React from "react";
-import {DzenBlackIcon, DzenIcon, LogoBlackIcon, LogoIcon, TgIcon, TiktokIcon, VkIcon} from "@/shared/assets";
+import {
+    DzenBlackIcon,
+    DzenIcon,
+    LogoBlackIcon,
+    LogoIcon,
+    TgIcon,
+    TgWhiteIcon,
+    TiktokIcon, TiktokWhiteIcon,
+    VkIcon, VkWhiteIcon
+} from "@/shared/assets";
 import Link from "next/link";
 import {LightHouseAnimation} from "@/widgets/FooterNotFound/ui/LightHouseAnimation/LightHouseAnimation";
 
@@ -37,12 +46,20 @@ export const FooterNotFound = () => {
                             <h3 className={styles.footerItemTitle}>Информация</h3>
                         </li>
                         <li className={styles.footerItem}>
-                            <Link href={'#roadmap'} className={styles.footerItemLink}>Наш путь</Link>
+                            <Link href={'/#roadmap'} className={styles.footerItemLink}>Наш путь</Link>
                         </li>
-
                     </ul>
-                    {/* Оставляю для стилей*/}
+
                     <ul className={styles.footerList}>
+                        <li className={styles.footerItem}>
+                            <h3 className={styles.footerItemTitle}>Документы</h3>
+                        </li>
+                        <li className={styles.footerItem}>
+                            <Link href={'/privacy-policy'} className={styles.footerItemLink}>Политика конфиденциальности</Link>
+                        </li>
+                        <li className={styles.footerItem}>
+                            <Link href={'/cookie-policy'} className={styles.footerItemLink}>Политика использования cookie</Link>
+                        </li>
                     </ul>
 
                 </div>
@@ -52,26 +69,24 @@ export const FooterNotFound = () => {
                     <ul className={styles.footerSocial}>
                         <li className={styles.footerSocialItem}>
                             <a href="#" className={styles.footerSocialLink}>
-                                <Image className={styles.footerSocialIcon} src={TgIcon} alt={'Телеграмм'}/>
+                                <Image className={styles.footerSocialIcon} src={TgWhiteIcon} alt={'Телеграмм'}/>
 
                             </a>
                         </li>
                         <li className={styles.footerSocialItem}>
                             <a href="#" className={styles.footerSocialLink}>
-                                <Image className={styles.footerSocialIcon} src={VkIcon} alt={'ВК'}/>
+                                <Image className={styles.footerSocialIcon} src={VkWhiteIcon} alt={'ВК'}/>
 
                             </a>
                         </li>
                         <li className={styles.footerSocialItem}>
                             <a href="#" className={styles.footerSocialLink}>
-                                <Image data-hide-on-theme="light" className={styles.footerSocialIcon} src={DzenIcon} alt={'Дзен'}/>
-                                <Image data-hide-on-theme="dark" className={styles.footerSocialIcon} src={DzenBlackIcon} alt={'Дзен'}/>
-
+                                <Image  className={styles.footerSocialIcon} src={DzenIcon} alt={'Дзен'}/>
                             </a>
                         </li>
                         <li className={styles.footerSocialItem}>
                             <a href="#" className={styles.footerSocialLink}>
-                                <Image className={styles.footerSocialIcon} src={TiktokIcon} alt={'Тик-ток'}/>
+                                <Image className={styles.footerSocialIcon} src={TiktokWhiteIcon} alt={'Тик-ток'}/>
 
                             </a>
                         </li>

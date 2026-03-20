@@ -20,10 +20,7 @@
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
     /*box-shadow: 0 0 20px 0 rgba(82, 255, 245, 0.45);*/
-    box-shadow:
-            0 0 0 1px rgba(255,255,255,0.04),
-            0 10px 40px rgba(0,0,0,0.5),
-            0 0 30px rgba(79,124,255,0.08);
+    box-shadow: 0 0 20px 0 rgba(79,124,255, 0.45);
     border: 1px solid rgba(79,124,255,0.35);
     /*border: 2px solid #00D6DA;*/
     transition: all 0.3s;
@@ -33,8 +30,6 @@
     text-decoration: none;
 
 }
-
-
 
 .whoCardLink:before {
     content: '';
@@ -81,7 +76,7 @@
     font-weight: 400;
     font-size: 28px;
     text-align: center;
-    color: var(--foreground);
+    color: var(--white);
 
 }
 .whoCardPost {
@@ -89,7 +84,7 @@
     font-size: 24px;
     line-height: 271%;
     text-align: center;
-    background: var(--carditem);
+    background: var(--cardpost);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

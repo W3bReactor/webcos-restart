@@ -22,6 +22,12 @@
     }
 }
 
+@media (max-width: 564px) {
+    .articleWrapper {
+        padding: 0;
+    }
+}
+
 @media (max-width: 1024px) {
     .articleSidebar {
         display: none;

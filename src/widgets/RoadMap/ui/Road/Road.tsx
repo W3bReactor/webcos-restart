@@ -162,7 +162,7 @@ export const Road = ({ data }: { data: IStory[] }) => {
                                     <Image className={styles.roadItemImage} src={StageIcon} alt={'Стадия'}/>
 
                                 }
-                                <h3 className={styles.roadItemTitle}>{item.year}</h3>
+                                <h3 className={styles.roadItemTitleMain}>{item.year}</h3>
                                 <p className={styles.roadItemDescPreview}>{item.title}</p>
                             </div>
 

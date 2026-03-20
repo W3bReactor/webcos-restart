@@ -13,6 +13,14 @@
     border-radius: 5px;
 }
 
+
+@media (max-width: 564px) {
+    .articleBreadCrumbs {
+        margin-left: 15px;
+    }
+}
+
+
 .articlePreviewImage {
     width: 100%;
     border-radius: 20px;

@@ -64,7 +64,7 @@ export const Article = async ({id}: IArticle) => {
     const responseCategory = await getCategoryApi(String(response.data.category_id))
     return (
             <div className={styles.articleColumn}>
-                <BreadCrumbs items={items}/>
+                <BreadCrumbs className={styles.articleBreadCrumbs} items={items}/>
                 <article className={styles.article}>
                     <ArticleReadTracker articleId={response.data.id}/>
                     {response.data.image &&
