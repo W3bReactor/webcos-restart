@@ -4,7 +4,7 @@ import {BreadCrumbs} from "@/shared/ui";
 import {BlogItem} from "@/entities/BlogItem";
 import {Sidebar} from "@/widgets/Sidebar";
 import {CategoriesSidebar} from "@/widgets/CategoriesSidebar";
-import {MoonIcon} from "@/shared/assets";
+import {ArticlesAllIcon, MoonIcon} from "@/shared/assets";
 import {ArticleControls} from "@/widgets/ArticleControls";
 import Image from "next/image";
 import {getCategoryApi} from "@/pages/BlogAllPage/api/categoryApi";
@@ -49,9 +49,9 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
                             {responseCategory && responseCategory.success ?
                                 <div className={styles.articlesTop}>
                                     {responseCategory.data.icon ?
-                                        <Image width={100} height={100} className={styles.articlesTopImage} src={responseCategory.data.icon} alt={responseCategory.data.title}/>
+                                        <Image  width={100} height={100} className={styles.articlesTopImage} src={responseCategory.data.icon} alt={responseCategory.data.title}/>
                                         :
-                                        <Image width={100} height={100} className={styles.articlesTopImage} src={MoonIcon} alt={responseCategory.data.title}/>
+                                        <Image width={100} height={100} className={styles.articlesTopImage} src={ArticlesAllIcon} alt={responseCategory.data.title}/>
                                     }
                                     <div className={styles.articlesTopItem}>
                                         <h2 className={styles.articlesTopTitle}>{responseCategory.data.title}</h2>
@@ -62,7 +62,7 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
                                 </div>
                                 :
                                 <div className={styles.articlesTop}>
-                                    <Image width={100} height={100} className={styles.articlesTopImage} src={MoonIcon} alt={"Все статьи"}/>
+                                    <Image width={100} height={100} className={styles.articlesTopImage} src={ArticlesAllIcon} alt={"Все статьи"}/>
                                     <div className={styles.articlesTopItem}>
                                         <h2 className={styles.articlesTopTitle}>Все статьи</h2>
                                         <p className={styles.articlesTopDesc}>
