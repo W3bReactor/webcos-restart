@@ -31,6 +31,7 @@ export {AdminStoryForm} from './AdminStoryForm'
 export {AdminCategories} from './AdminCategories'
 export {AdminBanners} from './AdminBanners'
 export {AdminBannerForm} from './AdminBannerForm'
+export {BugReport} from './BugReport'
 
 
 

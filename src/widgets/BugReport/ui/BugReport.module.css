@@ -1,0 +1,60 @@
+.bug {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 80px auto 50px auto;
+}
+
+.bugTitle {
+    margin-bottom: 15px;
+}
+.bugDesc {
+    margin-bottom: 50px;
+}
+
+.bugForm {
+    background-color: var(--card);
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 962px;
+    /*background: rgba(15,23,42,0.6);*/
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    /*padding: 30px;*/
+}
+
+.bugInput {
+    max-width: 362px;
+    margin-bottom: 15px;
+}
+
+.bugTextarea {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    resize: vertical;
+    border: 1px solid var(--foreground);
+    border-radius: 15px;
+    background: rgba(var(--foregroundRGBA), 0.08);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    padding: 20px;
+    width: 100%;
+    min-height: 150px;
+    outline: none;
+}
+
+.bugTextarea::placeholder {
+    color: rgba(var(--foregroundRGBA), 0.5);
+}
+
+@media (max-width: 1280px) {
+    .contacts {
+        padding: 0 15px;
+    }
+}

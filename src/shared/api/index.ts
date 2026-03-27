@@ -1,2 +1,5 @@
 export { apiFetch } from './api'
 export { getBannersApi } from './banners/bannersApi'
+export { sendMail } from './mail/mailApi'
+export { checkRateLimit } from './requestLimitor'
+export { type MailSend } from './mail/types'

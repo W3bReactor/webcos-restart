@@ -1,5 +1,5 @@
 import styles from "./DevelopersPage.module.css";
-import {Header, RoadMap, Contacts, Footer, Who} from "@/widgets";
+import {Header, RoadMap, Contacts, Footer, Who, BugReport} from "@/widgets";
 
 export const DevelopersPage = () => {
 
@@ -9,6 +9,7 @@ export const DevelopersPage = () => {
             <main className={styles.app}>
                 <Who/>
                 <RoadMap/>
+                <BugReport/>
                 <Contacts/>
 
             </main>
