@@ -19,7 +19,7 @@ export const Sidebar = async ({className}: ISidebar) => {
                 {response.data.content.map((article) =>
                     <li key={article.id} className={styles.sidebarItem}>
                         <h3 className={styles.sidebarName}>
-                            <Link className={styles.sidebarLink} href={`/blog/${article.id}`}>
+                            <Link className={styles.sidebarLink} href={`/blog/${article.id}-${article.slug}`}>
                                 {article.title}
                             </Link>
                         </h3>

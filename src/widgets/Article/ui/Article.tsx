@@ -14,6 +14,7 @@ import {getRecommendedArticlesApi} from "@/widgets/Blog/api/articlesApi";
 import {BlogItem} from "@/entities/BlogItem";
 import {getDate} from "@/shared/lib";
 import {toInteger} from "es-toolkit/compat";
+import {redirect} from "next/navigation";
 
 interface IArticle {
     id: string
@@ -53,7 +54,6 @@ const getArticleApi = async (articleId: string): Promise<ApiResult<IArticleApi>>
 export const Article = async ({id}: IArticle) => {
     const response = await getArticleApi(id)
 
-    const responseRecommend = await getRecommendedArticlesApi({size: 2, exclude: [toInteger(id)]})
     const items = [
         {label: 'Блог', path: '/blog'},
         {label: response.success ? response.data.title : "Статья не найдена", path: '/blog/article'}
@@ -62,6 +62,14 @@ export const Article = async ({id}: IArticle) => {
         return <div>Статья не найдена :(</div>
     }
     const responseCategory = await getCategoryApi(String(response.data.category_id))
+
+    const responseRecommend = await getRecommendedArticlesApi({size: 2, exclude: [response.data.id]})
+
+    const correctSlug = response.success ? `${response.data.id}-${response.data.slug}` : "";
+    if (response.success && id !== correctSlug) {
+        redirect(`/blog/${correctSlug}`)
+    }
+
 
     const structuredData = {
         "@context": "https://schema.org",
@@ -85,7 +93,7 @@ export const Article = async ({id}: IArticle) => {
         "dateModified": response.data.createdAt,
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://webcos.ru/blog/${response.data.id}`
+            "@id": `https://webcos.ru/blog/${response.data.id}-${response.data.slug}`
         }
     }
 
@@ -120,7 +128,7 @@ export const Article = async ({id}: IArticle) => {
                             <h2 className={styles.articleRecommendTitle}>Рекомендуем</h2>
                             <ul className={styles.articleRecommendList}>
                                 {responseRecommend.data.map(recommend =>
-                                    <BlogItem key={recommend.id} image={recommend.image} id={String(recommend.id)} className={styles.articleRecommendItem} title={recommend.title} description={recommend.description}/>
+                                    <BlogItem slug={recommend.slug} key={recommend.id} image={recommend.image} id={String(recommend.id)} className={styles.articleRecommendItem} title={recommend.title} description={recommend.description}/>
                                 )}
                             </ul>
                         </div>

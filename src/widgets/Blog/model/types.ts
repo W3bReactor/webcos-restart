@@ -8,4 +8,5 @@ export interface IArticle {
     createdAt: string
     content: string
     category_id: number
+    slug: string;
 }

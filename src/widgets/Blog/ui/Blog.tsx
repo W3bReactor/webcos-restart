@@ -19,7 +19,7 @@ export const Blog = async () => {
                 <StandardBtn type={'site-link'} href={'/blog'} className={styles.blogBtn}>Открыть блог</StandardBtn>
                 <ul className={styles.blogList}>
                     {response.success && response.data.content.length > 0 ? response.data.content.map(item =>
-                        <BlogItem id={String(item.id)} image={item.image} key={item.id} className={styles.blogListItem} title={item.title} description={item.description}/>
+                        <BlogItem slug={item.slug} id={String(item.id)} image={item.image} key={item.id} className={styles.blogListItem} title={item.title} description={item.description}/>
                     )
                     :
                         <p>На данный момент статей нет :(</p>

@@ -2,11 +2,12 @@ import {BlogAllPage, getCategoryApi} from "@/pages/BlogAllPage";
 import {Metadata} from "next";
 
 
-export async function generateMetadata({ params }: {
-    params: { category: string }
-}): Promise<Metadata> {
+export async function generateMetadata({params}:
+                                       Readonly<{
+                                           params: Promise<{ category: string }>
+                                       }>): Promise<Metadata> {
 
-    const res = await getCategoryApi(params.category);
+    const res = await getCategoryApi((await params).category);
 
     if (!res.success) {
         return {
@@ -28,13 +29,13 @@ export async function generateMetadata({ params }: {
         ],
 
         alternates: {
-            canonical: `https://webcos.ru/blog/category/${category.id}`
+            canonical: `https://webcos.ru/blog/category/${category.id}-${category.slug}`
         },
 
         openGraph: {
             title: `${category.title} — Webcos`,
             description: category.description,
-            url: `https://webcos.ru/blog/category/${category.id}`,
+            url: `https://webcos.ru/blog/category/${category.id}-${category.slug}`,
             siteName: "Webcos",
             images: [category.icon],
             type: "website"

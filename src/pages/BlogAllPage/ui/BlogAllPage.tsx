@@ -4,11 +4,12 @@ import {BreadCrumbs} from "@/shared/ui";
 import {BlogItem} from "@/entities/BlogItem";
 import {Sidebar} from "@/widgets/Sidebar";
 import {CategoriesSidebar} from "@/widgets/CategoriesSidebar";
-import {ArticlesAllIcon, MoonIcon} from "@/shared/assets";
+import {ArticlesAllIcon} from "@/shared/assets";
 import {ArticleControls} from "@/widgets/ArticleControls";
 import Image from "next/image";
 import {getCategoryApi} from "@/pages/BlogAllPage/api/categoryApi";
 import {getArticlesApi} from "@/widgets/Blog";
+import {redirect} from "next/navigation";
 
 
 interface IBlogAllPage {
@@ -36,6 +37,10 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
     let responseCategory;
     if(categoryId) {
         responseCategory = await getCategoryApi(categoryId);
+        const correctSlug = responseCategory.success ? `${responseCategory.data.id}-${responseCategory.data.slug}` : "";
+        if (responseCategory.success && categoryId !== correctSlug) {
+            redirect(`/blog/category/${correctSlug}`)
+        }
     }
     return (
         <div className={styles.page}>
@@ -48,7 +53,7 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
                             "@type": "CollectionPage",
                             "name": responseCategory.data.title,
                             "description": responseCategory.data.description,
-                            "url": `https://webcos.ru/blog/category/${responseCategory.data.id}`
+                            "url": `https://webcos.ru/blog/category/${responseCategory.data.id}-${responseCategory.data.slug}`
                         })
                     }}
                 />
@@ -91,7 +96,7 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
                                     <ArticleControls currentSearch={currentSearch}/>
                                     <ul className={styles.articlesList}>
                                         {response.success && response.data.content.length > 0 ? response.data.content.map(item =>
-                                            <BlogItem key={item.id} id={String(item.id)} className={styles.articlesListItem} title={item.title} image={item.image} description={item.description}/>
+                                            <BlogItem slug={item.slug} key={item.id} id={String(item.id)} className={styles.articlesListItem} title={item.title} image={item.image} description={item.description}/>
                                         )
                                             :
                                             <div className={styles.articlesNotFound}>Статьи не найдены</div>

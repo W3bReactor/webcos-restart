@@ -22,7 +22,6 @@ export const ArticleReadTracker = ({articleId}: IArticleReadTracker) => {
         }
     };
     useEffect(() => {
-
         const handleVisibility = () => {
             if (document.visibilityState === "hidden") {
                 sendReadTime();

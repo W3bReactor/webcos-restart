@@ -5,19 +5,20 @@ import Image from "next/image";
 import {CardDesc, CardTitle} from "@/shared/ui";
 
 interface IBlogItem {
-    title: string
-    description: string
-    className?: string
+    title: string;
+    description: string;
+    className?: string;
     image?: string;
-    id: string
-    imageHeight?: number
+    id: string;
+    imageHeight?: number;
+    slug: string;
 }
 
-export const BlogItem = ({description, title, className, image, id, imageHeight}: IBlogItem) => {
+export const BlogItem = ({description, title, className, image, id, imageHeight, slug}: IBlogItem) => {
     return (
         <li className={`${styles.blogItem} ${className ? className : ''}`}>
 
-            <Link href={`/blog/${id}`} className={styles.blogItemLink}>
+            <Link href={`/blog/${id}-${slug}`} className={styles.blogItemLink}>
                 {image &&
                     <Image className={styles.blogItemImage} src={image} alt={title} width={150} height={imageHeight ? imageHeight : 244 }/>
                 }

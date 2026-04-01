@@ -61,7 +61,7 @@ export const BlogFeedClient = ({initialArticles}: BlogFeed) => {
 
         <ul className={styles.blogLineList}>
             {articles.map(item =>
-                <BlogItem imageHeight={350} id={String(item.id)} key={item.id} className={styles.blogLineItem} title={item.title} image={item.image} description={item.description}/>
+                <BlogItem slug={item.slug} imageHeight={350} id={String(item.id)} key={item.id} className={styles.blogLineItem} title={item.title} image={item.image} description={item.description}/>
 
             )}
             <div className={styles.blogLineItem}>

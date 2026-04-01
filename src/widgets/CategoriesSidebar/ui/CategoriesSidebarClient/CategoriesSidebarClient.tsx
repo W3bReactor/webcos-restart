@@ -64,7 +64,7 @@ export const CategoriesSidebarClient = ({className, initialCategories}: ICategor
                         {
                             categories.map((category) =>
                                 <li key={category.id} className={styles.sidebarItem}>
-                                    <Link className={styles.sidebarLink} href={`/blog/category/${category.id}`}>
+                                    <Link className={styles.sidebarLink} href={`/blog/category/${category.id}-${category.slug}`}>
                                         {category.icon ?
                                             <Image width={34} height={34} src={category.icon} alt={category.title}/>
                                             :

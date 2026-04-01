@@ -7,15 +7,16 @@ import {getCategoryApi} from "@/pages/BlogAllPage";
 
 
 
-export async function generateMetadata({ params }: {
-    params: { article: string }
-}): Promise<Metadata> {
+export async function generateMetadata({params}:
+                                       Readonly<{
+                                           params: Promise<{ article: string }>
+                                       }>): Promise<Metadata> {
 
-    const response = await getArticleApi(params.article);
+    const response = await getArticleApi((await params).article);
 
     if (!response.success) {
         return {
-            title: "Статья не найдена | Webcos",
+            title: "Статья не найдена",
             description: "Статья не найдена или была удалена",
             robots: { index: false, follow: false }
         };
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: {
     const category = categoryRes.success ? categoryRes.data.title : "Разработка";
 
     return {
-        title: `${article.title} | Webcos`,
+        title: `${article.title}`,
         description: article.description,
         keywords: [
             article.title,
@@ -37,13 +38,13 @@ export async function generateMetadata({ params }: {
         ],
 
         alternates: {
-            canonical: `https://webcos.ru/blog/${article.id}`
+            canonical: `https://webcos.ru/blog/${article.id}-${article.slug}`
         },
 
         openGraph: {
             title: article.title,
             description: article.description,
-            url: `https://webcos.ru/blog/${article.id}`,
+            url: `https://webcos.ru/blog/${article.id}-${article.slug}`,
             siteName: "Webcos",
             images: [
                 {
