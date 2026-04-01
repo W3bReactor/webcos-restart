@@ -39,6 +39,20 @@ export const BlogAllPage = async ({searchParams, categoryId}: IBlogAllPage) => {
     }
     return (
         <div className={styles.page}>
+            {responseCategory && responseCategory.success &&
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "CollectionPage",
+                            "name": responseCategory.data.title,
+                            "description": responseCategory.data.description,
+                            "url": `https://webcos.ru/blog/category/${responseCategory.data.id}`
+                        })
+                    }}
+                />
+            }
             <Header/>
             <main className={styles.app}>
                 <section className={styles.articles}>

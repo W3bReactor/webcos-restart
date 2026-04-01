@@ -18,6 +18,7 @@ export {AdminProjectsEditPage} from './AdminProjectsEditPage'
 export {AdminStoryPage} from './AdminStoryPage'
 export {AdminCategoriesPage} from './AdminCategoriesPage'
 export {AdminBannersCreatePage} from './AdminBannersCreatePage'
+export {AdminBannersEditPage} from './AdminBannersEditPage'
 export {CookiePolicyPage} from './CookiePolicyPage'
 export {PrivacyPolicyPage} from './PrivacyPolicyPage'
 

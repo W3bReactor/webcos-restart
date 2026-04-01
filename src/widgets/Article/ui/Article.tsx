@@ -62,8 +62,39 @@ export const Article = async ({id}: IArticle) => {
         return <div>Статья не найдена :(</div>
     }
     const responseCategory = await getCategoryApi(String(response.data.category_id))
+
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": response.data.title,
+        "description": response.data.description,
+        "image": response.data.image,
+        "author": {
+            "@type": "Organization",
+            "name": "Webcos"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Webcos",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://webcos.ru/webcos-logo.svg"
+            }
+        },
+        "datePublished": response.data.createdAt,
+        "dateModified": response.data.createdAt,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://webcos.ru/blog/${response.data.id}`
+        }
+    }
+
     return (
             <div className={styles.articleColumn}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+                />
                 <BreadCrumbs className={styles.articleBreadCrumbs} items={items}/>
                 <article className={styles.article}>
                     <ArticleReadTracker articleId={response.data.id}/>
