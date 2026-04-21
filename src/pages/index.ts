@@ -21,5 +21,6 @@ export {AdminBannersCreatePage} from './AdminBannersCreatePage'
 export {AdminBannersEditPage} from './AdminBannersEditPage'
 export {CookiePolicyPage} from './CookiePolicyPage'
 export {PrivacyPolicyPage} from './PrivacyPolicyPage'
+export {PickupColorPage} from './PickupColorPage'
 
 

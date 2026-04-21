@@ -1,0 +1,204 @@
+.pickupWindow {
+    margin: 0 auto;
+    max-width: 860px;
+    min-height: 615px;
+    width: 100%;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.15);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pickupTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pickupColor {
+    display: flex;
+    align-items: center;
+
+}
+
+.pickupCurrentColor {
+    background-color: var(--white);
+    width: 50px;
+    height: 50px;
+    margin-right: 24px;
+    cursor: pointer;
+    border: 1px solid var(--card)
+}
+
+.pickupCopyColor {
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 64px;
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+    backdrop-filter: blur(50px);
+
+}
+
+.pickupCopyText {
+    margin-left: 15px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.pickupTooltip {
+    position: relative;
+}
+
+.pickupTooltipIcon {
+    border: none;
+    padding: 10px 17px;
+    border-radius: 100%;
+    background-color: rgba(var(--foregroundGlassRGBA), 0.08);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    width: fit-content;
+    color: var(--white);
+    cursor: pointer;
+    outline: none;
+    backdrop-filter: blur(50px);
+}
+
+.pickupTooltipIcon:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.pickupInfo {
+    position: absolute;
+    max-width: 464px;
+    padding: 18px 20px;
+    top: 50px;
+    right: 40px;
+    width: max-content;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.15);
+    border-radius: 15px;
+    backdrop-filter: blur(50px);
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+}
+
+.pickupInfoList {
+    list-style: none;
+}
+
+.pickupInfoItem:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.pickupInfoDesc {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 110%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.pickupUploadWrapper {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pickupUploadIcon {
+    margin-right: 17px;
+}
+
+.pickupUploadBtn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba(124, 58, 237, 0.08);
+    border-radius: 15px;
+    background-color: #6366f1;
+    padding: 17px 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.pickupUploadDesc {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--white);
+}
+
+.pickupUploadInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.pickupUploadInfo {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: var(--foreground);
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+.pickupUploadHidden {
+    opacity: 0;
+}
+
+.pickupUploadTop {
+    display: flex;
+    align-items: center;
+}
+
+.pickupUploadTopBtn {
+    border: none;
+    outline: none;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 64px;
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    margin-right: 15px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}

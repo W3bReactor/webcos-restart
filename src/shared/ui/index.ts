@@ -15,3 +15,4 @@ export { Input } from "./Input/Input";
 export { RedBtn } from "./RedBtn/RedBtn";
 export { Upload } from "./Upload/Upload";
 export { CookieBanner } from "./CookieBanner/CookieBanner";
+export { Modal } from "./Modal/Modal";

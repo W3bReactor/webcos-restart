@@ -25,3 +25,5 @@ export { default as UploadIcon } from "./icons/upload.svg";
 export { default as EditIcon } from "./icons/edit.svg";
 export { default as DeleteIcon } from "./icons/delete.svg";
 export { default as ArticlesAllIcon } from "./icons/articles-all.svg";
+export { default as CopyIcon } from "./icons/copy.svg";
+export { default as UploadIcon2 } from "./icons/upload-2.svg";

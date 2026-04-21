@@ -16,7 +16,12 @@ export const ProjectsPage = async () => {
                 }
                 <Why/>
                 <AllProjects/>
-                <Social href={'#'} platform={"Телеграм"} title={'Хотите больше сервисов?'} description={'Заходите к нам в телеграм'}/>
+                <Social
+                    href={'#'}
+                    platform={"Телеграм"}
+                    title={'Хотите больше сервисов?'}
+                    description={'Заходите к нам в телеграм'}
+                />
             </main>
             <Footer/>
 

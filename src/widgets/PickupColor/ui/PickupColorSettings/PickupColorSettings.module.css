@@ -1,0 +1,190 @@
+.pickupSettings {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    width: 740px;
+    height: 445px;
+    backdrop-filter: blur(50px);
+    padding: 15px;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+.pickupSettingsTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.pickupSettingsTitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+}
+
+.pickupSettingsClose {
+    outline: none;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: rgba(var(--foregroundGlassRGBA), 0.08);
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.15);
+    width: 28px;
+    height: 28px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.pickupSettingsClose:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 16px;
+    height: 1px;
+    background-color: var(--foreground);
+}
+
+.pickupSettingsClose:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 16px;
+    height: 1px;
+    background-color: var(--foreground);
+}
+
+.pickupSettingsClose:hover {
+    background-color: rgba(var(--foregroundGlassRGBA), 0.3);
+}
+
+
+
+.pickupSettingsContent {
+    position: relative;
+}
+
+.pickupSettingsCurrent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}
+
+.pickupSettingsCurrentDesc {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    margin-bottom: 10px;
+}
+
+.pickupSettingsCurrentColor {
+    width: 150px;
+    height: 150px;
+    background-color: var(--white);
+}
+
+.pickupSettingsPicker {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.pickupSettingsPickerDesc {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    margin-bottom: 20px;
+}
+
+.fieldSet {
+    margin-top: 15px;
+    padding: 0 12px 6px 12px;
+    border: 2px solid rgba(var(--foregroundRGBA), 0.08);
+    border-radius: 4px;
+    position: relative;
+    width: fit-content;
+}
+.legend {
+    padding: 0 2px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--description);
+    width: max-content;
+}
+
+.selected {
+    margin: 0;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 143%;
+    letter-spacing: 0.018em;
+    color: var(--foreground);
+    text-transform: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.dropdown {
+    margin-left: 5px;
+}
+.options {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 100;
+    border-radius: 5px;
+
+}
+
+.option {
+    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+    padding: 5px 5px;
+    width: 100%;
+    display: block;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 143%;
+    letter-spacing: 0.018em;
+    color: var(--foreground);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.option:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.option:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.option:hover {
+    background-color: var(--hover);
+}

@@ -1,0 +1,1 @@
+export {PickupColorPage} from './ui/PickupColorPage'
