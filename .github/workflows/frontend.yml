@@ -18,13 +18,16 @@ jobs:
       - name: Login to GHCR
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+      - name: Set lowercase repo owner
+        run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
       - name: Build image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/webcos-frontend:latest .
+          docker build -t ghcr.io/${{ env.OWNER_LC }}/webcos-frontend:latest .
 
       - name: Push image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/webcos-frontend:latest
+          docker push ghcr.io/${{ env.OWNER_LC }}/webcos-frontend:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
