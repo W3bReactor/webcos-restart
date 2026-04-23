@@ -7,8 +7,6 @@ import {
     CategoryUpdate,
     CategoryUploadImage
 } from "@/widgets/CategoriesSidebar/api/types";
-import {ProjectCreate, ProjectUpdate, ProjectUploadImage} from "@/widgets/Projects/api/types";
-import {IProject} from "@/widgets/Projects";
 
 export const getCategoriesApi = async (params?: CategoryParams): Promise<ApiResult<PageResponse<ICategory>>>  => {
     try {

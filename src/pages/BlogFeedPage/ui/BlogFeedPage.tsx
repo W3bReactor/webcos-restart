@@ -2,7 +2,6 @@ import styles from "./BlogFeedPage.module.css";
 import {Header, Footer, BlogFeed} from "@/widgets";
 import {Sidebar} from "@/widgets/Sidebar";
 import {BreadCrumbs} from "@/shared/ui";
-import {getArticlesApi} from "@/pages/BlogFeedPage";
 
 const items = [
     {
@@ -17,7 +16,6 @@ const items = [
 ]
 
 export const BlogFeedPage = async () => {
-    const data = await getArticlesApi()
 
     return (
         <div className={styles.page}>

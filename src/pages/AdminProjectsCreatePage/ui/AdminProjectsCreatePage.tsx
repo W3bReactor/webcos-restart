@@ -31,7 +31,7 @@ export const AdminProjectsCreatePage = () => {
         (_, { arg }) => createProjectApi(arg)
     )
 
-    const { data: responseUpload, trigger: uploadProject } = useSWRMutation<
+    const { trigger: uploadProject } = useSWRMutation<
         ApiResult<string>,
         Error,
         "projects/upload/image",
@@ -50,7 +50,7 @@ export const AdminProjectsCreatePage = () => {
         if(responseCreate?.success) {
             redirect(`/projects`)
         }
-    }, [responseCreate]);
+    }, [responseCreate, image, uploadProject]);
 
     const onCreate = async () => {
         await createProject(

@@ -24,7 +24,7 @@ export const ArticleSearch = ({currentSearch}: IArticleControls) => {
     }
 
     useEffect(() => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams || "");
         params.set('search', debouncedValue);
         router.push(`${pathname}?${params.toString()}`);
     }, [debouncedValue, pathname, router, searchParams]);
@@ -33,7 +33,7 @@ export const ArticleSearch = ({currentSearch}: IArticleControls) => {
 
     const onClearSearch = () => {
         setValue('')
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams || "");
         params.set('search', '');
         router.push(`${pathname}?${params.toString()}`);
     }

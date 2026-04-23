@@ -10,7 +10,7 @@ export const AdminLogin = () => {
     const [password, setPassword] = useState('')
 
     const submitData = async () => {
-        let response = await login(email, password);
+        const response = await login(email, password);
 
         if(response.success) {
             redirect('/admin/main')

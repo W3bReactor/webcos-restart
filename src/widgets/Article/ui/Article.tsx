@@ -13,7 +13,6 @@ import {IArticle as IArticleApi} from "@/widgets/Blog";
 import {getRecommendedArticlesApi} from "@/widgets/Blog/api/articlesApi";
 import {BlogItem} from "@/entities/BlogItem";
 import {getDate} from "@/shared/lib";
-import {toInteger} from "es-toolkit/compat";
 import {redirect} from "next/navigation";
 
 interface IArticle {

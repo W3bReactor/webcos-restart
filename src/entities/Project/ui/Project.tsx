@@ -1,7 +1,6 @@
 import styles from './Project.module.css'
 import React from "react";
-import Link from "next/link";
-import Image, {StaticImageData} from "next/image";
+import Image from "next/image";
 import {CardDesc, CardTitle} from "@/shared/ui";
 
 interface IProduct {
@@ -14,7 +13,7 @@ interface IProduct {
     link: string
 }
 
-export const Project = ({className, title, description, image, imageAnimation, id, link}:IProduct) => {
+export const Project = ({className, title, description, image, link}:IProduct) => {
     return (
         <li className={`${styles.productItem} ${className ? className : ''}`}>
             <a className={styles.productLink} href={link}>

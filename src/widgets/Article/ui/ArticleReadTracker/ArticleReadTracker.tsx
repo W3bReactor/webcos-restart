@@ -1,5 +1,5 @@
 'use client';
-import React, {useEffect, useRef} from "react";
+import {useCallback, useEffect, useRef} from "react";
 
 
 interface IArticleReadTracker{
@@ -8,7 +8,7 @@ interface IArticleReadTracker{
 
 export const ArticleReadTracker = ({articleId}: IArticleReadTracker) => {
     const startTime = useRef<number>(Date.now());
-    const sendReadTime = () => {
+    const sendReadTime = useCallback(() => {
         const readTime = Math.floor((Date.now() - startTime.current) / 1000);
         if (readTime > 3) {
             const blob = new Blob(
@@ -20,7 +20,8 @@ export const ArticleReadTracker = ({articleId}: IArticleReadTracker) => {
                 blob
             );
         }
-    };
+    }, [articleId]);
+
     useEffect(() => {
         const handleVisibility = () => {
             if (document.visibilityState === "hidden") {
@@ -37,7 +38,7 @@ export const ArticleReadTracker = ({articleId}: IArticleReadTracker) => {
             document.removeEventListener("visibilitychange", handleVisibility);
         };
 
-    }, []);
+    }, [sendReadTime]);
 
 
     return null;

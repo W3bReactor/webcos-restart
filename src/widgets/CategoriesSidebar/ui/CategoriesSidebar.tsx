@@ -1,9 +1,5 @@
-import styles from './CategoriesSidebar.module.css'
 import React from "react";
-import Image from "next/image";
-import {MoonIcon} from "@/shared/assets";
 import {getCategoriesApi} from "@/widgets/CategoriesSidebar/api/categoriesApi";
-import Link from "next/link";
 import {CategoriesSidebarClient} from "@/widgets/CategoriesSidebar/ui/CategoriesSidebarClient/CategoriesSidebarClient";
 
 interface ICategoriesSidebar {

@@ -1,6 +1,6 @@
 import styles from './SearchItems.module.css'
 import React from "react";
-import {ICategory} from "@/widgets/CategoriesSidebar";
+
 interface ISearchItems {
     className?: string;
     setItem: (category: string, categoryId: number) => void

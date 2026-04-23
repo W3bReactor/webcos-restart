@@ -3,6 +3,7 @@ import styles from './CookieBanner.module.css'
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {StandardBtn} from "@/shared/ui";
+import {isYmAvailable} from "@/shared/lib";
 
 export const CookieBanner = () => {
 
@@ -27,9 +28,9 @@ export const CookieBanner = () => {
     }
 
     const enableAnalytics = () => {
-        if (window.ym) return
+        if (isYmAvailable()) return
         // TODO: Добавить метрику
-        const script = document.createElement("script")
+        // const script = document.createElement("script")
         // script.src = "https://mc.yandex.ru/metrika/tag.js"
         // script.async = true
         // document.head.appendChild(script)

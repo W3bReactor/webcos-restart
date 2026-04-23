@@ -2,13 +2,15 @@ import {AdminProjectsPage} from "@/pages/AdminProjectsPage";
 import {cookies} from "next/headers";
 import type {Metadata} from "next";
 
+export async function generateMetadata(): Promise<Metadata> {
+    const token =  (await cookies()).get("access_token");
 
-let token = (await cookies()).get("access_token")
+    if (!token) return {};
 
-
-export const metadata: Metadata = token ? {
-    title: "Админ-панель / Проекты",
-} : {};
+    return {
+        title: "Админ-панель / Проекты",
+    };
+}
 
 
 export default function AdminProjects() {

@@ -5,9 +5,7 @@ import {Input, PurpleBtn, RedBtn, Upload} from "@/shared/ui";
 import {useDebounce} from "@/shared/lib";
 import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
-import {deleteProjectApi} from "@/widgets/Projects/api/projectsApi";
 import useSWR from "swr";
-import {getProjectsApi} from "@/widgets/Projects";
 import {getCategoriesApi, ICategory} from "@/widgets/CategoriesSidebar";
 import {redirect} from "next/navigation";
 import {CategoryCreate, CategoryUploadImage} from "@/widgets/CategoriesSidebar/api/types";
@@ -16,8 +14,6 @@ import {
     deleteCategoryApi,
     uploadImageCategoryApi
 } from "@/widgets/CategoriesSidebar/api/categoriesApi";
-import {ArticleUploadImage} from "@/widgets/Blog/api/types";
-import {uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
 import {SearchItems} from "@/widgets";
 
 export const AdminCategories = () => {
@@ -38,7 +34,7 @@ export const AdminCategories = () => {
         setData({...data, categoryDeleteId})
     }
 
-    const { data: responseDelete,  trigger: deleteCategory} = useSWRMutation<
+    const {  trigger: deleteCategory} = useSWRMutation<
         ApiResult<string>,
         Error,
         "categories/delete",
@@ -59,7 +55,7 @@ export const AdminCategories = () => {
     )
 
 
-    const { data: responseUpload, trigger: uploadCategory } = useSWRMutation<
+    const { trigger: uploadCategory } = useSWRMutation<
         ApiResult<string>,
         Error,
         "categories/upload/image",
@@ -97,7 +93,7 @@ export const AdminCategories = () => {
         if(responseCreate?.success) {
             redirect(`/blog/category/${responseCreate.data.id}`);
         }
-    }, [responseCreate]);
+    }, [responseCreate, image, uploadCategory]);
 
 
     return (

@@ -5,7 +5,6 @@ import {Input, PurpleBtn, RedBtn, StandardBtn} from "@/shared/ui";
 import {useDebounce} from "@/shared/lib";
 import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
-import {deleteArticleApi, getArticlesApi} from "@/widgets/Blog/api/articlesApi";
 import useSWR from "swr";
 import {SearchItems} from "@/widgets";
 import {deleteProjectApi, getProjectsApi} from "@/widgets/Projects/api/projectsApi";
@@ -39,7 +38,7 @@ export const AdminProjectsActions = () => {
         setData({...data, projectDeleteId})
     }
 
-    const { data: responseDelete,  trigger: deleteProject} = useSWRMutation<
+    const {  trigger: deleteProject} = useSWRMutation<
         ApiResult<string>,
         Error,
         "projects/delete",

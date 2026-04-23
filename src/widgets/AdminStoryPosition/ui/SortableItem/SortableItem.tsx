@@ -2,7 +2,6 @@ import styles from "./SortableItem.module.css";
 import {DeleteIcon, EditIcon} from "@/shared/assets";
 import React from "react";
 import {useSortable} from "@dnd-kit/sortable";
-import {initialTasks} from "@/widgets/AdminStoryPosition";
 import { CSS } from '@dnd-kit/utilities'
 import Image from "next/image";
 

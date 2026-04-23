@@ -2,14 +2,12 @@ import styles from './FooterNotFound.module.css'
 import Image from "next/image";
 import React from "react";
 import {
-    DzenBlackIcon,
     DzenIcon,
     LogoBlackIcon,
     LogoIcon,
-    TgIcon,
     TgWhiteIcon,
-    TiktokIcon, TiktokWhiteIcon,
-    VkIcon, VkWhiteIcon
+    TiktokWhiteIcon,
+    VkWhiteIcon
 } from "@/shared/assets";
 import Link from "next/link";
 import {LightHouseAnimation} from "@/widgets/FooterNotFound/ui/LightHouseAnimation/LightHouseAnimation";

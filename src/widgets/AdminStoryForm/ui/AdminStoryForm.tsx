@@ -4,8 +4,8 @@ import styles from './AdminStoryForm.module.css'
 import {Input, PurpleBtn, RedBtn} from "@/shared/ui";
 import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
-import {StoryCreate, StoryPositionUpdate, StoryUpdate} from "@/widgets/RoadMap/api/types";
-import {createStoryApi, updateStoriesPositionApi, updateStoryApi} from "@/widgets/RoadMap/api/storiesApi";
+import {StoryCreate, StoryUpdate} from "@/widgets/RoadMap/api/types";
+import {createStoryApi, updateStoryApi} from "@/widgets/RoadMap/api/storiesApi";
 import {IStory} from "@/widgets/RoadMap";
 
 interface IAdminStoryForm {
@@ -37,7 +37,7 @@ export const AdminStoryForm = ({type, initialId, initialTitle, initialYear, init
         setEditMode(false)
     }
 
-    const { data: responseCreateStory, trigger: createStory } = useSWRMutation<
+    const { trigger: createStory } = useSWRMutation<
         ApiResult<IStory>,
         Error,
         "stories/create",
@@ -47,7 +47,7 @@ export const AdminStoryForm = ({type, initialId, initialTitle, initialYear, init
         (_, { arg }) => createStoryApi(arg)
     )
 
-    const { data: responseUpdateStory, trigger: updateStory } = useSWRMutation<
+    const { trigger: updateStory } = useSWRMutation<
         ApiResult<IStory>,
         Error,
         "stories/update",

@@ -48,7 +48,7 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
     )
 
 
-    const { data: responseUpload, trigger: uploadArticle } = useSWRMutation<
+    const { trigger: uploadArticle } = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/upload/image",
@@ -91,7 +91,7 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
             redirect(`/blog/${responseUpdate.data.id}`)
         }
 
-    }, [responseUpdate]);
+    }, [responseUpdate, image, uploadArticle]);
 
 
     useEffect(() => {
@@ -107,9 +107,9 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
         if(responseCategory?.success) {
             setValueCategory(responseCategory.data.title);
         }
-    }, [responseCategory, responseArticle]);
+    }, [responseCategory, responseArticle, setValueCategory, setValueContent]);
 
-    console.log(debouncedValueContent)
+
     const onEdit = async () => {
         await updateArticle(
             {

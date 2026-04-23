@@ -4,14 +4,11 @@ import styles from './AdminArticlesActions.module.css'
 import {Input, PurpleBtn, RedBtn, StandardBtn} from "@/shared/ui";
 import {SearchItems} from "@/widgets";
 import useSWR from "swr";
-import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 import {useDebounce} from "@/shared/lib";
-import {getArticleApi} from "@/widgets/Article";
 import {getArticlesApi} from "@/widgets/Blog";
 import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
-import {ArticleUploadImage} from "@/widgets/Blog/api/types";
-import {deleteArticleApi, uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
+import {deleteArticleApi} from "@/widgets/Blog/api/articlesApi";
 
 export const AdminArticlesActions = () => {
     const [openDelete, setOpenDelete] = useState(false)
@@ -42,7 +39,7 @@ export const AdminArticlesActions = () => {
         setData({...data, articleDeleteId})
     }
 
-    const { data: responseDelete,  trigger: deleteArticle} = useSWRMutation<
+    const { trigger: deleteArticle} = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/delete",

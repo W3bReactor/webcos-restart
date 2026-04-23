@@ -38,7 +38,7 @@ export const AdminProjectsEditPage = ({projectId}: IAdminProjectsEditPage) => {
         (_, { arg }) => updateProjectApi(arg)
     )
 
-    const { data: responseUpload, trigger: uploadProject } = useSWRMutation<
+    const { trigger: uploadProject } = useSWRMutation<
         ApiResult<string>,
         Error,
         "projects/upload/image",
@@ -63,7 +63,7 @@ export const AdminProjectsEditPage = ({projectId}: IAdminProjectsEditPage) => {
         if(responseUpdate?.success) {
             redirect(`/projects`)
         }
-    }, [responseUpdate]);
+    }, [responseUpdate, image, uploadProject]);
 
     useEffect(() => {
         if(responseProject?.success) {

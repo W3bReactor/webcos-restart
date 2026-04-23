@@ -16,7 +16,6 @@ import {ArticleCreate, ArticleUploadImage} from "@/widgets/Blog/api/types";
 import {ApiResult} from "@/shared/model";
 import {IArticle} from "@/widgets/Blog";
 import {redirect} from "next/navigation";
-import {getArticleApi} from "@/widgets/Article";
 
 
 
@@ -43,7 +42,7 @@ export const AdminArticlesCreatePage = () => {
         (_, { arg }) => createArticleApi(arg)
     )
 
-    const { data: responseUpload, trigger: uploadArticle } = useSWRMutation<
+    const { trigger: uploadArticle } = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/upload/image",
@@ -55,7 +54,7 @@ export const AdminArticlesCreatePage = () => {
 
 
 
-    const { data: responseCategory, mutate } = useSWR(
+    const { data: responseCategory } = useSWR(
         ["categories", debouncedValueCategory],
         async () => await getCategoriesApi({size: 3, search: debouncedValueCategory})
     )
@@ -73,7 +72,7 @@ export const AdminArticlesCreatePage = () => {
         if(responseCreate?.success) {
             redirect(`/blog/${responseCreate.data.id}`)
         }
-    }, [responseCreate]);
+    }, [responseCreate, image, uploadArticle]);
 
 
     const onCreate = async () => {

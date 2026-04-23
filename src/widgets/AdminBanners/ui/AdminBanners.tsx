@@ -21,7 +21,7 @@ interface IAdminBanners {
 export const AdminBanners = ({type, items}: IAdminBanners) => {
     const sliderRef = useRef(null);
     const [locked, setLocked] = useState(false);
-    const { data: responseDelete,  trigger: deleteBanner} = useSWRMutation<
+    const {  trigger: deleteBanner} = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/delete",
@@ -45,7 +45,7 @@ export const AdminBanners = ({type, items}: IAdminBanners) => {
             <div className={styles.adminBannersItem}>
                 <Swiper onUnlock={() => setLocked(false)} onLock={() => setLocked(true)} wrapperClass={styles.adminBannersSwiper} ref={sliderRef} slidesPerView={2} speed={1000} spaceBetween='60px'>
                     {items.map(banner =>
-                        <SwiperSlide>
+                        <SwiperSlide key={banner.id}>
                             <div className={styles.adminBannersItemWrapper} >
                                 <div className={styles.adminBannersImageWrapper}>
                                     {banner.image ?

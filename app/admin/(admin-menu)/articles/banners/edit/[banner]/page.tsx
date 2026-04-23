@@ -3,12 +3,16 @@ import {cookies} from "next/headers";
 import type {Metadata} from "next";
 
 
-let token = (await cookies()).get("access_token")
+export async function generateMetadata(): Promise<Metadata> {
+    const token =  (await cookies()).get("access_token");
 
+    if (!token) return {};
 
-export const metadata: Metadata = token ? {
-    title: "Админ-панель / Изменение баннера",
-} : {};
+    return {
+        title: "Админ-панель / Изменение баннера",
+    };
+}
+
 
 
 export default async function AdminBannersEdit({params}:

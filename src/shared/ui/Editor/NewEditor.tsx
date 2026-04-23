@@ -18,8 +18,9 @@ interface INewEditor {
     value?: string
 }
 
-export default function NewEditor({onChange, value = '' }:INewEditor) {
-    const editorWordCountRef = useRef(null);
+// TODO Воспользоваться value
+export default function NewEditor({onChange }:INewEditor) {
+    const editorWordCountRef = useRef<HTMLDivElement | null>(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
     const cloud = useCKEditorCloud({ version: '47.6.1', translations: ['ru'] });
     useEffect(() => {
@@ -412,7 +413,7 @@ export default function NewEditor({onChange, value = '' }:INewEditor) {
                 }
             }  as unknown as EditorConfig
         };
-    }, [cloud, isLayoutReady, value]);
+    }, [cloud, isLayoutReady]);
 
     // useEffect(() => {
     //     if (editorConfig) {
@@ -430,10 +431,8 @@ export default function NewEditor({onChange, value = '' }:INewEditor) {
                                 onChange={(event, editor) => onChange(editor.getData())}
                                 onReady={editor => {
                                     const wordCount = editor.plugins.get('WordCount');
-                                    if(editorWordCountRef.current) {
-                                        if ("appendChild" in editorWordCountRef.current) {
-                                            editorWordCountRef.current.appendChild(wordCount.wordCountContainer);
-                                        }
+                                    if (editorWordCountRef.current) {
+                                        editorWordCountRef.current.appendChild(wordCount.wordCountContainer);
                                     }
                                 }}
                                 // onAfterDestroy={() => {

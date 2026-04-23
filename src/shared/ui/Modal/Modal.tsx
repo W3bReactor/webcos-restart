@@ -24,7 +24,7 @@ export const Modal = ({ children, isOpen, onClose }: IModal) => {
         if(!mounted) {
             setMounted(true);
         }
-    }, [isOpen]);
+    }, [isOpen, mounted]);
 
     if (!mounted || !isOpen) return null;
 

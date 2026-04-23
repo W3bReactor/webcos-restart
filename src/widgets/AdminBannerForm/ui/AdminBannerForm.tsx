@@ -37,7 +37,7 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
 
     const [bannerImage, setBannerImage] = useState<File | null>(null)
     const [bannerUrl, setBannerUrl] = useState('')
-    console.log(image)
+
     const { data: responseCreateBanner, trigger: createBanner } = useSWRMutation<
         ApiResult<IBanner>,
         Error,
@@ -58,7 +58,7 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
         (_, { arg }) => updateBannerApi(arg)
     )
 
-    const { data: responseUpload, trigger: uploadBanner } = useSWRMutation<
+    const { trigger: uploadBanner } = useSWRMutation<
         ApiResult<string>,
         Error,
         "banners/upload/image",
@@ -118,14 +118,15 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
                 redirect(`/projects/`)
             }
         }
-    }, [responseCreateBanner, responseUpdateBanner]);
+    }, [responseCreateBanner, responseUpdateBanner, bannerImage, type, uploadBanner]);
 
 
     useEffect(() => {
-        if(image) {
+        if (image) {
             setBannerUrl(image)
         }
-    }, []);
+    }, [image])
+
 
     return (
         <div className={styles.adminCreateForm}>

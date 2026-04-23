@@ -40,7 +40,7 @@ export const ArticleSort = () => {
 
 
     const onClickOption = (e: React.MouseEvent<HTMLElement>) => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams || "");
         params.set('sort', sorting[e.currentTarget.innerText].sortBy);
         params.set('order', sorting[e.currentTarget.innerText].order);
         router.push(`${pathname}?${params.toString()}`);

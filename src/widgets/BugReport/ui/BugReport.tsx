@@ -15,7 +15,7 @@ export const BugReport = () => {
     })
 
 
-    const { data: responseSend, trigger: send } = useSWRMutation<
+    const { trigger: send } = useSWRMutation<
         ApiResult<CreateEmailResponseSuccess>,
         Error,
         "send/mail",

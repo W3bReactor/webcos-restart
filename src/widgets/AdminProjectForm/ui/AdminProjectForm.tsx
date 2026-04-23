@@ -23,7 +23,7 @@ interface IAdminProjectForm {
     type: 'edit' | 'create';
 }
 
-export const AdminProjectForm = ({type, setData, data, setValue, debouncedValue, onSend, setImage, image, url, setUrl}: IAdminProjectForm) => {
+export const AdminProjectForm = ({type, setData, data, onSend, setImage, image, url, setUrl}: IAdminProjectForm) => {
 
     const [error] = useState('')
 

@@ -1,4 +1,4 @@
-import {ApiResult, PageResponse} from "@/shared/model";
+import {ApiResult} from "@/shared/model";
 import {apiFetch} from "@/shared/api";
 import {ICategory} from "@/widgets/CategoriesSidebar";
 

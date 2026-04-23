@@ -42,7 +42,7 @@ export const ContentSlider = ({title, data}: IContentSlider) => {
                 }} speed={1000} loop={true}  autoplay={{delay: 5000 + 1000 * Math.random()}} >
                     {data.map(item =>
                         <SwiperSlide key={item.id}>
-                            <BlogItem id={String(item.id)} title={item.title} image={item.image} description={item.title}/>
+                            <BlogItem slug={item.slug} id={String(item.id)} title={item.title} image={item.image} description={item.title}/>
                         </SwiperSlide>
                     )}
                 </Swiper>

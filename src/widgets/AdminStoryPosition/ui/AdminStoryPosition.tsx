@@ -13,14 +13,11 @@ import {
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import {SortableItem} from "@/widgets/AdminStoryPosition/ui/SortableItem/SortableItem";
 import useSWR from "swr";
-import {getStoriesApi, IStory} from "@/widgets/RoadMap";
+import {getStoriesApi} from "@/widgets/RoadMap";
 import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
-import {IBanner} from "@/widgets/Slider";
-import {BannerUpdate} from "@/shared/api/banners/types";
-import {updateBannerApi} from "@/shared/api/banners/bannersApi";
-import {deleteStoryApi, updateStoriesPositionApi, updateStoryApi} from "@/widgets/RoadMap/api/storiesApi";
-import {StoryPositionUpdate, StoryUpdate} from "@/widgets/RoadMap/api/types";
+import {deleteStoryApi, updateStoriesPositionApi} from "@/widgets/RoadMap/api/storiesApi";
+import {StoryPositionUpdate} from "@/widgets/RoadMap/api/types";
 
 interface IEdit {
     id: number;
@@ -46,12 +43,12 @@ export const AdminStoryPosition = ({ setEditMode, setEdit }: IAdminStoryPosition
     ]);
     const [isMounted, setIsMounted] = useState(false)
 
-    const {data: responseStories, mutate} = useSWR(
+    const {data: responseStories} = useSWR(
         ["stories"],
         async () => await getStoriesApi()
     )
 
-    const { data: responseUpdateStoriesPosition, trigger: updateStoriesPosition } = useSWRMutation<
+    const { trigger: updateStoriesPosition } = useSWRMutation<
         ApiResult<string>,
         Error,
         "stories/update/positions",
@@ -61,7 +58,7 @@ export const AdminStoryPosition = ({ setEditMode, setEdit }: IAdminStoryPosition
         (_, { arg }) => updateStoriesPositionApi(arg)
     )
 
-    const { data: responseDeleteStory, trigger: deleteStory } = useSWRMutation<
+    const { trigger: deleteStory } = useSWRMutation<
         ApiResult<string>,
         Error,
         "stories/delete",

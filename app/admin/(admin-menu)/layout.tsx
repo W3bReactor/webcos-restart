@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "@/app/styles/globals.css";
 import { Inter } from "next/font/google";
 import {ThemeProvider} from "@/app/providers";
@@ -17,7 +16,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-    let token = (await cookies()).get("access_token")
+    const token = (await cookies()).get("access_token")
 
     if (!token) {
         notFound();

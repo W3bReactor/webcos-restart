@@ -6,7 +6,7 @@ import {getBannersApi} from "@/shared/api";
 
 
 export const AdminProjectsPage = () => {
-    const {data: responseBanners, mutate} = useSWR(
+    const {data: responseBanners} = useSWR(
         ["banners"],
         async () => await getBannersApi({type: "PROJECT"})
     )
