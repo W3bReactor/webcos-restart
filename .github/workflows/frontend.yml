@@ -23,11 +23,11 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ghcr.io/${{ env.OWNER_LC }}/webcos-frontend:latest .
+          docker build -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest .
 
       - name: Push image
         run: |
-          docker push ghcr.io/${{ env.OWNER_LC }}/webcos-frontend:latest
+          docker push ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
