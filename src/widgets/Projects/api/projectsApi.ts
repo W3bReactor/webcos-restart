@@ -8,8 +8,7 @@ export const getProjectApi = async (projectId: string): Promise<ApiResult<IProje
         const response = await apiFetch(
             `/api/v1/projects/${projectId}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 
@@ -34,8 +33,7 @@ export const getProjectsApi = async (params?: ProjectParams): Promise<ApiResult<
         const response = await apiFetch(
             `/api/v1/projects?search=${params?.search ? params?.search : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

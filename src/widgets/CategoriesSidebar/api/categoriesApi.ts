@@ -13,8 +13,7 @@ export const getCategoriesApi = async (params?: CategoryParams): Promise<ApiResu
         const response = await apiFetch(
             `/api/v1/categories?search=${params?.search ? params?.search : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

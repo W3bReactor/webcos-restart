@@ -1,6 +1,21 @@
 import {MetadataRoute} from "next";
-import {getArticlesApi} from "@/widgets/Blog";
-import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
+import {IArticle} from "@/widgets/Blog";
+import {ICategory} from "@/widgets/CategoriesSidebar";
+import {ApiResult, PageResponse} from "@/shared/model";
+
+async function safeFetch<T>(url: string): Promise<ApiResult<PageResponse<T>> | null> {
+    try {
+        const res = await fetch(url, {
+                next: { revalidate: 0 },
+        });
+
+        if (!res.ok) return null;
+
+        return await res.json();
+    } catch {
+        return null;
+    }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
@@ -11,7 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let totalPages = 1;
 
     while (page < totalPages) {
-        const res = await getArticlesApi({ page, size: 100 });
+        const res = await safeFetch<IArticle>(`${baseUrl}/api/v1/articles?page=${page}&size=100`);
+
+        // const res =  await getArticlesApi({ page, size: 100 });
+
+        if(res == null) {
+            break;
+        }
 
         if (!res.success) break;
 
@@ -33,7 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     totalPages = 1;
 
     while (page < totalPages) {
-        const res = await getCategoriesApi({ page, size: 100 });
+        const res = await safeFetch<ICategory>(`${baseUrl}/api/v1/categories?page=${page}&size=100`);
+        // const res = await getCategoriesApi({ page, size: 100 });
+
+        if(res == null) {
+            break;
+        }
 
         if (!res.success) break;
 

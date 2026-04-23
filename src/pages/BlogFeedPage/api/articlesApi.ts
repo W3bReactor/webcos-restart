@@ -8,10 +8,7 @@ interface Article {
 
 export const getArticlesApi = async (): Promise<Article[]>  => {
     const response = await fetch('https://jsonplaceholder.typicode.com/photos?_limit=8', {
-        cache: "force-cache",
-        next: {
-            revalidate: 1
-        }
+        next: { revalidate: 60 }
     })
     if (!response.ok) {
         throw new Error('Failed to fetch data')

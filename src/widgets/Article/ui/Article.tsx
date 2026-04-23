@@ -29,8 +29,7 @@ const getArticleApi = async (articleId: string): Promise<ApiResult<IArticleApi>>
                 headers: {
                     Cookie: cookieHeader
                 },
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

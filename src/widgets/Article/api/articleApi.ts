@@ -8,8 +8,7 @@ export const getArticleApi = async (articleId: string): Promise<ApiResult<IArtic
         const response = await apiFetch(
             `/api/v1/articles/${articleId}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

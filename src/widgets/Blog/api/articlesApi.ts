@@ -15,8 +15,7 @@ export const getArticlesApi = async (params?: ArticleParams): Promise<ApiResult<
             `/api/v1/articles?search=${params?.search ? params?.search : ""}${params?.sortBy ? "&sortBy=" + params?.sortBy : ""}${params?.order ? "&order=" + params?.order : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}${params?.category ? "&categoryId=" + params?.category : ""}
             `,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 
@@ -42,8 +41,7 @@ export const getRecommendedArticlesApi = async (params?: RecommendedArticlesPara
             `/api/v1/articles/recommendations?size=${params?.size ? params?.size : ""}${params?.page ? "&page=" + params?.page : ""}${params?.exclude ? "&exclude=" + params?.exclude.join(",") : ""}
             `,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

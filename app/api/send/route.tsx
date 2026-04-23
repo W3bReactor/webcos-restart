@@ -3,9 +3,9 @@ import {checkRateLimit, MailSend} from "@/shared/api";
 import { sanitize } from "isomorphic-dompurify";
 export const runtime = 'nodejs';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const body: MailSend = await req.json()
         const cleanText = sanitize(body.description);
@@ -44,7 +44,6 @@ export async function POST(req: Request) {
 
         return Response.json(data);
     } catch (error) {
-        console.log(error)
         return Response.json({error}, {status: 500});
     }
 }

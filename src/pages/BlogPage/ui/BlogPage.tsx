@@ -5,10 +5,17 @@ import {getBannersApi} from "@/shared/api";
 import {getArticlesApi} from "@/widgets/Blog";
 
 export const BlogPage = async () => {
-    const response = await getBannersApi({type: "ARTICLE"})
-    const responseRecommend = await getArticlesApi({sortBy: "createdAt", order: "asc"})
-    const responsePopular = await getArticlesApi({sortBy: "views", order: "desc"})
-    const responseNew = await getArticlesApi({sortBy: "createdAt", order: "desc"})
+    const [
+        response,
+        responseRecommend,
+        responsePopular,
+        responseNew
+    ] = await Promise.all([
+        getBannersApi({ type: "ARTICLE" }),
+        getArticlesApi({ sortBy: "createdAt", order: "asc" }),
+        getArticlesApi({ sortBy: "views", order: "desc" }),
+        getArticlesApi({ sortBy: "createdAt", order: "desc" })
+    ]);
 
     return (
         <div className={styles.page}>

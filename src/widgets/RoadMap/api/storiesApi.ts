@@ -10,8 +10,7 @@ export const getStoryApi = async (storyId: string): Promise<ApiResult<IStory>>  
         const response = await apiFetch(
             `/api/v1/stories/${storyId}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 
@@ -36,8 +35,7 @@ export const getStoriesApi = async (params?: StoryParams): Promise<ApiResult<Pag
         const response = await apiFetch(
             `/api/v1/stories?search=${params?.search ? params?.search : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 

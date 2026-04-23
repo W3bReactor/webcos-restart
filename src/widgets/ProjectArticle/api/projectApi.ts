@@ -10,10 +10,7 @@ interface Project {
 
 export const getProjectApi = async (id: string): Promise<Project>  => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`, {
-        cache: "force-cache",
-        next: {
-            revalidate: 1
-        }
+        next: { revalidate: 60 }
     })
     if (!response.ok) {
         redirect('/not-found')

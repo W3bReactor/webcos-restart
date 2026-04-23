@@ -10,8 +10,7 @@ export const getBannerApi = async (bannerId: string): Promise<ApiResult<IBanner>
         const response = await apiFetch(
             `/api/v1/banners/${bannerId}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 }
+                next: { revalidate: 60 }
             }
         );
 
@@ -37,8 +36,7 @@ export const getBannersApi = async (params?: BannersParams): Promise<ApiResult<P
         const response = await apiFetch(
             `/api/v1/banners?search=${params?.search ? params?.search : ""}${params?.sortBy ? "&sortBy=" + params?.sortBy : ""}${params?.order ? "&order=" + params?.order : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}${params?.type ? "&type=" + params?.type : ""}`,
             {
-                cache: "force-cache",
-                next: { revalidate: 1 },
+                next: { revalidate: 60 }
             }
         );
 
