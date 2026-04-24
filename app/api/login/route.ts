@@ -26,10 +26,12 @@ export async function POST(req: Request) {
 
     cookieStore.set('access_token', data.accessToken, {
         httpOnly: true,
-        secure: false,
-        // sameSite: 'strict',
+        secure: true, // ОБЯЗАТЕЛЬНО
+        sameSite: 'none', // ОБЯЗАТЕЛЬНО
+        domain: '.webcos.ru',
         path: '/',
     })
+
 
     const setCookieHeader = response.headers.get('set-cookie')
     if (setCookieHeader) {
@@ -38,8 +40,9 @@ export async function POST(req: Request) {
         if (refresh) {
             cookieStore.set('refresh_token', refresh, {
                 httpOnly: true,
-                secure: false,
-                // sameSite: 'strict',
+                secure: true,
+                sameSite: 'none',
+                domain: '.webcos.ru',
                 path: '/',
             })
         }
