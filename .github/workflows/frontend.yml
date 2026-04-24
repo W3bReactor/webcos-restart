@@ -24,7 +24,8 @@ jobs:
       - name: Build image
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_HOST=https://api.webcos.ru NEXT_PUBLIC_APP_URL=https://webcos.ru \
+            --build-arg NEXT_PUBLIC_HOST=https://api.webcos.ru \
+            --build-arg NEXT_PUBLIC_APP_URL=https://webcos.ru \
             -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest .
 
       - name: Push image
