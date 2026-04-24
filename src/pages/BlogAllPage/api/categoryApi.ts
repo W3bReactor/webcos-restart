@@ -9,7 +9,7 @@ export const getCategoryApi = async (categoryId: string): Promise<ApiResult<ICat
         const response = await apiFetch(
             `/api/v1/categories/${categoryId}`,
             {
-                next: { revalidate: 60 }
+                next: { revalidate: 60 },
             }
         );
 

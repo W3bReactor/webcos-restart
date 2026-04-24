@@ -12,6 +12,7 @@ export async function apiFetch(path: string, options?: RequestInit) {
         const fetchOptions: RequestInit = {
             ...options,
             signal: controller.signal,
+            credentials: "include"
         };
 
         if (typeof window === 'undefined') {
