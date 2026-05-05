@@ -17,6 +17,7 @@ export const BlogPage = async () => {
         getArticlesApi({ sortBy: "createdAt", order: "desc" })
     ]);
 
+
     return (
         <div className={styles.page}>
             <Header/>

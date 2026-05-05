@@ -4,6 +4,9 @@ import setCookieParser from 'set-cookie-parser';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_HOST
 
+const isProd = process.env.NODE_ENV === 'production';
+const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN;
+
 export async function POST(req: Request) {
     const body = await req.json()
 
@@ -26,9 +29,9 @@ export async function POST(req: Request) {
 
     cookieStore.set('access_token', data.accessToken, {
         httpOnly: true,
-        secure: true, // ОБЯЗАТЕЛЬНО
-        sameSite: 'none', // ОБЯЗАТЕЛЬНО
-        domain: '.webcos.ru',
+        secure: isProd, // ОБЯЗАТЕЛЬНО
+        sameSite: isProd ? 'none' : 'lax', // ОБЯЗАТЕЛЬНО
+        domain: COOKIE_DOMAIN,
         path: '/',
     })
 
@@ -40,9 +43,9 @@ export async function POST(req: Request) {
         if (refresh) {
             cookieStore.set('refresh_token', refresh, {
                 httpOnly: true,
-                secure: true,
-                sameSite: 'none',
-                domain: '.webcos.ru',
+                secure: isProd,
+                sameSite: isProd ? 'none' : 'lax',
+                domain: COOKIE_DOMAIN,
                 path: '/',
             })
         }

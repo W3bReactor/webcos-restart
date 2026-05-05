@@ -12,10 +12,7 @@
     flex-wrap: wrap;
     margin-top: 10px;
     margin-bottom: 50px;
-}
-.adminArticlesInstrumentsBtn {
-    margin-right: 25px;
-
+    gap: 15px;
 }
 
 .adminArticlesInstrumentsSearch {
@@ -27,4 +24,17 @@
 .adminArticlesInstrumentsSearchBtn {
     margin-top: 25px;
     margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .adminArticlesInstrumentsTitle {
+        font-size: 18px;
+        line-height: 120%;
+    }
+}
+
+@media (max-width: 564px) {
+    .adminArticlesInstrumentsBtn {
+        padding: 5px 10px;
+    }
 }

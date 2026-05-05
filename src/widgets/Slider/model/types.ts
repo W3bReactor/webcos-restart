@@ -6,4 +6,5 @@ export interface IBanner {
     suptitle: string;
     title: string;
     type: string;
+    color: string;
 }

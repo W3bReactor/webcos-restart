@@ -40,3 +40,16 @@
 .loginLabel {
     margin-bottom: 30px;
 }
+
+
+@media(max-width: 564px) {
+    .loginTitle {
+        font-size: 28px;
+        line-height: 120%;
+    }
+
+    .loginDesc {
+        font-size: 16px;
+        line-height: 120%;
+    }
+}

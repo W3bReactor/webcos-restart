@@ -45,6 +45,7 @@ export const AdminBannersEditPage = ({type, bannerId}: IAdminBannersEdit) => {
                                 title={responseBanner.data.title}
                                 link={responseBanner.data.link}
                                 image={responseBanner.data.image}
+                                color={responseBanner.data.color}
                                 formType={'edit'}
                                 type={type}
                             />

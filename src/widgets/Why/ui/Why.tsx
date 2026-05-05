@@ -11,7 +11,7 @@ export const Why = () => {
             <SectionTitle className={styles.whyTitle}>Для чего мы это делаем?</SectionTitle>
             <div className={styles.whyWrapper}>
                 <div>
-                    <Image src={WhyImage} alt={'Для чего мы это делаем?'} className={styles.whyImage} />
+                    <Image  src={WhyImage} alt={'Для чего мы это делаем?'} className={styles.whyImage} />
                 </div>
                 <div className={styles.whyContent}>
                     <p className={styles.whyText}>Мы часто сталкивались с одной проблемой: <br/>

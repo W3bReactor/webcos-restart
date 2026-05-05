@@ -12,7 +12,8 @@ export interface BannerCreate {
     title: string;
     btn_name: string;
     link: string;
-    type: 'PROJECT' | 'ARTICLE'
+    type: 'PROJECT' | 'ARTICLE';
+    color: string;
 }
 
 export interface BannerUpdate {
@@ -21,7 +22,8 @@ export interface BannerUpdate {
     title: string;
     btn_name: string;
     link: string;
-    type: 'PROJECT' | 'ARTICLE'
+    type: 'PROJECT' | 'ARTICLE';
+    color: string;
 }
 
 export interface BannerUploadImage {

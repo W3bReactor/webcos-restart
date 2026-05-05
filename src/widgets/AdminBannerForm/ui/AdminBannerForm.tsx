@@ -19,9 +19,10 @@ interface IAdminBannerForm {
     button?: string
     link?: string
     image?: string;
+    color?: string;
 }
 
-export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitle, title, image}: IAdminBannerForm) => {
+export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitle, title, image, color}: IAdminBannerForm) => {
 
 
     const [data, setData] = useState({
@@ -29,7 +30,8 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
         supTitle: supTitle || '',
         title: title || '',
         button: button || '',
-        link: link || ''
+        link: link || '',
+        color: color || ''
     })
 
 
@@ -78,7 +80,8 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
                     title: data.title,
                     link: data.link,
                     btn_name: data.button,
-                    suptitle: data.supTitle
+                    suptitle: data.supTitle,
+                    color: data.color
                 }
             )
         } else {
@@ -89,7 +92,8 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
                     title: data.title,
                     link: data.link,
                     btn_name: data.button,
-                    suptitle: data.supTitle
+                    suptitle: data.supTitle,
+                    color: data.color
                 }
             )
 
@@ -105,6 +109,7 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
             FD.append('file', bannerImage);
             uploadBanner({bannerId: responseUpdateBanner.data.id, body: FD})
         }
+        console.log(bannerImage)
         if(responseCreateBanner?.success && responseCreateBanner.data.id && bannerImage != null) {
             const FD = new FormData();
             FD.append('file', bannerImage);
@@ -135,8 +140,14 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
             }
             <Upload url={bannerUrl} setUrl={setBannerUrl} image={bannerImage} setImage={setBannerImage}/>
             <Input className={styles.adminCreateInput} placeholder={'Надзаголовок баннера'} value={data.supTitle} setValue={(value) => setData({...data, supTitle: value})}/>
-            <Input className={styles.adminCreateInput} placeholder={'Заголовок баннера'} value={data.title} setValue={(value) => setData({...data, title: value})}/>
+            <textarea
+                value={data.title}
+                onChange={(e) => setData({...data, title: e.target.value})}
+                placeholder={'Заголовок баннера'}
+                className={styles.adminTextarea}
+            />
             <Input className={styles.adminCreateInput} placeholder={'Текст кнопки'} value={data.button} setValue={(value) => setData({...data, button: value})}/>
+            <Input className={styles.adminCreateInput} placeholder={'Цвет элементов'} value={data.color} setValue={(value) => setData({...data, color: value})}/>
             <Input className={styles.adminCreateInput} placeholder={'Ссылка'} value={data.link} setValue={(value) => setData({...data, link: value})}/>
             <PurpleBtn onClick={onSend} className={styles.adminCreateBtn} type={'btn'}>{formType === "create" ? "Создать" : "Изменить"}</PurpleBtn>
         </div>

@@ -35,7 +35,8 @@
 }
 
 .adminBannersImage {
-    width: 358px;
+    max-width: 358px;
+    width: 100%;
     height: 162px;
     object-fit: cover;
     border-radius: 15px;
@@ -123,4 +124,18 @@
 
 .noSwiping {
     display: none;
+}
+
+@media (max-width: 1024px) {
+    .adminBannersTitle{
+        font-size: 18px;
+        line-height: 120%;
+    }
+    .adminBannersInfo {
+        font-size: 18px;
+        line-height: 120%;
+    }
+    .adminBannersInstruments {
+        opacity: 1;
+    }
 }

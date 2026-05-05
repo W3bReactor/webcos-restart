@@ -66,7 +66,7 @@ export const Footer = () => {
                 </div>
 
                 <div className={styles.footerBottom}>
-                    <p className={styles.footerCopyright}>©2024 WEBCOS</p>
+                    <p className={styles.footerCopyright}>©2026 WEBCOS</p>
                     <ul className={styles.footerSocial}>
                         <li className={styles.footerSocialItem}>
                             <a href="#" className={styles.footerSocialLink}>

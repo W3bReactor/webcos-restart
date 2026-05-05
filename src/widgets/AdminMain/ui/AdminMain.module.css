@@ -7,6 +7,7 @@
     padding: 22px 26px;
     border-radius: 5px;
     width: 100%;
+    margin: 0 15px;
 }
 
 .adminMainTitle {
@@ -36,4 +37,16 @@
     line-height: 158%;
     letter-spacing: 0.01em;
     color: var(--foreground);
+}
+
+@media (max-width: 564px) {
+    .adminMainTitle {
+        font-size: 28px;
+        line-height: 120%;
+        margin-bottom: 20px;
+    }
+    .adminMainDesc {
+        line-height: 120%;
+        font-size: 18px;
+    }
 }
