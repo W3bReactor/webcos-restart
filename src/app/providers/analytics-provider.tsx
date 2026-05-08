@@ -14,6 +14,5 @@ export const AnalyticsProvider = () => {
     }, []);
 
     if (!enabled) return null;
-
     return <YandexMetrika />;
 };

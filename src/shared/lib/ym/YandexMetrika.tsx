@@ -5,7 +5,10 @@ import Script from "next/script";
 const METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
 
 export const YandexMetrika = () => {
+    console.log(METRIKA_ID)
+    console.log(process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID)
     if (!METRIKA_ID) return null;
+    console.log(METRIKA_ID)
 
     return (
         <>
