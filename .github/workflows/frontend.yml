@@ -27,6 +27,7 @@ jobs:
             --build-arg NEXT_PUBLIC_HOST=https://api.webcos.ru \
             --build-arg NEXT_PUBLIC_APP_URL=https://webcos.ru \
             --build-arg COOKIE_DOMAIN=.webcos.ru \
+            --build-arg NEXT_PUBLIC_YANDEX_METRIKA_ID=109116580 \
             -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest .
       - name: Push image
         run: |
