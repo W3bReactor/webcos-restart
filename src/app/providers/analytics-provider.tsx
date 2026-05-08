@@ -9,8 +9,7 @@ export const AnalyticsProvider = () => {
 
     useEffect(() => {
         const accepted =
-            localStorage.getItem("cookie_consent") === "true";
-
+            localStorage.getItem("cookie_consent") === "accepted";
         setEnabled(accepted);
     }, []);
 
