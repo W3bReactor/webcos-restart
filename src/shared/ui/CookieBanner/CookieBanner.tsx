@@ -19,7 +19,6 @@ export const CookieBanner = () => {
     const acceptAll = () => {
         localStorage.setItem("cookie_consent", "accepted")
         setVisible(false)
-        enableAnalytics()
     }
 
     const acceptNecessary = () => {
@@ -27,14 +26,6 @@ export const CookieBanner = () => {
         setVisible(false)
     }
 
-    const enableAnalytics = () => {
-        if (isYmAvailable()) return
-        // TODO: Добавить метрику
-        // const script = document.createElement("script")
-        // script.src = "https://mc.yandex.ru/metrika/tag.js"
-        // script.async = true
-        // document.head.appendChild(script)
-    }
 
     if (!visible) return null
 

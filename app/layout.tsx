@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import "@/app/styles/globals.css";
 import {Inter} from "next/font/google";
-import {ThemeProvider} from "@/app/providers";
+import {AnalyticsProvider, ThemeProvider} from "@/app/providers";
 import React from "react";
 import {Background, CookieBanner, ThemeAnimation, TopLoader} from "@/shared/ui";
 
@@ -69,6 +69,7 @@ export default function RootLayout({
         <html lang="ru" suppressHydrationWarning>
         <body className={inter.className}>
         <TopLoader/>
+        <AnalyticsProvider/>
         <ThemeProvider>
             <ThemeAnimation/>
             <Background/>

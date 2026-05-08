@@ -34,6 +34,7 @@ export const Social = ({
                 <BlackBtn
                     srcImage={platformIcons[platform].src}
                     type="link"
+                    target={"_blank"}
                     href={href}
                     className={styles.socialBtn}
                 >

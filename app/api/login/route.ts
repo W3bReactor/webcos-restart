@@ -19,9 +19,7 @@ export async function POST(req: Request) {
             credentials: 'include'
         }
     )
-    console.log('STATUS:', response.status)
-    console.log('COOKIE_DOMAIN:', COOKIE_DOMAIN)
-    console.log('isProd', isProd)
+
     if (!response.ok) {
         return new Response('Unauthorized', { status: 401 })
     }

@@ -34,7 +34,7 @@ export const BlogPage = async () => {
                 {responseNew.success && responseNew.data.content.length > 0 &&
                     <ContentSlider title={'Новое'} data={responseNew.data.content}/>
                 }
-                <Social href={'#'} platform={"Телеграм"} title={'Хотите больше статей?'} description={'Заходите к нам в телеграм'}/>
+                <Social href="https://t.me/webcostech" platform={"Телеграм"} title={'Хотите больше статей?'} description={'Заходите к нам в телеграм'}/>
             </main>
             <Footer/>
         </div>

@@ -14,20 +14,16 @@ export const Contacts = () => {
             <SectionDesc className={styles.contactsDesc}>Будь вкурсе всех новостей</SectionDesc>
             <ul className={styles.contactsList}>
                 <li className={styles.contactsItem}>
-                    <BlackBtn srcImage={TgWhiteIcon.src} type={'link'} href={'#'} className={styles.contactsBtn}>Подписаться на Телеграм</BlackBtn>
+                    <BlackBtn srcImage={TgWhiteIcon.src} type={'link'} href="https://t.me/webcostech" target={"_blank"} className={styles.contactsBtn}>Подписаться на Телеграм</BlackBtn>
                 </li>
 
 
                 <li className={styles.contactsItem}>
-                    <BlackBtn srcImage={VkWhiteIcon.src} type={'link'} href={'#'} className={styles.contactsBtn}>Подписаться на ВК</BlackBtn>
+                    <BlackBtn srcImage={DzenIcon.src} type={'link'} href="https://dzen.ru/webcos" target={"_blank"} className={styles.contactsBtn}>Подписаться на Дзен</BlackBtn>
                 </li>
 
                 <li className={styles.contactsItem}>
-                    <BlackBtn srcImage={DzenIcon.src} type={'link'} href={'#'} className={styles.contactsBtn}>Подписаться на Дзен</BlackBtn>
-                </li>
-
-                <li className={styles.contactsItem}>
-                    <BlackBtn srcImage={TiktokWhiteIcon} type={'link'} href={'#'} className={styles.contactsBtn}>Подписаться на Тик-ток</BlackBtn>
+                    <BlackBtn srcImage={TiktokWhiteIcon} type={'link'} href="https://www.tiktok.com/@webcostech" target={"_blank"} className={styles.contactsBtn}>Подписаться на Тик-ток</BlackBtn>
                 </li>
 
             </ul>

@@ -69,26 +69,19 @@ export const Footer = () => {
                     <p className={styles.footerCopyright}>©2026 WEBCOS</p>
                     <ul className={styles.footerSocial}>
                         <li className={styles.footerSocialItem}>
-                            <a href="#" className={styles.footerSocialLink}>
-                                <Image className={styles.footerSocialIcon} src={TgWhiteIcon} alt={'Телеграмм'}/>
+                            <a href="https://t.me/webcostech" target={"_blank"} className={styles.footerSocialLink}>
+                                <Image className={styles.footerSocialIcon} src={TgWhiteIcon} alt={'Телеграм'}/>
 
                             </a>
                         </li>
                         <li className={styles.footerSocialItem}>
-                            <a href="#" className={styles.footerSocialLink}>
-                                <Image className={styles.footerSocialIcon} src={VkWhiteIcon} alt={'ВК'}/>
-
-                            </a>
-                        </li>
-                        <li className={styles.footerSocialItem}>
-                            <a href="#" className={styles.footerSocialLink}>
+                            <a href="https://dzen.ru/webcos" target={"_blank"} className={styles.footerSocialLink}>
                                 <Image  className={styles.footerSocialIcon} src={DzenIcon} alt={'Дзен'}/>
                             </a>
                         </li>
                         <li className={styles.footerSocialItem}>
-                            <a href="#" className={styles.footerSocialLink}>
+                            <a href="https://www.tiktok.com/@webcostech" target={"_blank"} className={styles.footerSocialLink}>
                                 <Image className={styles.footerSocialIcon} src={TiktokWhiteIcon} alt={'Тик-ток'}/>
-
                             </a>
                         </li>
                     </ul>
