@@ -30,7 +30,8 @@ jobs:
             --build-arg NEXT_PUBLIC_YANDEX_METRIKA_ID=109116580 \
             --build-arg RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} \
             --build-arg NEXT_PUBLIC_CKEDITOR_KEY=${{ secrets.NEXT_PUBLIC_CKEDITOR_KEY }} \  
-            -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest .
+            -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest \
+            .
       - name: Push image
         run: |
           docker push ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest
