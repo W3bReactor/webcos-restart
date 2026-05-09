@@ -105,7 +105,7 @@ export const Article = async ({id}: IArticle) => {
                 <article className={styles.article}>
                     <ArticleReadTracker articleId={response.data.id}/>
                     {response.data.image &&
-                        <Image src={response.data.image} width={734} height={332} className={styles.articlePreviewImage} alt={response.data.title} />
+                        <Image unoptimized src={response.data.image} width={734} height={332} className={styles.articlePreviewImage} alt={response.data.title} />
                     }
                     <div className={styles.articleTop}>
                         <h2 className={styles.articleTitle}>{response.data.title}</h2>

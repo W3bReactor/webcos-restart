@@ -28,7 +28,9 @@ jobs:
             --build-arg NEXT_PUBLIC_APP_URL=https://webcos.ru \
             --build-arg COOKIE_DOMAIN=.webcos.ru \
             --build-arg NEXT_PUBLIC_YANDEX_METRIKA_ID=109116580 \
-            -t ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest .
+            --build-arg RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} \
+            --build-arg NEXT_PUBLIC_CKEDITOR_KEY=${{ secrets.NEXT_PUBLIC_CKEDITOR_KEY }} \
+            -t ghcr.io/${{ env.OWNER_LC }}/webcos-frontend:latest .
       - name: Push image
         run: |
           docker push ghcr.io/${{ env.OWNER_LC }}/webcos-restart:latest
