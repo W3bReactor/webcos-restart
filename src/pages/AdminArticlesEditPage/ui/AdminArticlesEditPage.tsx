@@ -142,7 +142,18 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
                                     <Image src={PlusIcon} alt={'Добавить категорию'}/>
                                 </Link>
                             </div>
-                            <AdminArticleForm type={"edit"} url={url} setUrl={setUrl} image={image} setImage={setImage} onSend={onEdit} data={data} setData={setData} setValue={setValueContent} debouncedValue={debouncedValueContent}/>
+                            <AdminArticleForm
+                                type={"edit"}
+                                url={url}
+                                setUrl={setUrl}
+                                image={image}
+                                setImage={setImage}
+                                onSend={onEdit}
+                                data={data}
+                                setData={setData}
+                                setValue={setValueContent}
+                                debouncedValue={debouncedValueContent}
+                            />
                         </div>
                     </div>
                 </section>

@@ -6,7 +6,7 @@ import {PlanetSystem} from "./PlanetSystem/PlanetSystem";
 import {SolarSystemBlackImage, SolarSystemImage} from "@/widgets/Intro";
 export const Intro = () => {
     return (
-        <section className={styles.intro}>
+        <section data-avi className={styles.intro}>
             <div className={styles.introContent}>
                 <h1 className={styles.introTitle}>Начало <br/> <span>чего-то нового...</span></h1>
                 <SectionDesc className={styles.introDesc}>Мы создаём сервисы, исследуем технологии и делимся опытом разработки. <br/>

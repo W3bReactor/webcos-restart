@@ -12,7 +12,7 @@ export const Projects = async () => {
 
 
     return (
-        <section id={'projects'} className={styles.productsWrapper}>
+        <section data-avi id={'projects'} className={styles.productsWrapper}>
             <div className={styles.productsRocketPosition}>
                 <RocketAnimation/>
             </div>

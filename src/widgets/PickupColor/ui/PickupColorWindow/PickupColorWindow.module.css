@@ -117,6 +117,7 @@
 }
 
 .pickupUploadWrapper {
+    margin: 15px;
     max-width: 400px;
     display: flex;
     flex-direction: column;
@@ -129,6 +130,7 @@
 .pickupUploadBtn {
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     border: 1px solid rgba(124, 58, 237, 0.08);
     border-radius: 15px;
@@ -201,4 +203,44 @@
     line-height: 100%;
     letter-spacing: 0.01em;
     color: var(--foreground);
+}
+
+.pickupUploadBtnMobile {
+    border: none;
+    outline: none;
+    padding: 12px 22px;
+    display: none;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 64px;
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    margin-right: 15px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+
+}
+
+
+
+@media (max-width: 564px) {
+    .pickupUploadBtnMobile {
+        display: flex;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+
+    }
+
+    .pickupUploadTopBtn {
+        display: none;
+    }
+
+    .pickupUploadDesc {
+        font-size: 18px;
+    }
 }

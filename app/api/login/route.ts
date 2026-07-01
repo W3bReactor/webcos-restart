@@ -21,6 +21,8 @@ export async function POST(req: Request) {
     )
 
     if (!response.ok) {
+        console.log(response.statusText)
+        console.log(await response.json())
         return new Response('Unauthorized', { status: 401 })
     }
     const data = await response.json()

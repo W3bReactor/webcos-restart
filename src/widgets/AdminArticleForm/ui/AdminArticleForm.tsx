@@ -65,7 +65,7 @@ export const AdminArticleForm = ({type, setData, data, setValue, debouncedValue,
                 placeholder={'Описание'}
                 className={styles.adminTextarea}
             />
-            <ClientSideCustomEditor onChange={(v: string) => onUpdateData(v)}/>
+            <ClientSideCustomEditor value={debouncedValue} onChange={(v: string) => onUpdateData(v)}/>
             {/*<div className={'ck-content ck-content--theme'} dangerouslySetInnerHTML={{__html: debouncedValue}}>*/}
             {/*</div>*/}
             <PurpleBtn onClick={onSend} className={styles.adminCreateBtn} type={'btn'}>{type === 'create' ? "Создать" : "Изменить"}</PurpleBtn>

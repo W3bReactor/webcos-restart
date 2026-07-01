@@ -11,7 +11,7 @@ interface IModal {
 
 export const Modal = ({ children, isOpen, onClose }: IModal) => {
     const [mounted, setMounted] = useState(false);
-    console.log(isOpen)
+
     useEffect(() => {
         const html = document.querySelector("html");
         if(html) {

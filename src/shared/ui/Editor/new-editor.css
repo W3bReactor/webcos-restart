@@ -132,3 +132,11 @@
 .editor-container_include-word-count.editor-container_classic-editor .editor-container__editor .ck-editor .ck-editor__editable {
     border-radius: 0;
 }
+
+.main-container {
+    max-width: 100%;
+}
+
+.editor-container_classic-editor .editor-container__editor {
+    min-width: auto;
+}

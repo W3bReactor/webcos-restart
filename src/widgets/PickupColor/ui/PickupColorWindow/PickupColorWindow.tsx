@@ -497,6 +497,14 @@ export const PickupColorWindow = () => {
                     </div>
                 </div>
 
+            <button
+                onClick={() => inputFileRef.current?.click()}
+                className={styles.pickupUploadBtnMobile}
+            >
+                Загрузить
+            </button>
+
+
             {isDraggingFile && (
                 <div
                     style={{

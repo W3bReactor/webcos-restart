@@ -18,3 +18,22 @@
     color: var(--foreground);
     margin-bottom: 35px;
 }
+
+
+@media (max-width: 768px) {
+
+    .projectSection {
+        padding: 15px 0 70px;
+    }
+    .projectTitle {
+        font-size: 32px;
+    }
+}
+@media (max-width: 564px) {
+    .projectTitle {
+        font-size: 28px;
+        margin: 0 15px 35px 15px;
+    }
+
+}
+

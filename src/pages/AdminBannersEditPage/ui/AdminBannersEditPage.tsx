@@ -19,7 +19,6 @@ export const AdminBannersEditPage = ({type, bannerId}: IAdminBannersEdit) => {
         ["banner"],
         async () => await getBannerApi(bannerId)
     )
-    console.log(responseBanner)
 
 
     if(isLoading) {
