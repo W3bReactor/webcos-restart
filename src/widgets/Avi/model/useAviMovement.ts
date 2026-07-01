@@ -3,69 +3,52 @@
 import {useEffect} from 'react';
 import {useAviStore} from './aviStore';
 
-const SPEED = 2;
-const STOP_DISTANCE = 40;
+const SPEED = 5;
 
-export function useAviMovement(){
-
-    const avi=
-        useAviStore(
-            s=>s.avi
-        );
-
-    const moveAvi=
-        useAviStore(
-            s=>s.moveAvi
-        );
-
-    const setAvi=
-        useAviStore(
-            s=>s.setAvi
-        );
+export function useAviMovement() {
 
     useEffect(()=>{
 
-        let animationId:number;
+        let frame:number;
 
         const move=()=>{
 
-            const target=
-                avi.target;
+            const state=
+                useAviStore.getState();
 
-            if(!target){
+            const avi=
+                state.avi;
 
-                animationId=
-                    requestAnimationFrame(
-                        move
-                    );
+            if(!avi.target){
 
+                frame=requestAnimationFrame(move);
                 return;
             }
 
             const dx=
-                target.position.x-
+                avi.target.position.x-
                 avi.position.x;
 
             const dy=
-                target.position.y-
+                avi.target.position.y-
                 avi.position.y;
 
             const distance=
-                Math.sqrt(
-                    dx*dx+
-                    dy*dy
+                Math.hypot(
+                    dx,
+                    dy
                 );
 
-            if(
-                distance<
-                STOP_DISTANCE
-            ){
+            if(distance<10){
 
-                setAvi({
+                state.setAvi({
 
-                    mode:'idle'
+                    target:null,
+                    thought:'Хм...'
 
                 });
+
+                frame=requestAnimationFrame(move);
 
                 return;
             }
@@ -76,56 +59,37 @@ export function useAviMovement(){
                     dx
                 );
 
-            const newX=
-                avi.position.x+
-                Math.cos(angle)*
-                SPEED;
+            state.moveAvi({
 
-            const newY=
-                avi.position.y+
-                Math.sin(angle)*
-                SPEED;
+                x:
+                    avi.position.x+
+                    Math.cos(angle)*
+                    SPEED,
 
-            moveAvi({
+                y:
+                    avi.position.y+
+                    Math.sin(angle)*
+                    SPEED
 
-                x:newX,
-                y:newY
             });
 
-            setAvi({
-
-                direction:
-                    dx>0
-                        ?'right'
-                        :'left',
-
-                mode:
-                    'wandering'
-            });
-
-            animationId=
+            frame=
                 requestAnimationFrame(
                     move
                 );
 
         };
 
-        animationId=
-            requestAnimationFrame(
-                move
-            );
+        move();
 
         return()=>{
 
             cancelAnimationFrame(
-                animationId
+                frame
             );
 
         };
 
-    },[
-        avi.target,
-        avi.position
-    ]);
+    },[]);
 
 }

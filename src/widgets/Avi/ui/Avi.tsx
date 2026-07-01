@@ -3,15 +3,9 @@
 import {CSSProperties, useEffect} from 'react';
 import {usePathname} from 'next/navigation';
 
-import {useAviWorld} from '../model/useAviWorld';
 import {useAviStore} from '../model/aviStore';
 import styles from './Avi.module.css';
-import {useAviMovement} from "@/widgets/Avi/model/useAviMovement";
-import {useAviDecision} from "@/widgets/Avi/model/useAviDecision";
-import {useAviMemory} from "@/widgets/Avi/model/useAviMemory";
-import {useAviPersonality} from "@/widgets/Avi/model/useAviPersonality";
-import {useAviNeeds} from "@/widgets/Avi/model/useAviNeeds";
-import {useAviNavigation} from "@/widgets/Avi/model/useAviNavigation";
+import {useAviSocket} from "@/widgets/Avi/model/useAviSocket";
 
 const particles = [
     {x: -28, y: -22, delay: 0.1, size: 4},
@@ -31,36 +25,11 @@ function getRouteLabel(route: string) {
 }
 
 export function Avi() {
-    useAviWorld();
-    useAviMovement();
-    // useAviInteraction();
-    useAviDecision();
-    useAviPersonality();
-    useAviMemory();
-    useAviNeeds();
-    useAviNavigation();
-    // useAviAttention();
-    // useAviBrain();
-    // useAviSocket();
-    // useAviBrain();
-    // useAviNeeds();
-    // useAviMemory();
-    // useAviDecision();
+    useAviSocket();
+    // useAviMovement();
+
 
     const pathname = usePathname() ?? '/';
-
-    useEffect(()=>{
-
-        useAviStore
-            .getState()
-            .setAvi({
-
-                route:pathname,
-
-                presence:'present'
-            });
-
-    },[]);
 
     const avi = useAviStore((state) => state.avi);
 

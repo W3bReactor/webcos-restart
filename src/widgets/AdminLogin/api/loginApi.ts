@@ -4,17 +4,17 @@ import {AuthResponse} from "@/widgets/AdminLogin";
 export const login = async (email: string, password: string): Promise<ApiResult<AuthResponse>>  => {
     try {
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_APP_URL}/api/login`,
+            `${process.env.NEXT_PUBLIC_HOST}/api/v1/auth/login`,
             {
-                cache: "no-store",
                 method: "POST",
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
+                credentials: "include",
                 headers: {
-                    'Content-type': 'application/json'
-                }
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
             }
         );
 

@@ -47,10 +47,13 @@ export interface Point {
 
 export interface AviTarget {
     id: string;
-    type: AviWorldEntityType | 'page' | 'user';
+    type: string;
     label: string;
-    position: Point;
-}
+    position: {
+        x: number;
+        y: number;
+    };
+};
 
 export interface AviEntityState {
     id: 'avi';
@@ -140,54 +143,46 @@ const initialAvi: AviEntityState = {
 export const useAviStore=
     create<AviStore>()(
 
-        persist(
+        (set)=>({
 
-            (set)=>({
+            avi:initialAvi,
+            world:[],
+            connection:'local',
 
-                avi:initialAvi,
-                world:[],
-                connection:'local',
+            setAvi:(avi)=>
+                set((state)=>({
 
-                setAvi:(avi)=>
-                    set((state)=>({
+                    avi:{
+                        ...state.avi,
+                        ...avi,
+                        version:
+                            avi.version ??
+                            state.avi.version+1,
 
-                        avi:{
-                            ...state.avi,
-                            ...avi,
-                            version:
-                                avi.version ??
-                                state.avi.version+1,
+                        updatedAt:
+                            Date.now()
+                    }
 
-                            updatedAt:
-                                Date.now()
-                        }
+                })),
 
-                    })),
+            moveAvi:(position)=>
+                set((state)=>({
 
-                moveAvi:(position)=>
-                    set((state)=>({
+                    avi:{
+                        ...state.avi,
+                        position,
+                        updatedAt:
+                            Date.now()
+                    }
 
-                        avi:{
-                            ...state.avi,
-                            position,
-                            updatedAt:
-                                Date.now()
-                        }
+                })),
 
-                    })),
+            setWorld:(world)=>
+                set({world}),
 
-                setWorld:(world)=>
-                    set({world}),
+            setConnection:(connection)=>
+                set({connection})
 
-                setConnection:(connection)=>
-                    set({connection})
-
-            }),
-
-            {
-
-                name:'avi-store'
-
-            })
+        })
 
     );
