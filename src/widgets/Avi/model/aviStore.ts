@@ -100,15 +100,23 @@ export interface AviWorldEntity {
     score: number;
 }
 
+
 interface AviStore {
     avi: AviEntityState;
     world: AviWorldEntity[];
-    connection: 'local' | 'connecting' | 'shared';
-    setAvi: (avi: Partial<AviEntityState>) => void;
-    moveAvi: (position: Point) => void;
-    setWorld: (world: AviWorldEntity[]) => void;
-    setConnection: (connection: AviStore['connection']) => void;
+    connection:'local'|'connecting'|'shared';
+
+    serverPosition:Point | null;
+
+    setAvi:(avi:Partial<AviEntityState>)=>void;
+    moveAvi:(position:Point)=>void;
+    setWorld:(world:AviWorldEntity[])=>void;
+    setConnection:(connection:AviStore['connection'])=>void;
+
+    setServerPosition:(p:Point)=>void;
 }
+
+
 
 const initialAvi: AviEntityState = {
     id: 'avi',
@@ -148,6 +156,12 @@ export const useAviStore=
             avi:initialAvi,
             world:[],
             connection:'local',
+            serverPosition:null,
+
+            setServerPosition:(p)=>
+                set({
+                    serverPosition:p
+                }),
 
             setAvi:(avi)=>
                 set((state)=>({
@@ -182,6 +196,7 @@ export const useAviStore=
 
             setConnection:(connection)=>
                 set({connection})
+
 
         })
 

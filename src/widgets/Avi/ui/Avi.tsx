@@ -6,6 +6,9 @@ import {usePathname} from 'next/navigation';
 import {useAviStore} from '../model/aviStore';
 import styles from './Avi.module.css';
 import {useAviSocket} from "@/widgets/Avi/model/useAviSocket";
+import {useAviMovement} from "@/widgets/Avi/model/useAviMovement";
+import {useAviWorld} from "@/widgets/Avi/model/useAviWorld";
+import {useAviWorldSync} from "@/widgets/Avi/model/useAviWorldSync";
 
 const particles = [
     {x: -28, y: -22, delay: 0.1, size: 4},
@@ -26,7 +29,9 @@ function getRouteLabel(route: string) {
 
 export function Avi() {
     useAviSocket();
-    // useAviMovement();
+    useAviMovement();
+    useAviWorld();
+    useAviWorldSync();
 
 
     const pathname = usePathname() ?? '/';

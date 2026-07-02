@@ -1,5 +1,5 @@
 import styles from "./PickupColorPage.module.css";
-import {Header, Footer, Social, PickupColor} from "@/widgets";
+import {Header, Footer, Social, PickupColor, PickupAccordion} from "@/widgets";
 
 export const PickupColorPage = () => {
 
@@ -9,7 +9,7 @@ export const PickupColorPage = () => {
             <main className={styles.app}>
 
                 <PickupColor/>
-
+                <PickupAccordion/>
 
                 <Social
                     href={'#'}

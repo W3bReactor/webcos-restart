@@ -16,3 +16,4 @@ export { RedBtn } from "./RedBtn/RedBtn";
 export { Upload } from "./Upload/Upload";
 export { CookieBanner } from "./CookieBanner/CookieBanner";
 export { Modal } from "./Modal/Modal";
+export { AccordionItem } from "./AccordionItem/AccordionItem";

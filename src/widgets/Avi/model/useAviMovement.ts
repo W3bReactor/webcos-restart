@@ -3,15 +3,15 @@
 import {useEffect} from 'react';
 import {useAviStore} from './aviStore';
 
-const SPEED = 5;
+const SPEED=2;
 
-export function useAviMovement() {
+export function useAviMovement(){
 
     useEffect(()=>{
 
         let frame:number;
 
-        const move=()=>{
+        const animate=()=>{
 
             const state=
                 useAviStore.getState();
@@ -21,66 +21,67 @@ export function useAviMovement() {
 
             if(!avi.target){
 
-                frame=requestAnimationFrame(move);
+                frame=
+                    requestAnimationFrame(
+                        animate
+                    );
+
                 return;
             }
 
             const dx=
+
                 avi.target.position.x-
                 avi.position.x;
 
             const dy=
+
                 avi.target.position.y-
                 avi.position.y;
 
             const distance=
+
                 Math.hypot(
                     dx,
                     dy
                 );
 
-            if(distance<10){
+            if(
+                distance<3
+            ){
 
-                state.setAvi({
-
-                    target:null,
-                    thought:'Хм...'
-
-                });
-
-                frame=requestAnimationFrame(move);
+                frame=
+                    requestAnimationFrame(
+                        animate
+                    );
 
                 return;
             }
 
-            const angle=
-                Math.atan2(
-                    dy,
-                    dx
-                );
-
             state.moveAvi({
 
                 x:
+
                     avi.position.x+
-                    Math.cos(angle)*
+                    dx/distance*
                     SPEED,
 
                 y:
+
                     avi.position.y+
-                    Math.sin(angle)*
+                    dy/distance*
                     SPEED
 
             });
 
             frame=
                 requestAnimationFrame(
-                    move
+                    animate
                 );
 
         };
 
-        move();
+        animate();
 
         return()=>{
 

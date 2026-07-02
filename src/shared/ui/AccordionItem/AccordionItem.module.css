@@ -1,0 +1,79 @@
+.accordionItem {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+    width: 100%;
+}
+
+.accordionItem:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.accordionItemTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 16px;
+}
+
+.accordionItemTitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    margin-right: 15px;
+}
+
+.accordionItemDropdown {
+    border: none;
+    width: 21px;
+    height: 10px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.accordionItemDropdown:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background-color: var(--white);
+    width: 15px;
+    height: 1px;
+    transform: rotate(45deg);
+}
+.accordionItemDropdown:before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 5px;
+    background-color: var(--white);
+    width: 15px;
+    height: 1px;
+    transform: rotate(-45deg);
+}
+
+.accordionItemDesc {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 167%;
+    color: var(--gray);
+
+    list-style: none;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+    padding:  0 16px;
+}
+
+.accordionItemDescActive {
+    padding: 16px 16px 16px 16px;
+}
+
+.accordionItemDropdownActive {
+    transform: rotate(180deg);
+}

@@ -6,41 +6,39 @@ import {Client} from '@stomp/stompjs';
 
 import {useAviStore} from './aviStore';
 
-export function useAviSocket(){
+export function useAviSocket() {
 
-    const setAvi=
+    const setAvi =
         useAviStore(
-            s=>s.setAvi
+            s => s.setAvi
         );
 
-    const setConnection=
+    const setConnection =
         useAviStore(
-            s=>s.setConnection
+            s => s.setConnection
         );
 
-    useEffect(()=>{
+    useEffect(() => {
 
         setConnection(
             'connecting'
         );
 
-        const client=
+        const client =
             new Client({
 
-                webSocketFactory:()=>
+                webSocketFactory: () =>
 
                     new SockJS(
-
                         process.env
                             .NEXT_PUBLIC_HOST +
                         '/ws'
-
                     ),
 
                 reconnectDelay:
                     5000,
 
-                onConnect:()=>{
+                onConnect: () => {
 
                     setConnection(
                         'shared'
@@ -48,53 +46,70 @@ export function useAviSocket(){
 
                     client.subscribe(
                         '/topic/avi',
-                        (message)=>{
+                        (message) => {
 
-                            const avi=
+                            const incoming =
                                 JSON.parse(
                                     message.body
                                 );
+
+                            const current =
+                                useAviStore
+                                    .getState()
+                                    .avi;
+
+                            const targetChanged =
+
+                                incoming.targetX !== current.target?.position.x ||
+                                incoming.targetY !== current.target?.position.y;
 
                             useAviStore
                                 .getState()
                                 .setAvi({
 
-                                    route:avi.route,
-
-                                    position:{
-                                        x:avi.x,
-                                        y:avi.y
-                                    },
+                                    route:
+                                    incoming.route,
 
                                     target:
-                                        avi.targetX!=null &&
-                                        avi.targetY!=null
+
+                                        targetChanged
+
                                             ? {
-                                                id:'target',
-                                                type:'page',
-                                                label:'target',
-                                                position:{
-                                                    x:avi.targetX,
-                                                    y:avi.targetY
+
+                                                id: 'target',
+                                                type: 'page',
+                                                label: 'target',
+
+                                                position: {
+
+                                                    x:
+                                                    incoming.targetX,
+
+                                                    y:
+                                                    incoming.targetY
+
                                                 }
+
                                             }
-                                            : null,
+
+                                            : current.target,
 
                                     mode:
-                                        avi.mode.toLowerCase(),
+                                        incoming.mode.toLowerCase(),
 
                                     emotion:
-                                        avi.emotion.toLowerCase(),
+                                        incoming.emotion.toLowerCase(),
 
                                     thought:
-                                    avi.thought
+                                    incoming.thought
+
                                 });
 
                         }
                     );
                 },
 
-                onDisconnect:()=>{
+                onDisconnect: () => {
 
                     setConnection(
                         'local'
@@ -106,12 +121,12 @@ export function useAviSocket(){
 
         client.activate();
 
-        return()=>{
+        return () => {
 
             client.deactivate();
 
         };
 
-    },[]);
+    }, []);
 
 }
