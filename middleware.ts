@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
+const excludedPaths = ['/admin/login'];
 
-    const access =
+
+export async function middleware(req: NextRequest) {
+    const { pathname } = req.nextUrl
+
+    if (excludedPaths.includes(pathname)) {
+        return
+    }
+        const access =
         req.cookies.get("access_token");
 
     if (access) {
