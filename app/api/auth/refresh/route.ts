@@ -2,11 +2,17 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import setCookieParser from "set-cookie-parser";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_HOST
+
+const isProd = process.env.NODE_ENV === 'production';
+const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN;
+
+
 export async function POST() {
     const cookieStore = await cookies();
 
     const backendResponse = await fetch(
-        "http://localhost:8080/api/v1/auth/refresh",
+        `${BACKEND_URL}/api/v1/auth/refresh`,
         {
             method: "POST",
             headers: {
@@ -33,8 +39,9 @@ export async function POST() {
         (await cookies()).set(c.name, c.value, {
             httpOnly: true,
             path: c.path ?? "/",
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production",
+            secure: isProd, // ОБЯЗАТЕЛЬНО
+            sameSite: isProd ? 'none' : 'lax', // ОБЯЗАТЕЛЬНО
+            domain: COOKIE_DOMAIN,
             maxAge: c.maxAge ?? 10
         });
     }

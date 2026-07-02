@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
     }
 
     const response = await fetch(
-        `${req.nextUrl.origin}/api/auth/refresh`,
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/refresh`,
         {
             method: "POST",
             headers: {
