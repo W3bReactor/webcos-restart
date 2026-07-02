@@ -5,6 +5,7 @@ import React from "react";
 import {Background, CookieBanner, ThemeAnimation, TopLoader} from "@/shared/ui";
 import {notFound} from "next/navigation";
 import {cookies} from "next/headers";
+import {bootstrapAuth} from "@/shared/api/bootstrapAuth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +16,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const cookieStore = await cookies();
 
-    const token = (await cookies()).get("access_token")
+    const token = cookieStore.get("access_token")
 
     if (!token) {
         notFound();
     }
-
   return (
     //  suppressHydrationWarning - нужен для next-themes (Он не блокирует другие уровни)
     <html lang="en" suppressHydrationWarning>
