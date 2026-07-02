@@ -3,65 +3,51 @@
 import {useEffect} from 'react';
 import SockJS from 'sockjs-client';
 import {Client} from '@stomp/stompjs';
-
 import {useAviStore} from './aviStore';
 
-export function useAviSocket() {
+export function useAviSocket(){
 
-    const setAvi =
+    const setConnection=
         useAviStore(
-            s => s.setAvi
+            s=>s.setConnection
         );
 
-    const setConnection =
-        useAviStore(
-            s => s.setConnection
-        );
-
-    useEffect(() => {
+    useEffect(()=>{
 
         setConnection(
             'connecting'
         );
 
-        const client =
+        const client=
             new Client({
 
-                webSocketFactory: () =>
+                webSocketFactory:()=>
 
                     new SockJS(
+
                         process.env
-                            .NEXT_PUBLIC_HOST +
+                            .NEXT_PUBLIC_HOST+
                         '/ws'
                     ),
 
-                reconnectDelay:
-                    5000,
+                reconnectDelay:5000,
 
-                onConnect: () => {
+                onConnect:()=>{
 
                     setConnection(
                         'shared'
                     );
 
                     client.subscribe(
-                        '/topic/avi',
-                        (message) => {
 
-                            const incoming =
+                        '/topic/avi',
+
+                        message=>{
+
+                            const incoming=
                                 JSON.parse(
                                     message.body
                                 );
-
-                            const current =
-                                useAviStore
-                                    .getState()
-                                    .avi;
-
-                            const targetChanged =
-
-                                incoming.targetX !== current.target?.position.x ||
-                                incoming.targetY !== current.target?.position.y;
 
                             useAviStore
                                 .getState()
@@ -70,46 +56,35 @@ export function useAviSocket() {
                                     route:
                                     incoming.route,
 
-                                    target:
-
-                                        targetChanged
-
-                                            ? {
-
-                                                id: 'target',
-                                                type: 'page',
-                                                label: 'target',
-
-                                                position: {
-
-                                                    x:
-                                                    incoming.targetX,
-
-                                                    y:
-                                                    incoming.targetY
-
-                                                }
-
-                                            }
-
-                                            : current.target,
-
                                     mode:
-                                        incoming.mode.toLowerCase(),
+                                        incoming.mode
+                                            .toLowerCase(),
 
                                     emotion:
-                                        incoming.emotion.toLowerCase(),
+                                        incoming.emotion
+                                            .toLowerCase(),
 
                                     thought:
-                                    incoming.thought
+                                    incoming.thought,
+
+                                    position:{
+
+                                        x:
+                                            incoming.position?.x ?? 120,
+
+                                        y:
+                                            incoming.position?.y ?? 220
+                                    }
 
                                 });
 
                         }
+
                     );
+
                 },
 
-                onDisconnect: () => {
+                onDisconnect:()=>{
 
                     setConnection(
                         'local'
@@ -121,12 +96,12 @@ export function useAviSocket() {
 
         client.activate();
 
-        return () => {
+        return()=>{
 
             client.deactivate();
 
         };
 
-    }, []);
+    },[]);
 
 }

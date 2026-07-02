@@ -195,11 +195,18 @@ function buildEntity(
         element instanceof HTMLAnchorElement
             ? element.pathname
             : undefined;
+    const stableId =
 
+        element.id ||
+
+        element.getAttribute(
+            'data-avi-id'
+        ) ||
+
+        `${type}-${label}`;
     return{
 
-        id:
-            `${type}-${index}`,
+        id: stableId,
 
         href,
 
@@ -213,14 +220,11 @@ function buildEntity(
 
             x:
                 rect.left+
-                window.scrollX+
                 rect.width/2,
 
             y:
                 rect.top+
-                window.scrollY+
                 rect.height/2
-
         },
 
         rect:{

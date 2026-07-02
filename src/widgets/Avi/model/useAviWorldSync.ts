@@ -12,61 +12,60 @@ export function useAviWorldSync(){
 
     useEffect(()=>{
 
-        if(
-            !world.length
-        ){
+        if(!world.length){
             return;
         }
 
-        fetch(
+        const timeout=
 
-            process.env
-                .NEXT_PUBLIC_HOST+
+            setTimeout(()=>{
 
-            '/api/v1/avi/world',
+                fetch(
 
-            {
+                    process.env
+                        .NEXT_PUBLIC_HOST+
+                    '/api/v1/avi/world',
 
-                method:'POST',
+                    {
+                        method:'POST',
 
-                headers:{
+                        headers:{
+                            'Content-Type':
+                                'application/json'
+                        },
 
-                    'Content-Type':
-                        'application/json'
+                        body:JSON.stringify(
 
-                },
+                            world.map(
+                                e=>({
 
-                body:
-                    JSON.stringify(
+                                    id:e.id,
+                                    type:e.type,
+                                    label:e.label,
+                                    text:e.text,
+                                    x:e.position.x,
+                                    y:e.position.y,
+                                    score:e.score
 
-                        world.map(
-                            e=>({
+                                })
+                            )
 
-                                id:e.id,
-
-                                type:e.type,
-
-                                label:e.label,
-
-                                text:e.text,
-
-                                x:e.position.x,
-
-                                y:e.position.y,
-
-                                score:e.score
-
-                            })
                         )
 
-                    )
+                    }
 
-            }
+                );
 
-        );
+            },1000);
 
-    },[
-        world
-    ]);
+        return()=>{
+
+            clearTimeout(
+                timeout
+            );
+
+        };
+
+    },[world]);
 
 }
