@@ -5,12 +5,12 @@ const excludedPaths = ['/admin/login'];
 
 
 export async function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl
+    const {pathname} = req.nextUrl
 
     if (excludedPaths.includes(pathname)) {
         return
     }
-        const access =
+    const access =
         req.cookies.get("access_token");
 
     if (access) {
@@ -47,30 +47,14 @@ export async function middleware(req: NextRequest) {
 
 
 
-    const setCookies = response.headers.getSetCookie();
+    response.headers.forEach((value, key) => {
+        if (key.toLowerCase() === "set-cookie") {
+            nextResponse.headers.append(key, value);
+        }
+    });
 
-    const parsed =
-        setCookieParser.parse(
-            setCookies,
-            { map: false }
-        );
-
-    for (const c of parsed) {
-        nextResponse.cookies.set(
-            c.name,
-            c.value,
-            {
-                httpOnly: c.httpOnly,
-                secure: c.secure,
-                sameSite: c.sameSite as any,
-                path: c.path ?? "/",
-                domain: c.domain,
-                maxAge: c.maxAge
-            }
-        );
-    }
-    return nextResponse;}
-
+    return nextResponse;
+}
 export const config = {
     matcher: ["/admin/:path*"]
 };
