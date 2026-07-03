@@ -4,7 +4,7 @@ import {Inter} from "next/font/google";
 import {AnalyticsProvider, ThemeProvider} from "@/app/providers";
 import React from "react";
 import {Background, CookieBanner, ThemeAnimation, TopLoader} from "@/shared/ui";
-import {Avi, AviWorld} from "@/widgets";
+import {AviWorld} from "@/widgets";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -77,7 +77,7 @@ export default function RootLayout({
             <CookieBanner/>
             <AviWorld>
                 {children}
-                <Avi/>
+                {/*<Avi/>*/}
             </AviWorld>
         </ThemeProvider>
         </body>
