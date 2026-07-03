@@ -44,20 +44,15 @@ export async function middleware(req: NextRequest) {
     const nextResponse =
         NextResponse.next();
 
-    response.headers.forEach((value, key) => {
-        if (
-            key.toLowerCase() ===
-            "set-cookie"
-        ) {
-            nextResponse.headers.append(
-                key,
-                value
-            );
-        }
-    });
 
-    return nextResponse;
-}
+
+    const setCookies = response.headers.getSetCookie?.() ?? [];
+
+    for (const cookie of setCookies) {
+        nextResponse.headers.append("set-cookie", cookie);
+    }
+
+    return nextResponse;}
 
 export const config = {
     matcher: ["/admin/:path*"]
