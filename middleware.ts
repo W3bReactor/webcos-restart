@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import setCookieParser from "set-cookie-parser";
 
 const excludedPaths = ['/admin/login'];
 
@@ -46,12 +47,28 @@ export async function middleware(req: NextRequest) {
 
 
 
-    const setCookies = response.headers.getSetCookie?.() ?? [];
+    const setCookies = response.headers.getSetCookie();
 
-    for (const cookie of setCookies) {
-        nextResponse.headers.append("set-cookie", cookie);
+    const parsed =
+        setCookieParser.parse(
+            setCookies,
+            { map: false }
+        );
+
+    for (const c of parsed) {
+        nextResponse.cookies.set(
+            c.name,
+            c.value,
+            {
+                httpOnly: c.httpOnly,
+                secure: c.secure,
+                sameSite: c.sameSite as any,
+                path: c.path ?? "/",
+                domain: c.domain,
+                maxAge: c.maxAge
+            }
+        );
     }
-
     return nextResponse;}
 
 export const config = {

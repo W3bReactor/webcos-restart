@@ -7,7 +7,7 @@ export async function clientFetch(
         credentials: 'include',
     })
     if (res.status === 401) {
-        await fetch("/api/auth/refresh", { method: "POST", credentials: "include" });
+        await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/v1/auth/refresh`, { method: "POST", credentials: "include" });
 
         await new Promise(r => setTimeout(r, 10))
 
