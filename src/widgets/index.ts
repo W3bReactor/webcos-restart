@@ -34,7 +34,3 @@ export {BugReport} from './BugReport'
 export {PickupColor} from './PickupColor'
 export {PickupAccordion} from './PickupAccordion'
 
-export {Avi} from './Avi'
-export {AviWorld} from './Avi'
-
-
