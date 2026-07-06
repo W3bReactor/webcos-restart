@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
                 hostname: 'localhost'
             },
             {
+                protocol: 'http',
+                hostname: 'minio'
+            },
+            {
                 protocol: 'https',
                 hostname: 's3.minio.webcos.ru'
             }
