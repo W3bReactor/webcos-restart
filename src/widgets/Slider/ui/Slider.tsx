@@ -26,7 +26,7 @@ export const Slider = ({data}: ISlider) => {
                     }}>
                 {data.map(item =>
                     <SwiperSlide className={styles.slide} key={item.id}>
-                        <Link className={styles.sliderLink} href={'#'}>
+                        <Link className={styles.sliderLink} href={item.link}>
                             {item.image &&
                                 <Image unoptimized className={styles.sliderImage} alt={item.title} width={"1200"}
                                        height={"411"} src={item.image}/>
