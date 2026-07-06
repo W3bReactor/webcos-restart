@@ -32,7 +32,12 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 's3.minio.webcos.ru'
+            },
+            {
+                protocol: 'https',
+                hostname: 's3.webcos.ru'
             }
+
 
         ],
 
