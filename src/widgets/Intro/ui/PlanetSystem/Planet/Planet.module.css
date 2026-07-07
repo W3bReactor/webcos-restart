@@ -68,12 +68,3 @@
 .innerOrbitCircle:hover {
     filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.7));
 }
-
-
-
-/*@media (max-width: 630px) {*/
-/*    .orbitInner {*/
-/*        display: none;*/
-/*    }*/
-/*}*/
-

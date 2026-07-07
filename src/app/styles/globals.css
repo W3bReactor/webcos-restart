@@ -356,6 +356,9 @@ body {
 .ck-content span.marker {
     background: yellow;
 }
+.ck-content {
+    color: var(--foreground)
+}
 
 .ck-content span.spoiler {
     background: #000;

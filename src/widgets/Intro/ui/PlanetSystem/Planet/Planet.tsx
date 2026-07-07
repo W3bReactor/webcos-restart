@@ -80,7 +80,7 @@ export default function Planet(
         * Что такое Math.atan2 - это угол на который нужно повернуть
         * относительно базовой горизонтальной оси координат
         * для того, чтобы элемент смотрел на курсор
-        * Более подробно в miro/в будущем в статье
+        * Более подробно в статье
         * */
         return (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
     };
@@ -147,6 +147,11 @@ export default function Planet(
 
                     // добавляем инерцию
                     angleRef.current += velocityRef.current;
+
+                    // Если инерция стала слишком мала, зануляем её, чтобы не тратить ресурсы
+                    if (Math.abs(velocityRef.current) < 0.001) {
+                        velocityRef.current = 0;
+                    }
 
                     // постепенно гасим скорость
                     velocityRef.current *= 0.96;
@@ -292,6 +297,7 @@ export default function Planet(
 
                     }}
                     onMouseDown={handleMouseDown}
+
                     className={styles.innerOrbitCircle}
                 />
             </div>
