@@ -359,6 +359,14 @@ body {
 .ck-content {
     color: var(--foreground)
 }
+.ck-content pre {
+    color: var(--foreground);
+}
+
+.ck-content .image>figcaption {
+    color: var(--description);
+    background-color: rgba(var(--foregroundGlassRGBA), 0.08);
+}
 
 .ck-content span.spoiler {
     background: #000;
