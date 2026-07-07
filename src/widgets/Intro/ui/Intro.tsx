@@ -11,8 +11,6 @@ export const Intro = () => {
                 <h1 className={styles.introTitle}>Начало <br/> <span>чего-то нового...</span></h1>
                 <SectionDesc className={styles.introDesc}>Мы создаём сервисы, исследуем технологии и делимся опытом разработки. <br/>
                     Иногда лучшие идеи — это просто старые идеи, сделанные правильно. </SectionDesc>
-                <Image alt={'Солнечная система'} data-hide-on-theme="light" className={styles.solarSystem} src={SolarSystemImage}/>
-                <Image alt={'Солнечная система'} data-hide-on-theme="dark" className={styles.solarSystem} src={SolarSystemBlackImage}/>
                 <StandardBtn type={'link'} className={styles.introBtn} href={'#projects'}>Подробнее</StandardBtn>
             </div>
             <PlanetSystem/>

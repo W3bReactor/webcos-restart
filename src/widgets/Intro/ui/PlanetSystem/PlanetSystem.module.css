@@ -1,13 +1,15 @@
 .wrapper {
     margin-top: -100px;
-    max-width: 1200px;
-    max-height: 1200px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     position: relative;
-    width: 1200px;
-    height: 1200px;
+
+    width: min(1200px, 100vw);
+    height: min(1200px, 100vw);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: visible;
 
 }
 
@@ -15,55 +17,76 @@
 
 .circleWrapper {
     position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    width: 1200px;
     height: 1200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform-origin: center center;
 }
 
 
 .themeImage {
     position: absolute;
+
     top: 50%;
     left: 50%;
+
     width: 150px;
     height: 150px;
+
     transform: translate(-50%, -50%);
-    opacity: 1;
-    transition: opacity 1s linear;
+
+    z-index: 100;
+
+    object-fit: contain;
 }
 
 
 
-
-
+/* планшеты */
 @media (max-width: 1200px) {
-    .wrapper {
-        width: auto;
-        height: auto;
-
+    .circleWrapper {
+        transform: scale(0.6);
     }
+}
+
+/* маленькие планшеты */
+@media (max-width: 930px) {
+    .circleWrapper {
+        transform: scale(0.4);
+    }
+
     .themeImage {
         width: 100px;
         height: 100px;
     }
-    .circleWrapper {
-        height: 600px;
-    }
 }
 
+/* телефоны */
 @media (max-width: 630px) {
-    .themeImage {
-        width: 35px;
-        height: 35px;
-    }
     .circleWrapper {
-        height: 350px;
+        transform: scale(0.25);
     }
-    .themeImage {
-        top: -90px;
 
-        transform: translate(-50%, 0);
+    .themeImage {
+        width: 60px;
+        height: 60px;
     }
 }
+
+/* совсем маленькие */
+@media (max-width: 420px) {
+    .circleWrapper {
+        transform: scale(0.18);
+    }
+
+    .themeImage {
+        width: 40px;
+        height: 40px;
+    }
+}
+

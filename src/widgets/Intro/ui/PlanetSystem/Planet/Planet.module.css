@@ -1,45 +1,79 @@
 
 .orbitInner {
     position: absolute;
-    width: 1200px;
-    height: 1200px;
-    border-radius: 100%;
-    z-index: 1;
+
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
     background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+
+    /*box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.06),*/
+    /*0 0 12px rgba(255, 255, 255, 0.03);*/
+
+    will-change: transform;
+
 }
 
 
 .picker {
     position: absolute;
+
     top: 50%;
     left: 50%;
-    height: 30px;
-    margin-top: -15px;
-    width: 50%;
 
-    -webkit-transform-origin: center left;
-    -moz-transform-origin: center left;
-    -ms-transform-origin: center left;
-    -o-transform-origin: center left;
-    transform-origin: center left;
-    transition: all 0.1s;
+    width: 50%;
+    height: 1px;
+
+    transform-origin: left center;
+
+    will-change: transform, filter;
+
+    pointer-events: none;
 }
 
 .innerOrbitCircle {
-    content: '';
-    height: 28px;
-    width: 28px;
-    border-radius: 100%;
-    background-color: #9F98E6;
-    margin: 0 -13px 0 auto;
+    position: absolute;
+
+    right: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
     cursor: move;
 
+    pointer-events: auto;
+
+    transition: transform 0.2s ease, filter 0.3s ease;
+
+    filter: brightness(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
+
+    backface-visibility: hidden;
+
+    transform-style: preserve-3d;
+
+}
+
+.innerOrbitCircle:hover {
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.7));
 }
 
 
-@media (max-width: 630px) {
-    .orbitInner {
-        display: none;
-    }
-}
+
+/*@media (max-width: 630px) {*/
+/*    .orbitInner {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
 

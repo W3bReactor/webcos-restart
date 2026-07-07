@@ -1,132 +1,260 @@
 'use client'
 import styles from './Planet.module.css'
-import React, { useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import {useTheme} from "next-themes";
 import {OrbitBlackImage, OrbitImage} from "@/widgets/Intro";
-let down = false
 
-interface ICircle {
-    width: number
-    height: number
-    planet: string
-    speed: number
-    planetHeight: number
-    planetWidth: number
-    marginRight: number
-    direction: 'right' | 'left'
+
+interface IPlanet {
+    width: number // диаметр орбиты
+    height: number // диаметр орбиты
+
+    planet: string  // изображение планеты
+
+    speed: number // скорость вращения
+
+    planetHeight: number // высота планеты
+    planetWidth: number // ширина планеты
+
+    marginRight: number // смещение планеты от края орбиты
+
+    direction: 'right' | 'left' // направление вращения
 }
 
-export default function  Planet ({height,width, speed, planet, planetWidth,planetHeight, marginRight, direction} : ICircle) {
-    const picker = useRef<HTMLDivElement | null>(null)
-    const circle = useRef<HTMLDivElement | null>(null)
-    const [adaptiveSize, setAdaptiveSize] = useState({
-        planetWidth: planetWidth,
-        planetHeight: planetHeight,
-        width: width,
-        height: height,
-        marginRight: marginRight
-    })
-    const mount = useRef<boolean>(false)
-    const rotate = function(x: number, y: number){
-        if(circle.current) {
-            const rect = circle.current.getBoundingClientRect()
-            const center = {
-                x: rect.left + window.pageXOffset + rect.width / 2,
-                y: rect.top + window.pageYOffset + rect.height / 2
+// Компонент планеты с орбитой
+export default function Planet(
+    {
+        height,
+        width,
+        speed,
+        planet,
+        planetWidth,
+        planetHeight,
+        marginRight,
+        direction
+    }: IPlanet) {
+
+    // ссылка на элемент, который вращается
+    const pickerRef = useRef<HTMLDivElement | null>(null);
+
+    // ссылка на орбиту
+    const orbitRef = useRef<HTMLDivElement | null>(null);
+
+    // id requestAnimationFrame
+    // нужен для остановки анимации при размонтировании компонента
+    const animationRef = useRef<number>(0);
+
+    // текущий угол поворота планеты
+    // начинаем со случайного положения
+    const angleRef = useRef(Math.random() * 360);
+
+    // сейчас планета перетаскивается мышью?
+    const isDraggingRef = useRef(false);
+
+    // скорость после броска мышкой
+    // используется для эффекта инерции
+    const velocityRef = useRef(0);
+
+    /**
+     * Вычисляет угол между центром орбиты
+     * и текущей позицией мыши.
+     * Используется во время drag'n'drop.
+     * x, y - координаты мыши
+     */
+    const getAngle = (x: number, y: number) => {
+        if (!orbitRef.current) return 0;
+
+        // элемент орбиты
+        const rect = orbitRef.current.getBoundingClientRect();
+
+        // центр орбиты
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        // вектор от центра к мыши
+        const deltaX = x - centerX;
+        const deltaY = y - centerY;
+
+        // переводим радианы в градусы
+        /*
+        * Что такое Math.atan2 - это угол на который нужно повернуть
+        * относительно базовой горизонтальной оси координат
+        * для того, чтобы элемент смотрел на курсор
+        * Более подробно в miro/в будущем в статье
+        * */
+        return (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
+    };
+
+
+    /**
+     * Главная анимация вращения.
+     *
+     * Работает через requestAnimationFrame.
+     */
+    useEffect(() => {
+        // количество миллисекунд с момента начала загрузки страницы
+        // (но будет в итоге как время с прошлого кадра)
+        let lastTime = performance.now();
+
+        // Анимирование
+        const animate = (time: number) => {
+
+            // если вкладка скрыта,
+            // просто ждём следующий кадр
+            if (document.hidden) {
+                animationRef.current = requestAnimationFrame(animate);
+                return;
             }
-            const deltaX = x - center.x
-            const deltaY = y - center.y
-            const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI
-            return angle
 
-        }
-    }
+            // сколько миллисекунд прошло с прошлого кадра
+            const delta = time - lastTime;
 
-    useEffect(() => {
-        if(picker.current) {
-            picker.current.style['transform'] = 'rotate(' + Math.random() * 1000 + 'deg)'
+            // обновили на новый кадр
+            lastTime = time;
 
-        }
 
-    }, [])
+            if (pickerRef.current) {
 
-    const onMouseDown = (e: React.MouseEvent) => {
-        down = true
-        e.preventDefault()
-        document.body.style.cursor = 'move'
-        document.addEventListener('mousemove', onMouseMove as () => void)
-        document.addEventListener('mouseup', onMouseUp)
-    }
-    const onMouseMove = (e: React.MouseEvent) => {
-        if(down && picker.current) {
-            picker.current.style['transform'] = 'rotate(' + rotate(e.pageX, e.pageY) + 'deg)'
-            picker.current.style['transition'] = 'none'
+                // если пользователь НЕ тащит планету
+                if (!isDraggingRef.current) {
 
-        }
-    }
-    useEffect(() => {
-        let interval: NodeJS.Timeout | string | number | undefined
-        //Implementing the setInterval method
-        if(window.innerWidth >= 1230) {
-            interval = setInterval(() => {
-                if (direction === 'left' && picker.current) {
-                    picker.current.style['transform'] = 'rotate(' + String(Number(picker.current.style.transform.replace('rotate(', '').replace('deg)', '')) + 0.1) + 'deg)'
+                    // определяем направление вращения
+                    // (т.е просто будем умножать на 1 или на -1)
+                    const directionMultiplier =
+                        direction === 'left' ? 1 : -1;
 
-                } else if (picker.current) {
-                    picker.current.style['transform'] = 'rotate(' + String(Number(picker.current.style.transform.replace('rotate(', '').replace('deg)', '')) - 0.1) + 'deg)'
+                    // вращаем планету (меняем угол)
+                    /*
+                    * Поймём формулу:
+                    * directionMultiplier - просто направление движения
+                    * speed - угол на который мы должны повернуть за кадр (при 60 fps)
+                    * delta / 16.67 - масштабируем скорость в зависимости от производительности
+                    * То есть к примеру 60 fps: 16.67/16.67 = 1 (За кадр повернем ровно на множитель speed)
+                    * 30 fps: 33.33/16.67 = 2 (За один кадр мы повернем в 2 раза больше чем множитель speed)
+                    * 120 fps: 8.33/16.67 = 0.5 (За один кадр мы повернем в 2 раза меньше чем множитель speed)
+                    * В чём суть?
+                    * За одну секунду реального времени объект повернется на абсолютно одинаковый угол, что на мощном пк,
+                    * что и на слабом пк
+                    * На слабом пк скорость изменения в 2 раза больше ЗА ОДИН КАДР, но самих КАДРОВ тоже меньше в 2 раза:
+                    * по итогу получаем абсолютно одинаковое поведение как на мощном, так и на слабом пк за секунду времени
+                    * 16.67 - просто длительность кадра при эталонных 60 FPS
+                    * */
 
+                    angleRef.current +=
+                        directionMultiplier *
+                        speed * // speed - угол на который объект должен повернуться за кадр
+                        (delta / 16.67);
+
+                    // добавляем инерцию
+                    angleRef.current += velocityRef.current;
+
+                    // постепенно гасим скорость
+                    velocityRef.current *= 0.96;
                 }
-            }, speed);
-        }
-        //Clearing the interval
-        return () => clearInterval(interval);
-    }, [direction, speed]);
-    useEffect(() => {
-        if(!mount.current) {
-            if (window.innerWidth < 930) {
-                setAdaptiveSize( (prev) =>
-                    ({
-                        ...prev,
-                        width: adaptiveSize.width / 4,
-                        height: adaptiveSize.width / 4,
-                        planetHeight: adaptiveSize.planetHeight / 4,
-                        planetWidth: adaptiveSize.planetWidth / 4,
-                        marginRight: adaptiveSize.marginRight * 0.5
-                    })
-                )
 
-            } else if(window.innerWidth < 1230) {
-                setAdaptiveSize( prev =>
-                    ({
-                        ...prev,
-                        width: adaptiveSize.width / 2,
-                        height: adaptiveSize.width / 2,
-                        planetHeight: adaptiveSize.planetHeight / 2,
-                        planetWidth: adaptiveSize.planetWidth / 2,
-                        marginRight: adaptiveSize.marginRight / 1.5
-                    })
-                )
+                //  вращаем планету
+                pickerRef.current.style.transform =
+                    `rotate(${angleRef.current}deg)`;
+
             }
 
-        }
-        mount.current = true
+            // переходим к следующему кадру
+            animationRef.current =
+                requestAnimationFrame(animate);
+        };
 
-    }, [adaptiveSize.width, adaptiveSize.height, adaptiveSize.planetHeight, adaptiveSize.planetWidth, adaptiveSize.marginRight])
+        // запуск анимации
+        animationRef.current =
+            requestAnimationFrame(animate);
+
+        // очистка при удалении компонента
+        return () => {
+            cancelAnimationFrame(animationRef.current);
+        };
+    }, [direction, speed]);
 
 
-    const onMouseUp = () => {
-        document.body.style.cursor = '';
-        down = false
-        if(picker.current) {
-            picker.current.style['transition'] = 'all 0.3s'
+    /**
+     * Обработка drag'n'drop
+     */
+    useEffect(() => {
 
-        }
+        // функция, которая будет работать при изменении позиции мыши
+        const handleMouseMove = (e: MouseEvent) => {
 
-        document.removeEventListener('mouseup', onMouseUp)
-        document.removeEventListener('mousemove', onMouseMove as () => void)
+            // проверяем захвачен ли элемент
+            if (
+                !isDraggingRef.current ||
+                !pickerRef.current
+            ) {
+                return;
+            }
 
-    }
-    const { resolvedTheme } = useTheme()
+            // новый угол относительно центра орбиты
+            const angle =
+                getAngle(e.clientX, e.clientY);
+
+            // вычисляем скорость броска
+            velocityRef.current =
+                (angle - angleRef.current) * 0.12; // каждый кадр будем преодолевать только 12% от оставшегося расстояния (для плавности)
+
+            // обновляем угол
+            angleRef.current = angle;
+
+            // сразу отображаем новое положение
+            pickerRef.current.style.transform =
+                `rotate(${angle}deg)`;
+        };
+
+        const handleMouseUp = () => {
+
+            // прекращаем перетаскивание
+            isDraggingRef.current = false;
+
+            document.body.style.cursor = '';
+        };
+
+        window.addEventListener(
+            'mousemove',
+            handleMouseMove
+        );
+
+        window.addEventListener(
+            'mouseup',
+            handleMouseUp
+        );
+
+        return () => {
+            window.removeEventListener(
+                'mousemove',
+                handleMouseMove
+            );
+
+            window.removeEventListener(
+                'mouseup',
+                handleMouseUp
+            );
+        };
+    }, []);
+
+
+    /**
+     * Начало перетаскивания
+     */
+    const handleMouseDown = (
+        e: React.MouseEvent
+    ) => {
+
+        e.preventDefault();
+
+        isDraggingRef.current = true;
+
+        // сбрасываем прошлую инерцию
+        velocityRef.current = 0;
+    };
+
+
+    const {resolvedTheme} = useTheme()
     let src
 
     switch (resolvedTheme) {
@@ -143,20 +271,29 @@ export default function  Planet ({height,width, speed, planet, planetWidth,plane
     return (
         <div style={{
             backgroundImage: `url(${src})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            width: `${adaptiveSize.width}px`,
-            height: `${adaptiveSize.height}px`,
-        } }    ref={circle} className={styles.orbitInner}>
-            <div  style={{height: planetHeight, marginTop: `${adaptiveSize.marginRight}px`}}  onMouseDown={onMouseDown} ref={picker} className={styles.picker}>
-                <div style={{
-                    background: `url(${planet}) no-repeat`,
-                    backgroundSize: 'cover',
-                    width: `${adaptiveSize.planetWidth}px`,
-                    height: `${adaptiveSize.planetHeight}px`,
-                    marginRight: `${adaptiveSize.marginRight}px`,
+            width: `${width}px`,
+            height: `${height}px`,
+        }}
+             ref={orbitRef}
+             className={styles.orbitInner}
+        >
+            {/* Вращающаяся часть орбиты */}
+            <div
+                ref={pickerRef}
+                className={styles.picker}
+            >
+                {/* Планета */}
+                <div
+                    style={{
+                        width: `${planetWidth}px`,
+                        height: `${planetHeight}px`,
+                        marginRight: `${marginRight}px`,
+                        backgroundImage: `url(${planet})`,
 
-                }}  onMouseUp={onMouseUp} onMouseDown={onMouseDown}  className={styles.innerOrbitCircle}></div>
+                    }}
+                    onMouseDown={handleMouseDown}
+                    className={styles.innerOrbitCircle}
+                />
             </div>
         </div>
 
