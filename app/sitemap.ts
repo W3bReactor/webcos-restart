@@ -5,10 +5,15 @@ import {ApiResult, PageResponse} from "@/shared/model";
 
 async function safeFetch<T>(url: string): Promise<ApiResult<PageResponse<T>> | null> {
     try {
+        // Добавляем сигнал таймаута на 5 секунд, чтобы сборка не висела по 60 секунд
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
         const res = await fetch(url, {
                 next: { revalidate: 0 },
         });
 
+        clearTimeout(timeoutId);
         if (!res.ok) return null;
 
         return await res.json();
@@ -28,11 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     while (page < totalPages) {
         const res = await safeFetch<IArticle>(`${baseUrl}/api/v1/articles?page=${page}&size=100`);
 
-        // const res =  await getArticlesApi({ page, size: 100 });
-
-        if(res == null) {
+        if (!res || !res.success || !res.data) {
             break;
         }
+        // const res =  await getArticlesApi({ page, size: 100 });
 
         if (!res.success) break;
 
@@ -44,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }))
         );
 
-        totalPages = res.data.totalPages;
+        totalPages = res.data.totalPages > 0 ? res.data.totalPages : 1;
         page++;
     }
 
@@ -57,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const res = await safeFetch<ICategory>(`${baseUrl}/api/v1/categories?page=${page}&size=100`);
         // const res = await getCategoriesApi({ page, size: 100 });
 
-        if(res == null) {
+        if (!res || !res.success || !res.data) {
             break;
         }
 
@@ -71,7 +75,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }))
         );
 
-        totalPages = res.data.totalPages;
+        totalPages = res.data.totalPages > 0 ? res.data.totalPages : 1;
         page++;
     }
 
