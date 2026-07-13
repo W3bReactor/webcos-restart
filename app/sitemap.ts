@@ -10,7 +10,8 @@ async function safeFetch<T>(url: string): Promise<ApiResult<PageResponse<T>> | n
         const timeoutId = setTimeout(() => controller.abort(), 5000);
 
         const res = await fetch(url, {
-                next: { revalidate: 0 },
+            signal: controller.signal,
+            next: { revalidate: 0 },
         });
 
         clearTimeout(timeoutId);

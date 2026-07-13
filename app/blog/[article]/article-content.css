@@ -267,7 +267,10 @@
             margin: 0;
         }
     }
-}
 
+    .hljs-comment {
+        white-space: break-spaces;
+    }
+}
 
 
