@@ -17,3 +17,6 @@ export { Upload } from "./Upload/Upload";
 export { CookieBanner } from "./CookieBanner/CookieBanner";
 export { Modal } from "./Modal/Modal";
 export { AccordionItem } from "./AccordionItem/AccordionItem";
+export { RoundedInput } from "./RoundedInput/RoundedInput";
+export { LegendSelect } from "./LegendSelect/LegendSelect";
+export { ColorPopover } from "./ColorPopover/ColorPopover";

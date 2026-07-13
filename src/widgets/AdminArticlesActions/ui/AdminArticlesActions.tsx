@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './AdminArticlesActions.module.css'
 import {Input, PurpleBtn, RedBtn, StandardBtn} from "@/shared/ui";
 import {SearchItems} from "@/widgets";
@@ -15,6 +15,8 @@ export const AdminArticlesActions = () => {
     const [openEdit, setOpenEdit] = useState(false)
     const [debouncedValueUpdateArticle, valueUpdateArticle, setValueUpdateArticle] = useDebounce('', 1000)
     const [debouncedValueDeleteArticle, valueDeleteArticle, setValueDeleteArticle] = useDebounce('', 1000)
+    const [show, setShow] = useState(false);
+
     const [data, setData] = useState({
         articleUpdateId: -1,
         articleDeleteId: -1
@@ -39,14 +41,14 @@ export const AdminArticlesActions = () => {
         setData({...data, articleDeleteId})
     }
 
-    const { trigger: deleteArticle} = useSWRMutation<
+    const {trigger: deleteArticle} = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/delete",
         number
     >(
         "articles/delete",
-        (_, { arg }) => deleteArticleApi(arg)
+        (_, {arg}) => deleteArticleApi(arg)
     )
 
 
@@ -55,15 +57,34 @@ export const AdminArticlesActions = () => {
     }
 
 
-
-    const { data: responseUpdateArticle } = useSWR(
+    const {data: responseUpdateArticle} = useSWR(
         ["categories", debouncedValueUpdateArticle],
         async () => await getArticlesApi({size: 3, search: debouncedValueUpdateArticle})
     )
-    const { data: responseDeleteArticle } = useSWR(
+    const {data: responseDeleteArticle} = useSWR(
         ["categories", debouncedValueDeleteArticle],
         async () => await getArticlesApi({size: 3, search: debouncedValueDeleteArticle})
     )
+
+
+    useEffect(() => {
+        if (
+            (openEdit &&
+                debouncedValueUpdateArticle.length > 0 &&
+                responseUpdateArticle?.success &&
+                responseUpdateArticle.data.content.length > 0 &&
+                (responseUpdateArticle.data.content[0].title !== debouncedValueUpdateArticle)) ||
+            (openDelete &&
+                debouncedValueDeleteArticle.length > 0 &&
+                responseDeleteArticle?.success &&
+                responseDeleteArticle.data.content.length > 0 &&
+                (responseDeleteArticle.data.content[0].title !== debouncedValueDeleteArticle))
+        ) {
+            setShow(true);
+        } else {
+            setShow(false)
+        }
+    }, [debouncedValueUpdateArticle, responseUpdateArticle, debouncedValueDeleteArticle, responseDeleteArticle, openDelete, openEdit]);
 
 
     return (
@@ -72,27 +93,34 @@ export const AdminArticlesActions = () => {
                 Статьи:
             </h2>
             <div className={styles.adminArticlesInstrumentsButtons}>
-                <StandardBtn className={styles.adminArticlesInstrumentsBtn} type={'site-link'} href={'/admin/articles/create'}>Создать статью</StandardBtn>
-                <StandardBtn className={styles.adminArticlesInstrumentsBtn} type={'btn'} onClick={onOpenEdit} >Изменить статью</StandardBtn>
-                <StandardBtn className={styles.adminArticlesInstrumentsBtn} onClick={onOpenDelete} type={'btn'} >Удалить статью</StandardBtn>
+                <StandardBtn className={styles.adminArticlesInstrumentsBtn} type={'site-link'}
+                             href={'/admin/articles/create'}>Создать статью</StandardBtn>
+                <StandardBtn className={styles.adminArticlesInstrumentsBtn} type={'btn'} onClick={onOpenEdit}>Изменить
+                    статью</StandardBtn>
+                <StandardBtn className={styles.adminArticlesInstrumentsBtn} onClick={onOpenDelete} type={'btn'}>Удалить
+                    статью</StandardBtn>
             </div>
             {openEdit &&
                 <div className={styles.adminArticlesInstrumentsSearch}>
                     <Input placeholder={'Найти...'} value={valueUpdateArticle} setValue={setValueUpdateArticle}/>
-                    {debouncedValueUpdateArticle.length > 0 && responseUpdateArticle?.success && responseUpdateArticle.data.content.length > 0 &&
-                        <SearchItems data={responseUpdateArticle.data.content} setItem={onUpdateData} className={styles.adminEditSearchItems}/>
+                    {show && responseUpdateArticle && responseUpdateArticle.success &&
+                        <SearchItems data={responseUpdateArticle.data.content} setItem={onUpdateData}
+                                     className={styles.adminEditSearchItems}/>
                     }
-                    <PurpleBtn className={styles.adminArticlesInstrumentsSearchBtn} type={'site-link'} href={`/admin/articles/edit/${data.articleUpdateId}`}>Изменить</PurpleBtn>
+                    <PurpleBtn className={styles.adminArticlesInstrumentsSearchBtn} type={'site-link'}
+                               href={`/admin/articles/edit/${data.articleUpdateId}`}>Изменить</PurpleBtn>
                 </div>
             }
 
             {openDelete &&
                 <div className={styles.adminArticlesInstrumentsSearch}>
                     <Input placeholder={'Найти...'} value={valueDeleteArticle} setValue={setValueDeleteArticle}/>
-                    {debouncedValueDeleteArticle.length > 0 && responseDeleteArticle?.success && responseDeleteArticle.data.content.length > 0 &&
-                        <SearchItems data={responseDeleteArticle.data.content} setItem={onDeleteData} className={styles.adminEditSearchItems}/>
+                    {show && responseDeleteArticle && responseDeleteArticle.success &&
+                        <SearchItems data={responseDeleteArticle.data.content} setItem={onDeleteData}
+                                     className={styles.adminEditSearchItems}/>
                     }
-                    <RedBtn onClick={onDeleteArticle} className={styles.adminArticlesInstrumentsSearchBtn} type={'btn'}>Удалить</RedBtn>
+                    <RedBtn onClick={onDeleteArticle} className={styles.adminArticlesInstrumentsSearchBtn}
+                            type={'btn'}>Удалить</RedBtn>
                 </div>
             }
         </>

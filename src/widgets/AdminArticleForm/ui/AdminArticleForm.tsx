@@ -1,13 +1,9 @@
 'use client'
-import React, {useEffect, useState} from "react";
-
-import hljs from 'highlight.js/lib/common';
-import 'highlight.js/styles/monokai-sublime.css';
-
+import React, {useState} from "react";
 import styles from './AdminArticleForm.module.css'
 import { Input, PurpleBtn, Upload} from "@/shared/ui";
-import ClientSideCustomEditor from "@/shared/ui/Editor/client-side-custom-editor";
-import 'ckeditor5/ckeditor5-content.css';
+import TiptapEditor from "@/shared/ui/Editor/TiptapEditor";
+import {JSONContent} from "@tiptap/core";
 
 
 interface Data {
@@ -20,8 +16,8 @@ interface Data {
 interface IAdminArticleForm{
     data: Data,
     setData: (v: Data) => void;
-    debouncedValue: string;
-    setValue: (v: string) => void;
+    debouncedValue: JSONContent;
+    setValue: (v: JSONContent) => void;
     onSend: () => void;
     image: File | null;
     setImage: (v: File | null) => void;
@@ -31,26 +27,11 @@ interface IAdminArticleForm{
 }
 
 export const AdminArticleForm = ({type, setData, data, setValue, debouncedValue, onSend, setImage, image, url, setUrl}: IAdminArticleForm) => {
-    const onUpdateData = async (val: string) => {
+    const onUpdateData = async (val: JSONContent) => {
         setValue(val)
     }
 
     const [error] = useState('')
-
-    useEffect(() => {
-        if(hljs) {
-
-            document.querySelectorAll("code").forEach((e) => {
-                if (!e.dataset.highlighted && e.textContent && e.textContent.length > 0) {
-                    hljs.highlightElement(e);
-                }
-            });
-            // document.querySelectorAll('pre code').forEach((block) => {
-            //     window.hljs.highlightBlock(block);
-            // });
-        }
-
-    }, [debouncedValue])
 
     return (
         <div className={styles.adminCreateForm}>
@@ -65,9 +46,7 @@ export const AdminArticleForm = ({type, setData, data, setValue, debouncedValue,
                 placeholder={'Описание'}
                 className={styles.adminTextarea}
             />
-            <ClientSideCustomEditor value={debouncedValue} onChange={(v: string) => onUpdateData(v)}/>
-            {/*<div className={'ck-content ck-content--theme'} dangerouslySetInnerHTML={{__html: debouncedValue}}>*/}
-            {/*</div>*/}
+            <TiptapEditor value={debouncedValue} onChange={onUpdateData}/>
             <PurpleBtn onClick={onSend} className={styles.adminCreateBtn} type={'btn'}>{type === 'create' ? "Создать" : "Изменить"}</PurpleBtn>
 
         </div>

@@ -1,0 +1,70 @@
+.legendSelectFieldSet {
+    padding: 0 12px 6px 12px;
+    border: 2px solid rgba(var(--foregroundRGBA), 0.08);
+    border-radius: 4px;
+    position: relative;
+}
+.legendSelectLegend {
+    padding: 0 2px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--description);
+    width: max-content;
+}
+
+.legendSelectSelected {
+    margin: 0;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 143%;
+    letter-spacing: 0.018em;
+    color: var(--foreground);
+    text-transform: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.legendSelectDropdown {
+    margin-left: 5px;
+}
+.legendSelectOptions {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 100;
+    border-radius: 5px;
+
+}
+
+.legendSelectOption {
+    border: 1px solid rgba(var(--foregroundRGBA), 0.08);
+    background: var(--card);
+    padding: 5px 5px;
+    width: 100%;
+    display: block;
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 143%;
+    letter-spacing: 0.018em;
+    color: var(--foreground);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.legendSelectOption:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.legendSelectOption:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.legendSelectOption:hover {
+    background-color: var(--hover);
+}

@@ -2,7 +2,7 @@
 import styles from './AdminArticlesCreatePage.module.css'
 import {Footer, Header, AdminSidebar, SearchItems, AdminArticleForm} from "@/widgets";
 
-import {Input} from "@/shared/ui";
+import {RoundedInput} from "@/shared/ui";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import {PlusIcon} from "@/shared/assets";
@@ -16,7 +16,7 @@ import {ArticleCreate, ArticleUploadImage} from "@/widgets/Blog/api/types";
 import {ApiResult} from "@/shared/model";
 import {IArticle} from "@/widgets/Blog";
 import {redirect} from "next/navigation";
-
+import {JSONContent} from "@tiptap/core";
 
 
 export const AdminArticlesCreatePage = () => {
@@ -27,53 +27,66 @@ export const AdminArticlesCreatePage = () => {
         description: '',
         categoryId: -1
     })
-    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce('', 1000)
+
+    const [show, setShow] = useState(false);
+    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({"type": "doc", content: []}, 1000)
+
     const [image, setImage] = useState<File | null>(null)
     const [url, setUrl] = useState('')
 
 
-    const { data: responseCreate, trigger: createArticle } = useSWRMutation<
+    const {data: responseCreate, trigger: createArticle} = useSWRMutation<
         ApiResult<IArticle>,
         Error,
         "articles/create",
         ArticleCreate
     >(
         "articles/create",
-        (_, { arg }) => createArticleApi(arg)
+        (_, {arg}) => createArticleApi(arg)
     )
 
-    const { trigger: uploadArticle } = useSWRMutation<
+    const {trigger: uploadArticle} = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/upload/image",
         ArticleUploadImage
     >(
         "articles/upload/image",
-        (_, { arg }) => uploadImageArticleApi(arg)
+        (_, {arg}) => uploadImageArticleApi(arg)
     )
 
 
-
-    const { data: responseCategory } = useSWR(
+    const {data: responseCategories,} = useSWR(
         ["categories", debouncedValueCategory],
-        async () => await getCategoriesApi({size: 3, search: debouncedValueCategory})
+        ([, search]) => getCategoriesApi({
+            size: 3,
+            search,
+        })
     )
 
     const onUpdateData = async (val: string, categoryId: number) => {
+        setShow(false);
         setValueCategory(val)
         setData({...data, categoryId})
     }
     useEffect(() => {
-        if(responseCreate?.success && responseCreate.data.id && image) {
+        if (responseCreate?.success && responseCreate.data.id && image) {
             const FD = new FormData();
             FD.append('file', image);
             uploadArticle({articleId: responseCreate.data.id, body: FD})
         }
-        if(responseCreate?.success) {
+        if (responseCreate?.success) {
             redirect(`/blog/${responseCreate.data.id}`)
         }
     }, [responseCreate, image, uploadArticle]);
 
+    useEffect(() => {
+        if (debouncedValueCategory.length > 0 && responseCategories?.success && responseCategories.data.content.length > 0 && (responseCategories.data.content[0].title !== debouncedValueCategory)) {
+            setShow(true);
+        } else {
+            setShow(false)
+        }
+    }, [debouncedValueCategory, responseCategories]);
 
     const onCreate = async () => {
         await createArticle(
@@ -86,7 +99,6 @@ export const AdminArticlesCreatePage = () => {
         )
 
     }
-
     return (
         <div className={styles.page}>
             <Header/>
@@ -98,17 +110,32 @@ export const AdminArticlesCreatePage = () => {
                         <div className={styles.adminCreateContent}>
                             <div className={styles.adminCreateSearchWrapper}>
                                 <div className={styles.adminCreateSearch}>
-                                    <Input placeholder={'Найти категорию...'} value={valueCategory} setValue={setValueCategory}/>
-                                    {debouncedValueCategory.length > 0 && responseCategory?.success && responseCategory.data.content.length > 0 &&
-                                        <SearchItems data={responseCategory.data.content} setItem={onUpdateData} className={styles.adminCreateSearchItems}/>
-                                    }
+                                    <RoundedInput className={styles.adminCreateInput} placeholder={'Найти категорию...'}
+                                                  value={valueCategory} setValue={setValueCategory}/>
+                                    {show && responseCategories && responseCategories.success &&
+                                        <SearchItems
+                                            data={responseCategories.data.content}
+                                            setItem={onUpdateData}
+                                            className={styles.adminCreateSearchItems}
+                                        />}
                                 </div>
                                 <Link className={styles.adminCreateAdd} href={'/admin/categories'}>
                                     <Image src={PlusIcon} alt={'Добавить категорию'}/>
                                 </Link>
                             </div>
                         </div>
-                        <AdminArticleForm type={"create"} setUrl={setUrl} url={url} image={image} setImage={setImage} onSend={onCreate} data={data} setData={setData} setValue={setValueContent} debouncedValue={debouncedValueContent}/>
+                        <AdminArticleForm
+                            type={"create"}
+                            setUrl={setUrl}
+                            url={url}
+                            image={image}
+                            setImage={setImage}
+                            onSend={onCreate}
+                            data={data}
+                            setData={setData}
+                            setValue={setValueContent}
+                            debouncedValue={debouncedValueContent}
+                        />
                     </div>
                 </section>
 

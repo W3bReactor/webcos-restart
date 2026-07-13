@@ -101,7 +101,7 @@
     resize: vertical;
     border: 1px solid var(--foreground);
     border-radius: 15px;
-    background: rgba(var(--foregroundRGBA), 0.08);
+    background: transparent;
     font-weight: 500;
     font-size: 20px;
     line-height: 100%;

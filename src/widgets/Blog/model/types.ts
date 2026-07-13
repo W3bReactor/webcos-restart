@@ -1,3 +1,5 @@
+import {JSONContent} from "@tiptap/core";
+
 export interface IArticle {
     id: number
     title: string
@@ -6,7 +8,7 @@ export interface IArticle {
     image: string;
     views: number
     createdAt: string
-    content: string
+    content: JSONContent
     category_id: number
     slug: string;
 }

@@ -2,7 +2,7 @@
 import styles from './Upload.module.css'
 import React, {useRef} from "react";
 import Image from "next/image";
-import {UploadIcon} from "@/shared/assets";
+import {UploadIcon3} from "@/shared/assets";
 interface IUpload {
     className?: string;
     url: string;
@@ -57,7 +57,7 @@ export const Upload = ({url, setUrl, setImage}: IUpload) => {
                     </>
                     :
                     <>
-                        <Image src={UploadIcon} alt={'Загрузить'}/>
+                        <Image src={UploadIcon3} alt={'Загрузить'}/>
                         <h3 className={styles.uploadTitle}>Загрузить</h3>
                         <input ref={inputFileRef} onChange={(e) => onImageChange(e)} className={styles.uploadInput} type="file"/>
                     </>

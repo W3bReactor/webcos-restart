@@ -1,117 +1,124 @@
-"use client";
+'use client'
 /**
  * This configuration was generated using the CKEditor 5 Builder. You can modify it anytime using this link:
- * https://ckeditor.com/ckeditor-5/builder/#installation/NoFgNARATAdAjHGAGCk4HYRQJwgKxwBshIIcAHOuXFPknGYQMzl5Lbbp55NKF7Y+IVBABOAV1RIwwOGGnS5SgLqRCAY3IBTOEnURlQA=
+ * https://ckeditor.com/ckeditor-5/builder/#installation/NoFgNARATAdA7DADBSBGOIoE4QFZUBsBIIqAHHGalHoqqQQMxm6JZZy66OIG5a8QKCACcArikRhgqMFKmzFAXUgFUqAGYBDRBohKgA==
  */
 
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {
+    ClassicEditor,
+    Alignment,
+    Autoformat,
+    AutoImage,
+    AutoLink,
+    Autosave,
+    Base64UploadAdapter,
+    BlockQuote,
+    Bold,
+    Bookmark,
+    Code,
+    CodeBlock,
+    Emoji,
+    Essentials,
+    FindAndReplace,
+    FontBackgroundColor,
+    FontColor,
+    FontFamily,
+    FontSize,
+    Fullscreen,
+    GeneralHtmlSupport,
+    Heading,
+    Highlight,
+    HorizontalLine,
+    HtmlEmbed,
+    ImageBlock,
+    ImageCaption,
+    ImageInline,
+    ImageInsert,
+    ImageInsertViaUrl,
+    ImageResize,
+    ImageStyle,
+    ImageTextAlternative,
+    ImageToolbar,
+    ImageUpload,
+    Indent,
+    IndentBlock,
+    Italic,
+    Link,
+    LinkImage,
+    List,
+    ListProperties,
+    MediaEmbed,
+    Mention,
+    PageBreak,
+    Paragraph,
+    PasteFromMarkdownExperimental,
+    PasteFromOffice,
+    RemoveFormat,
+    ShowBlocks,
+    SpecialCharacters,
+    SpecialCharactersArrows,
+    SpecialCharactersCurrency,
+    SpecialCharactersEssentials,
+    SpecialCharactersLatin,
+    SpecialCharactersMathematical,
+    SpecialCharactersText,
+    Strikethrough,
+    Style,
+    Subscript,
+    Superscript,
+    Table,
+    TableCaption,
+    TableCellProperties,
+    TableColumnResize,
+    TableProperties,
+    TableToolbar,
+    TextPartLanguage,
+    TextTransformation,
+    Title,
+    TodoList,
+    Underline,
+    WordCount,
+    EditorConfig
+} from 'ckeditor5';
 
-import './new-editor.css';
-import {EditorConfig} from "ckeditor5";
+import translations from 'ckeditor5/translations/ru.js';
 
-const LICENSE_KEY = process.env.NEXT_PUBLIC_CKEDITOR_KEY;
+// import 'ckeditor5/ckeditor5.css';
+// import './editor-content.css'
+// import * as React from "react";
 
 
-interface INewEditor {
+declare module '@ckeditor/ckeditor5-react';
+declare module 'ckeditor5';
+
+
+const LICENSE_KEY =
+    'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NTM5MTk5OTksImp0aSI6ImRhOGZjMzMzLTQxYjItNGRhOS1hN2RiLTM2MTYwM2U5OTIyMyIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6ImM3MjUzMjQ2In0.IpBRla9RdS-1bKiviaXTtOX3tcMGOcGn4jIqoio15BM8lpRgRpkHSKfxSAlzWmwEYBG7SswSjpELyIqlpcYAcQ';
+
+interface IEditor {
     onChange: (str: string) => void
     value?: string
 }
 
-export default function NewEditor({onChange, value }:INewEditor) {
+export default function Editor({onChange, value = '' }:IEditor) {
+    const editorContainerRef = useRef(null);
+    const editorRef = useRef(null);
     const editorWordCountRef = useRef<HTMLDivElement | null>(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
-    const cloud = useCKEditorCloud({ version: '47.6.1', translations: ['ru'] });
+
     useEffect(() => {
         setIsLayoutReady(true);
 
         return () => setIsLayoutReady(false);
     }, []);
-
-    const { ClassicEditor, editorConfig } = useMemo(() => {
-        if (cloud.status !== 'success' || !isLayoutReady) {
+    const { editorConfig  }  = useMemo(() => {
+        if (!isLayoutReady) {
             return {};
         }
 
-        const {
-            ClassicEditor,
-            Alignment,
-            AutoImage,
-            Autoformat,
-            AutoLink,
-            Autosave,
-            Base64UploadAdapter,
-            ImageBlock,
-            BlockQuote,
-            Bold,
-            Bookmark,
-            Code,
-            CodeBlock,
-            Emoji,
-            Essentials,
-            FindAndReplace,
-            FontBackgroundColor,
-            FontColor,
-            FontFamily,
-            FontSize,
-            Fullscreen,
-            GeneralHtmlSupport,
-            Heading,
-            Highlight,
-            HorizontalLine,
-            HtmlEmbed,
-            ImageCaption,
-            ImageInsert,
-            ImageInsertViaUrl,
-            ImageResize,
-            ImageStyle,
-            ImageTextAlternative,
-            ImageToolbar,
-            ImageUpload,
-            ImageInline,
-            Indent,
-            IndentBlock,
-            Italic,
-            Link,
-            LinkImage,
-            List,
-            ListProperties,
-            // Markdown,
-            MediaEmbed,
-            Mention,
-            PageBreak,
-            Paragraph,
-            PasteFromMarkdownExperimental,
-            PasteFromOffice,
-            RemoveFormat,
-            ShowBlocks,
-            SpecialCharacters,
-            SpecialCharactersArrows,
-            SpecialCharactersCurrency,
-            SpecialCharactersEssentials,
-            SpecialCharactersLatin,
-            SpecialCharactersMathematical,
-            SpecialCharactersText,
-            Strikethrough,
-            Style,
-            Subscript,
-            Superscript,
-            Table,
-            TableCaption,
-            TableCellProperties,
-            TableColumnResize,
-            TableProperties,
-            TableToolbar,
-            TextPartLanguage,
-            TextTransformation,
-            Title,
-            TodoList,
-            Underline,
-            WordCount
-        } = cloud.CKEditor;
-
         return {
-            ClassicEditor,
             editorConfig: {
                 toolbar: {
                     items: [
@@ -207,7 +214,6 @@ export default function NewEditor({onChange, value }:INewEditor) {
                     LinkImage,
                     List,
                     ListProperties,
-                    // Markdown,
                     MediaEmbed,
                     Mention,
                     PageBreak,
@@ -325,7 +331,7 @@ export default function NewEditor({onChange, value }:INewEditor) {
                         'resizeImage'
                     ]
                 },
-                initialData: "",
+                initialData: value,
                 language: 'ru',
                 licenseKey: LICENSE_KEY,
                 link: {
@@ -408,32 +414,31 @@ export default function NewEditor({onChange, value }:INewEditor) {
                 },
                 table: {
                     contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
-                }
-            }  as unknown as EditorConfig
+                },
+                translations: [translations]
+            } as unknown as EditorConfig
         };
-    }, [cloud, isLayoutReady]);
-
-    // useEffect(() => {
-    //     if (editorConfig) {
-    //         configUpdateAlert(editorConfig);
-    //     }
-    // }, [editorConfig]);
+    }, [isLayoutReady, value]);
 
     return (
         <div className="main-container">
-            <div className="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-word-count editor-container_include-fullscreen">
+            <div
+                className="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-word-count editor-container_include-fullscreen"
+                ref={editorContainerRef}
+            >
                 <div className="editor-container__editor">
-                    <div>
-                        {ClassicEditor && editorConfig && (
+                    <div ref={editorRef}>
+                        {editorConfig && (
                             <CKEditor
                                 onChange={(event, editor) => onChange(editor.getData())}
                                 onReady={editor => {
                                     const wordCount = editor.plugins.get('WordCount');
-                                    if (editorWordCountRef.current) {
-                                        editorWordCountRef.current.appendChild(wordCount.wordCountContainer);
+                                    if(editorWordCountRef.current) {
+                                        if ("appendChild" in editorWordCountRef.current) {
+                                            editorWordCountRef.current.appendChild(wordCount.wordCountContainer);
+                                        }
                                     }
                                 }}
-                                data={value}
                                 // onAfterDestroy={() => {
                                 //     Array.from(editorWordCountRef.current.children).forEach(child => child.remove());
                                 // }}
@@ -448,44 +453,3 @@ export default function NewEditor({onChange, value }:INewEditor) {
         </div>
     );
 }
-
-/**
- * This function exists to remind you to update the config needed for premium features.
- * The function can be safely removed. Make sure to also remove call to this function when doing so.
- */
-// function configUpdateAlert(config) {
-//     if (configUpdateAlert.configUpdateAlertShown) {
-//         return;
-//     }
-//
-//     const isModifiedByUser = (currentValue, forbiddenValue) => {
-//         if (currentValue === forbiddenValue) {
-//             return false;
-//         }
-//
-//         if (currentValue === undefined) {
-//             return false;
-//         }
-//
-//         return true;
-//     };
-//
-//     const valuesToUpdate = [];
-//
-//     configUpdateAlert.configUpdateAlertShown = true;
-//
-//     if (!isModifiedByUser(config.licenseKey, '<YOUR_LICENSE_KEY>')) {
-//         valuesToUpdate.push('LICENSE_KEY');
-//     }
-//
-//     if (valuesToUpdate.length) {
-//         window.alert(
-//             [
-//                 'Please update the following values in your editor config',
-//                 'to receive full access to Premium Features:',
-//                 '',
-//                 ...valuesToUpdate.map(value => ` - ${value}`)
-//             ].join('\n')
-//         );
-//     }
-// }

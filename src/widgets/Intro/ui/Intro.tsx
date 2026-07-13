@@ -1,9 +1,8 @@
 import styles from './Intro.module.css'
 import React from "react";
-import Image from "next/image";
 import {SectionDesc, StandardBtn} from "@/shared/ui";
 import {PlanetSystem} from "./PlanetSystem/PlanetSystem";
-import {SolarSystemBlackImage, SolarSystemImage} from "@/widgets/Intro";
+
 export const Intro = () => {
     return (
         <section data-avi className={styles.intro}>

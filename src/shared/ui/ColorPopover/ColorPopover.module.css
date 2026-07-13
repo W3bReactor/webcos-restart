@@ -1,0 +1,68 @@
+.inputSetWrapper {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    background: #606b8f;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    z-index: 100;
+}
+
+.inputSetWrapperColor {
+    flex-direction: column;
+    width: auto;
+    padding: 5px;
+}
+
+.inputSetItems {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+
+.inputSet {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    padding: 4px 8px;
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+
+    border-right: 1px solid rgba(var(--foregroundGlassRGBA),0.08);
+}
+
+
+.inputSetLegendSelect {
+    margin-right: 10px;
+}
+.inputSetColor {
+    margin-top: 10px;
+}
+
+.rgbaRow {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 10px;
+}
+.inputSetColorRgba {
+    grid-column: 3 span;
+}
+
+
+.inputGroup {
+    margin-right: 10px;
+}
+
+.colorUnset {
+    margin-top: 10px;
+    width: 100%;
+}

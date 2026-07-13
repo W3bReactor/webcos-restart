@@ -1,23 +1,39 @@
 .searchItemsList {
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(var(--foregroundRGBA), 0.08);
     list-style: none;
     display: flex;
     flex-direction: column;
 }
 
+.searchItem {
+    border-radius: 15px;
+    background: rgba(var(--foregroundGlassRGBA), 0.08);
+}
 
-.searchItemsBtn {
+.searchItem:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+
+
+.searchItemBtn {
     border-radius: 15px;
     width: 100%;
-    padding: 15px;
+    padding: 5px 15px;
     border: none;
     outline: none;
     cursor: pointer;
     background-color: transparent;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 158%;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
+    text-align: left;
+
+    transition: all 0.1s;
 }
 
-.searchItemsBtn:hover {
+.searchItemBtn:hover {
     background-color: var(--hover);
 }

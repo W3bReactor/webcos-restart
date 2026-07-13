@@ -1,0 +1,14 @@
+
+.editor {
+    margin-top: 15px;
+    border: 1px solid  rgba(var(--foregroundGlassRGBA), 0.08);
+    outline: none;
+    border-radius: 5px;
+}
+
+.editorInner {
+    outline: none !important;
+    min-height: 300px;
+    border-radius: 5px;
+    padding: 5px;
+}

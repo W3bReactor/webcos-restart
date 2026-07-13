@@ -16,11 +16,9 @@ export const getCategoriesApi = async (params?: CategoryParams): Promise<ApiResu
                 next: { revalidate: 60 }
             }
         );
-
         if (!response.ok) {
             return { success: false, error: "Failed to fetch" };
         }
-
         return { success: true, data: await response.json() };
 
     } catch (error) {

@@ -109,7 +109,6 @@ export const AdminBannerForm = ({type, formType, bannerId, link, button, supTitl
             FD.append('file', bannerImage);
             uploadBanner({bannerId: responseUpdateBanner.data.id, body: FD})
         }
-        console.log(bannerImage)
         if(responseCreateBanner?.success && responseCreateBanner.data.id && bannerImage != null) {
             const FD = new FormData();
             FD.append('file', bannerImage);

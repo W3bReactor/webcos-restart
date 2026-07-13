@@ -5,8 +5,7 @@ import {
     DzenIcon,
     LogoIcon,
     TgWhiteIcon,
-    TiktokWhiteIcon,
-    VkWhiteIcon
+    TiktokWhiteIcon
 } from "@/shared/assets";
 import Link from "next/link";
 import {Mountains} from "@/widgets/Footer/ui/Mountains/Mountains";

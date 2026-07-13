@@ -1,3 +1,5 @@
+import {JSONContent} from "@tiptap/core";
+
 export interface ArticleParams {
     search?: string;
     sortBy?: string;
@@ -16,7 +18,7 @@ export interface RecommendedArticlesParams {
 export interface ArticleCreate {
     title: string;
     description: string;
-    content: string;
+    content: JSONContent;
     category_id: number;
 }
 
@@ -24,7 +26,7 @@ export interface ArticleUpdate {
     id: number;
     title: string;
     description: string;
-    content: string;
+    content: JSONContent;
     category_id: number;
 }
 

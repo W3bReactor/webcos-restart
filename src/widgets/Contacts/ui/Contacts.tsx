@@ -3,8 +3,7 @@ import {BlackBtn, SectionDesc, SectionTitle} from "@/shared/ui";
 import {
     DzenIcon,
     TgWhiteIcon,
-    TiktokWhiteIcon,
-    VkWhiteIcon
+    TiktokWhiteIcon
 } from "@/shared/assets";
 
 export const Contacts = () => {

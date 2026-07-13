@@ -1,6 +1,6 @@
 "use client"
 import styles from './PickupAccordion.module.css'
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 import {AccordionItem, SectionDesc, SectionTitle} from "@/shared/ui";
 import {pickupAccordion} from "@/widgets/PickupAccordion/ui/mock/pickupAccordion";
 

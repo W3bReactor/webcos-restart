@@ -2,7 +2,7 @@
 import styles from './AdminArticlesEditPage.module.css'
 import {Footer, Header, AdminSidebar, SearchItems, AdminArticleForm} from "@/widgets";
 
-import {Input} from "@/shared/ui";
+import {RoundedInput} from "@/shared/ui";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import {PlusIcon} from "@/shared/assets";
@@ -19,6 +19,7 @@ import {redirect} from "next/navigation";
 import {toInteger} from "es-toolkit/compat";
 import {getArticleApi} from "@/widgets/Article";
 import {getCategoryApi} from "@/pages/BlogAllPage";
+import {JSONContent} from "@tiptap/core";
 
 
 interface IAdminArticlesEditPage {
@@ -31,7 +32,10 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
         description: '',
         categoryId: -1
     })
-    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce('', 1000)
+
+    const [show, setShow] = useState(false);
+
+    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({"type": "doc", content: []}, 1000)
     const [image, setImage] = useState<File | null>(null)
     const [url, setUrl] = useState('')
 
@@ -71,9 +75,12 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
 
 
 
-    const { data: responseCategories } = useSWR(
+    const { data: responseCategories,  } = useSWR(
         ["categories", debouncedValueCategory],
-        async () => await getCategoriesApi({size: 3, search: debouncedValueCategory})
+        ([, search]) => getCategoriesApi({
+            size: 3,
+            search,
+        })
     )
 
     const onUpdateData = async (val: string, categoryId: number) => {
@@ -82,7 +89,6 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
     }
     useEffect(() => {
         if(responseUpdate?.success && responseUpdate.data.id && image != null) {
-            console.log(image)
             const FD = new FormData();
             FD.append('file', image);
             uploadArticle({articleId: responseUpdate.data.id, body: FD})
@@ -110,6 +116,15 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
     }, [responseCategory, responseArticle, setValueCategory, setValueContent]);
 
 
+    useEffect(() => {
+        if(debouncedValueCategory.length > 0 && responseCategories?.success && responseCategories.data.content.length > 0 && (responseCategories.data.content[0].title !== debouncedValueCategory)) {
+            setShow(true);
+        } else {
+            setShow(false)
+        }
+    }, [debouncedValueCategory, responseCategories]);
+
+
     const onEdit = async () => {
         await updateArticle(
             {
@@ -133,27 +148,32 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
                         <div className={styles.adminCreateContent}>
                             <div className={styles.adminCreateSearchWrapper}>
                                 <div className={styles.adminCreateSearch}>
-                                    <Input placeholder={'Найти категорию...'} value={valueCategory} setValue={setValueCategory}/>
-                                    {debouncedValueCategory.length > 0 && responseCategories?.success && responseCategories.data.content.length > 0 &&
-                                        <SearchItems data={responseCategories.data.content} setItem={onUpdateData} className={styles.adminCreateSearchItems}/>
-                                    }
+                                    <RoundedInput className={styles.adminCreateInput} placeholder={'Найти категорию...'} value={valueCategory} setValue={setValueCategory}/>
+                                    {show && responseCategories && responseCategories.success &&
+                                        <SearchItems
+                                            data={responseCategories.data.content}
+                                            setItem={onUpdateData}
+                                            className={styles.adminCreateSearchItems}
+                                        />}
                                 </div>
                                 <Link className={styles.adminCreateAdd} href={'/admin/categories'}>
                                     <Image src={PlusIcon} alt={'Добавить категорию'}/>
                                 </Link>
                             </div>
-                            <AdminArticleForm
-                                type={"edit"}
-                                url={url}
-                                setUrl={setUrl}
-                                image={image}
-                                setImage={setImage}
-                                onSend={onEdit}
-                                data={data}
-                                setData={setData}
-                                setValue={setValueContent}
-                                debouncedValue={debouncedValueContent}
-                            />
+                            {responseArticle?.success &&
+                                <AdminArticleForm
+                                    type={"edit"}
+                                    url={url}
+                                    setUrl={setUrl}
+                                    image={image}
+                                    setImage={setImage}
+                                    onSend={onEdit}
+                                    data={data}
+                                    setData={setData}
+                                    setValue={setValueContent}
+                                    debouncedValue={responseArticle.data.content}
+                                />
+                            }
                         </div>
                     </div>
                 </section>

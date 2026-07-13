@@ -3,7 +3,6 @@ import styles from './CookieBanner.module.css'
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {StandardBtn} from "@/shared/ui";
-import {isYmAvailable} from "@/shared/lib";
 
 export const CookieBanner = () => {
 

@@ -58,22 +58,25 @@
 .adminCreateSearchWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     margin-bottom: 50px;
 }
 
 .adminCreateSearch {
     display: flex;
     flex-direction: column;
+    max-width: 310px;
+    width: 100%;
 }
 
 .adminCreateAdd {
     margin-top: 5px;
+    margin-left: 10px;
 }
 
 .adminCreateSearchItems {
     margin-top: 15px;
 }
+
 
 @media (max-width: 564px) {
     .adminCreateTitle {

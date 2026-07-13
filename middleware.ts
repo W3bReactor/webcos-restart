@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import setCookieParser from "set-cookie-parser";
 
 const excludedPaths = ['/admin/login'];
 
