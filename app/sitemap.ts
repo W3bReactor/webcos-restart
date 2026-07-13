@@ -17,13 +17,14 @@ async function safeFetch<T>(url: string): Promise<ApiResult<PageResponse<T>> | n
         if (!res.ok) return null;
 
         return await res.json();
-    } catch {
+    } catch (e) {
+        console.error('Sitemap fetch failed:', url, e);
         return null;
     }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "";
+    const baseUrl = process.env.NEXT_PUBLIC_HOST || "";
 
     const articlesUrls = [];
 
@@ -37,8 +38,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             break;
         }
         // const res =  await getArticlesApi({ page, size: 100 });
-
-        if (!res.success) break;
 
         articlesUrls.push(
             ...res.data.content.map(article => ({
@@ -64,8 +63,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         if (!res || !res.success || !res.data) {
             break;
         }
-
-        if (!res.success) break;
 
         categoriesUrls.push(
             ...res.data.content.map(category => ({
