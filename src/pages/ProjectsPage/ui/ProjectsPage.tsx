@@ -1,5 +1,5 @@
 import styles from './ProjectsPage.module.css'
-import {Footer, Header, Why, Social, AllProjects, Slider} from "@/widgets";
+import {Footer, Header, Social, AllProjects, Slider} from "@/widgets";
 import {getBannersApi} from "@/shared/api";
 
 
@@ -14,7 +14,6 @@ export const ProjectsPage = async () => {
                 {response.success && response.data.content.length > 0 &&
                     <Slider data={response.data.content}/>
                 }
-                <Why/>
                 <AllProjects/>
                 <Social
                     href="https://telegram.me/webcostech"
