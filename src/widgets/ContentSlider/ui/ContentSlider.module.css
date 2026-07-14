@@ -81,3 +81,8 @@
 .noSwiping {
     display: none;
 }
+
+.contentSliderBlogItem {
+    box-shadow: 5px 3px 10px rgba(0,0,0,0.4);
+    margin: 8px;
+}
