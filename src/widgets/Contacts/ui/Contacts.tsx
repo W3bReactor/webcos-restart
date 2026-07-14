@@ -13,7 +13,7 @@ export const Contacts = () => {
             <SectionDesc className={styles.contactsDesc}>Будь вкурсе всех новостей</SectionDesc>
             <ul className={styles.contactsList}>
                 <li className={styles.contactsItem}>
-                    <BlackBtn srcImage={TgWhiteIcon.src} type={'link'} href="https://t.me/webcostech" target={"_blank"} className={styles.contactsBtn}>Подписаться на Телеграм</BlackBtn>
+                    <BlackBtn srcImage={TgWhiteIcon.src} type={'link'} href="https://telegram.me/webcostech" target={"_blank"} className={styles.contactsBtn}>Подписаться на Телеграм</BlackBtn>
                 </li>
 
 

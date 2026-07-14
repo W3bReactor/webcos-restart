@@ -68,7 +68,7 @@ export const Footer = () => {
                     <p className={styles.footerCopyright}>©2026 WEBCOS</p>
                     <ul className={styles.footerSocial}>
                         <li className={styles.footerSocialItem}>
-                            <a href="https://t.me/webcostech" target={"_blank"} className={styles.footerSocialLink}>
+                            <a href="https://telegram.me/webcostech" target={"_blank"} className={styles.footerSocialLink}>
                                 <Image className={styles.footerSocialIcon} src={TgWhiteIcon} alt={'Телеграм'}/>
 
                             </a>

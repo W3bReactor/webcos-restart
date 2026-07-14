@@ -17,7 +17,7 @@ export const ProjectsPage = async () => {
                 <Why/>
                 <AllProjects/>
                 <Social
-                    href="https://t.me/webcostech"
+                    href="https://telegram.me/webcostech"
                     platform={"Телеграм"}
                     title={'Хотите больше сервисов?'}
                     description={'Заходите к нам в телеграм'}
