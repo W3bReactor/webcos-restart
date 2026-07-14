@@ -16,7 +16,6 @@ export function renderCodeBlock(
     const tree = lowlight.registered(language)
         ? lowlight.highlight(language, code)
         : lowlight.highlight('plaintext', code)
-    console.log("Code: " + code)
 
     return `<pre class="article-code"><code class="language-${language}">${toHtml(tree)}</code></pre>`;
 }
