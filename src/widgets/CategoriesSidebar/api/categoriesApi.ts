@@ -11,7 +11,7 @@ import {
 export const getCategoriesApi = async (params?: CategoryParams): Promise<ApiResult<PageResponse<ICategory>>>  => {
     try {
         const response = await apiFetch(
-            `/api/v1/categories?search=${params?.search ? params?.search : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}`,
+            `/api/v1/categories?search=${params?.search ? params?.search : ""}${params?.size ? "&size=" + params?.size : ""}${params?.page ? "&page=" + params?.page : ""}${params?.ids ? "&categoryIds=" + params.ids.join(",") : ""}`,
             {
                 next: { revalidate: 60 }
             }

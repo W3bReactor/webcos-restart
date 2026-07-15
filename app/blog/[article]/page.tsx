@@ -3,6 +3,7 @@ import {Metadata} from "next";
 import {getArticleApi} from "@/widgets/Article";
 import React from "react";
 import {getCategoryApi} from "@/pages/BlogAllPage";
+import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 
 
 
@@ -23,17 +24,16 @@ export async function generateMetadata({params}:
     }
 
     const article = response.data;
-    const categoryRes = await getCategoryApi(String(article.category_id));
+    const categoriesRes = await getCategoriesApi({ids: article.category_ids});
 
-    const category = categoryRes.success ? categoryRes.data.title : "Разработка";
+    const categories = categoriesRes.success ? categoriesRes.data.content.map(category => category.title) : ["Разработка"];
 
     return {
         title: `${article.title}`,
         description: article.description,
         keywords: [
+            ...categories,
             article.title,
-            category,
-            "разработка",
             "программирование",
         ],
 

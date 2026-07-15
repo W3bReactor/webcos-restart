@@ -1,14 +1,10 @@
 'use client'
 import styles from './AdminArticlesCreatePage.module.css'
-import {Footer, Header, AdminSidebar, SearchItems, AdminArticleForm} from "@/widgets";
+import {Footer, Header, AdminSidebar, AdminArticleForm} from "@/widgets";
 
-import {RoundedInput} from "@/shared/ui";
 import {useEffect, useState} from "react";
-import Link from "next/link";
 import {PlusIcon} from "@/shared/assets";
 import Image from "next/image";
-import useSWR from "swr";
-import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 import {useDebounce} from "@/shared/lib";
 import {createArticleApi, uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
 import useSWRMutation from "swr/mutation";
@@ -17,19 +13,38 @@ import {ApiResult} from "@/shared/model";
 import {IArticle} from "@/widgets/Blog";
 import {redirect} from "next/navigation";
 import {JSONContent} from "@tiptap/core";
+import {CategorySearch} from "@/features/CategorySearch";
+
+
+interface CategoryField {
+    id: string;
+    categoryId: number | null;
+    title: string;
+}
+
+interface FormData {
+    title: string;
+    description: string;
+    categories: CategoryField[];
+}
 
 
 export const AdminArticlesCreatePage = () => {
 
-    const [debouncedValueCategory, valueCategory, setValueCategory] = useDebounce('', 1000)
-    const [data, setData] = useState({
-        title: '',
-        description: '',
-        categoryId: -1
-    })
+    const [data, setData] = useState<FormData>({
+        title: "",
+        description: "",
+        categories: [{
+            id: crypto.randomUUID(),
+            categoryId: null,
+            title: "",
+        }],
+    });
 
-    const [show, setShow] = useState(false);
-    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({"type": "doc", content: []}, 1000)
+    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({
+        "type": "doc",
+        content: []
+    }, 1000)
 
     const [image, setImage] = useState<File | null>(null)
     const [url, setUrl] = useState('')
@@ -45,6 +60,7 @@ export const AdminArticlesCreatePage = () => {
         (_, {arg}) => createArticleApi(arg)
     )
 
+
     const {trigger: uploadArticle} = useSWRMutation<
         ApiResult<string>,
         Error,
@@ -55,20 +71,6 @@ export const AdminArticlesCreatePage = () => {
         (_, {arg}) => uploadImageArticleApi(arg)
     )
 
-
-    const {data: responseCategories,} = useSWR(
-        ["categories", debouncedValueCategory],
-        ([, search]) => getCategoriesApi({
-            size: 3,
-            search,
-        })
-    )
-
-    const onUpdateData = async (val: string, categoryId: number) => {
-        setShow(false);
-        setValueCategory(val)
-        setData({...data, categoryId})
-    }
     useEffect(() => {
         if (responseCreate?.success && responseCreate.data.id && image) {
             const FD = new FormData();
@@ -80,13 +82,6 @@ export const AdminArticlesCreatePage = () => {
         }
     }, [responseCreate, image, uploadArticle]);
 
-    useEffect(() => {
-        if (debouncedValueCategory.length > 0 && responseCategories?.success && responseCategories.data.content.length > 0 && (responseCategories.data.content[0].title !== debouncedValueCategory)) {
-            setShow(true);
-        } else {
-            setShow(false)
-        }
-    }, [debouncedValueCategory, responseCategories]);
 
     const onCreate = async () => {
         await createArticle(
@@ -94,11 +89,35 @@ export const AdminArticlesCreatePage = () => {
                 content: debouncedValueContent,
                 description: data.description,
                 title: data.title,
-                category_id: data.categoryId
+                category_ids: data.categories.map(cat => Number(cat.categoryId))
             }
         )
 
     }
+
+
+    const onClickAdd = () => {
+        setData(prev => ({
+            ...prev,
+            categories: [
+                ...prev.categories,
+                {
+                    id: crypto.randomUUID(),
+                    categoryId: null,
+                    title: "",
+                },
+            ],
+        }));
+    };
+
+    const removeCategory = (id: string) => {
+        setData(prev => ({
+            ...prev,
+            categories: prev.categories.filter(x => x.id !== id),
+        }));
+    };
+
+
     return (
         <div className={styles.page}>
             <Header/>
@@ -109,19 +128,37 @@ export const AdminArticlesCreatePage = () => {
                         <h1 className={styles.adminCreateTitle}>Создание статьи</h1>
                         <div className={styles.adminCreateContent}>
                             <div className={styles.adminCreateSearchWrapper}>
-                                <div className={styles.adminCreateSearch}>
-                                    <RoundedInput className={styles.adminCreateInput} placeholder={'Найти категорию...'}
-                                                  value={valueCategory} setValue={setValueCategory}/>
-                                    {show && responseCategories && responseCategories.success &&
-                                        <SearchItems
-                                            data={responseCategories.data.content}
-                                            setItem={onUpdateData}
-                                            className={styles.adminCreateSearchItems}
-                                        />}
-                                </div>
-                                <Link className={styles.adminCreateAdd} href={'/admin/categories'}>
-                                    <Image src={PlusIcon} alt={'Добавить категорию'}/>
-                                </Link>
+                                <ul className={styles.adminArticlesCategories}>
+                                    {data.categories.map((category, id) =>
+                                        <li key={category.id}
+                                            className={styles.adminArticlesCategory}>
+                                            <CategorySearch
+                                                field={category}
+                                                onChange={field => {
+                                                    setData(prev => ({
+                                                        ...prev,
+                                                        categories: prev.categories.map(x =>
+                                                            x.id === field.id ? field : x
+                                                        ),
+                                                    }));
+                                                }}
+                                            />
+                                            <>
+                                                {id === data.categories.length - 1 &&
+                                                    <button className={styles.adminCreateAdd} onClick={onClickAdd}>
+                                                        <Image src={PlusIcon} alt={'Добавить категорию'}/>
+                                                    </button>
+                                                }
+                                                {data.categories.length !== 1 &&
+                                                    <button onClick={() => removeCategory(category.id)}
+                                                            className={styles.adminCreateRemoveBtn}>
+                                                        <span className={styles.adminCreateRemove}></span>
+                                                    </button>
+                                                }
+                                            </>
+                                        </li>
+                                    )}
+                                </ul>
                             </div>
                         </div>
                         <AdminArticleForm

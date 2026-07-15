@@ -15,6 +15,7 @@ import {BlogItem} from "@/entities/BlogItem";
 import {getDate} from "@/shared/lib";
 import {redirect} from "next/navigation";
 import {renderArticle} from "@/shared/ui/Editor/lib/renderArticle";
+import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 
 interface IArticle {
     id: string
@@ -60,7 +61,7 @@ export const Article = async ({id}: IArticle) => {
     if (!response.success) {
         return <div>Статья не найдена :(</div>
     }
-    const responseCategory = await getCategoryApi(String(response.data.category_id))
+    const responseCategories = await getCategoriesApi({ids: response.data.category_ids})
 
     const responseRecommend = await getRecommendedArticlesApi({size: 2, exclude: [response.data.id]})
 
@@ -115,8 +116,8 @@ export const Article = async ({id}: IArticle) => {
                 </div>
                 <div className={styles.articleInfo}>
                     <time className={styles.articleText}>{getDate(new Date(response.data.createdAt))}</time>
-                    {responseCategory.success &&
-                        <p className={styles.articleText}>{responseCategory.data.title}</p>
+                    {responseCategories.success &&
+                        <p className={styles.articleText}>{responseCategories.data.content.map(responseCategory => responseCategory.title).join(" • ")}</p>
                     }
                     <p className={styles.articleText}><Image alt={'Просмотры'} className={styles.articleViewsIcon}
                                                              src={EyeIcon}/> {response.data.views}</p>

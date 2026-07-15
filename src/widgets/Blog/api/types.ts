@@ -19,7 +19,7 @@ export interface ArticleCreate {
     title: string;
     description: string;
     content: JSONContent;
-    category_id: number;
+    category_ids: number[];
 }
 
 export interface ArticleUpdate {
@@ -27,7 +27,7 @@ export interface ArticleUpdate {
     title: string;
     description: string;
     content: JSONContent;
-    category_id: number;
+    category_ids: number[];
 }
 
 export interface ArticleUploadImage {

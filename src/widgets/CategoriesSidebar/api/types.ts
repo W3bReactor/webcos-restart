@@ -2,6 +2,7 @@ export interface CategoryParams {
     search?: string;
     size?: number;
     page?: number;
+    ids?: number[];
 }
 
 export interface CategoryCreate {

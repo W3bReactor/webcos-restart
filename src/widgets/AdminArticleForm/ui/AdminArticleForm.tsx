@@ -6,16 +6,21 @@ import TiptapEditor from "@/shared/ui/Editor/TiptapEditor";
 import {JSONContent} from "@tiptap/core";
 
 
-interface Data {
-    description: string
-    title: string
-    categoryId: number;
+interface CategoryField {
+    id: string;
+    categoryId: number | null;
+    title: string;
 }
 
+interface FormData {
+    title: string;
+    description: string;
+    categories: CategoryField[];
+}
 
 interface IAdminArticleForm{
-    data: Data,
-    setData: (v: Data) => void;
+    data: FormData,
+    setData: (v: FormData) => void;
     debouncedValue: JSONContent;
     setValue: (v: JSONContent) => void;
     onSend: () => void;

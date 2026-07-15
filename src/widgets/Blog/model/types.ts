@@ -9,6 +9,6 @@ export interface IArticle {
     views: number
     createdAt: string
     content: JSONContent
-    category_id: number
+    category_ids: number[]
     slug: string;
 }

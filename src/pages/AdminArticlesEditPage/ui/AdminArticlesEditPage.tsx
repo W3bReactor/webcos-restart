@@ -3,7 +3,7 @@ import styles from './AdminArticlesEditPage.module.css'
 import {Footer, Header, AdminSidebar, SearchItems, AdminArticleForm} from "@/widgets";
 
 import {RoundedInput} from "@/shared/ui";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Link from "next/link";
 import {PlusIcon} from "@/shared/assets";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import useSWRMutation from "swr/mutation";
 import {ApiResult} from "@/shared/model";
 import {IArticle} from "@/widgets/Blog";
 import {ArticleUpdate, ArticleUploadImage} from "@/widgets/Blog/api/types";
-import { updateArticleApi, uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
+import {updateArticleApi, uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
 import useSWR from "swr";
 import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 import {redirect} from "next/navigation";
@@ -20,80 +20,81 @@ import {toInteger} from "es-toolkit/compat";
 import {getArticleApi} from "@/widgets/Article";
 import {getCategoryApi} from "@/pages/BlogAllPage";
 import {JSONContent} from "@tiptap/core";
+import {CategorySearch} from "@/features/CategorySearch";
 
 
 interface IAdminArticlesEditPage {
     articleId: string
 }
+
+interface CategoryField {
+    id: string;
+    categoryId: number | null;
+    title: string;
+}
+
+interface FormData {
+    title: string;
+    description: string;
+    categories: CategoryField[];
+}
+
 export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
-    const [debouncedValueCategory, valueCategory, setValueCategory] = useDebounce('', 1000)
-    const [data, setData] = useState({
-        title: '',
-        description: '',
-        categoryId: -1
-    })
+    const [data, setData] = useState<FormData>({
+        title: "",
+        description: "",
+        categories: [{
+            id: crypto.randomUUID(),
+            categoryId: null,
+            title: "",
+        }],
+    });
 
-    const [show, setShow] = useState(false);
-
-    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({"type": "doc", content: []}, 1000)
+    const [debouncedValueContent, _valueContent, setValueContent] = useDebounce<JSONContent>({
+        "type": "doc",
+        content: []
+    }, 1000)
     const [image, setImage] = useState<File | null>(null)
     const [url, setUrl] = useState('')
 
 
-
-    const { data: responseUpdate, trigger: updateArticle } = useSWRMutation<
+    const {data: responseUpdate, trigger: updateArticle} = useSWRMutation<
         ApiResult<IArticle>,
         Error,
         "articles/edit",
         ArticleUpdate
     >(
         "articles/edit",
-        (_, { arg }) => updateArticleApi(arg)
+        (_, {arg}) => updateArticleApi(arg)
     )
 
 
-    const { trigger: uploadArticle } = useSWRMutation<
+    const {trigger: uploadArticle} = useSWRMutation<
         ApiResult<string>,
         Error,
         "articles/upload/image",
         ArticleUploadImage
     >(
         "articles/upload/image",
-        (_, { arg }) => uploadImageArticleApi(arg)
+        (_, {arg}) => uploadImageArticleApi(arg)
     )
 
 
-    const { data: responseArticle } = useSWR(
-        ["article"],
-        async () => await getArticleApi(articleId)
+    const {data: responseArticle} = useSWR(
+        ["article", articleId],
+        () => getArticleApi(articleId),
+        {
+            revalidateOnFocus: false,
+        }
     )
 
-    const { data: responseCategory } = useSWR(
-        ["category", data.categoryId],
-        async () => await getCategoryApi(String(data.categoryId))
-    )
-
-
-
-    const { data: responseCategories,  } = useSWR(
-        ["categories", debouncedValueCategory],
-        ([, search]) => getCategoriesApi({
-            size: 3,
-            search,
-        })
-    )
-
-    const onUpdateData = async (val: string, categoryId: number) => {
-        setValueCategory(val)
-        setData({...data, categoryId})
-    }
     useEffect(() => {
-        if(responseUpdate?.success && responseUpdate.data.id && image != null) {
+        if (responseUpdate?.success && responseUpdate.data.id && image != null) {
             const FD = new FormData();
             FD.append('file', image);
             uploadArticle({articleId: responseUpdate.data.id, body: FD})
         }
-        if(responseUpdate?.success) {
+        if (responseUpdate?.success) {
             redirect(`/blog/${responseUpdate.data.id}`)
         }
 
@@ -101,28 +102,29 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
 
 
     useEffect(() => {
-        if(responseArticle?.success) {
+        if (responseArticle?.success) {
             setData({
                 title: responseArticle.data.title,
-                categoryId: responseArticle.data.category_id,
                 description: responseArticle.data.description,
-            })
+                categories:
+                    responseArticle.data.category_ids.length > 0
+                        ? responseArticle.data.category_ids.map(id => ({
+                            id: crypto.randomUUID(),
+                            categoryId: id,
+                            title: "",
+                        }))
+                        : [
+                            {
+                                id: crypto.randomUUID(),
+                                categoryId: null,
+                                title: "",
+                            },
+                        ],
+            });
             setUrl(responseArticle.data.image);
             setValueContent(responseArticle.data.content);
         }
-        if(responseCategory?.success) {
-            setValueCategory(responseCategory.data.title);
-        }
-    }, [responseCategory, responseArticle, setValueCategory, setValueContent]);
-
-
-    useEffect(() => {
-        if(debouncedValueCategory.length > 0 && responseCategories?.success && responseCategories.data.content.length > 0 && (responseCategories.data.content[0].title !== debouncedValueCategory)) {
-            setShow(true);
-        } else {
-            setShow(false)
-        }
-    }, [debouncedValueCategory, responseCategories]);
+    }, [responseArticle, setValueContent]);
 
 
     const onEdit = async () => {
@@ -132,11 +134,34 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
                 content: debouncedValueContent,
                 description: data.description,
                 title: data.title,
-                category_id: data.categoryId
+                category_ids: data.categories.map(cat => Number(cat.categoryId))
             }
         )
 
     }
+
+    const onClickAdd = () => {
+        setData(prev => ({
+            ...prev,
+            categories: [
+                ...prev.categories,
+                {
+                    id: crypto.randomUUID(),
+                    categoryId: null,
+                    title: "",
+                },
+            ],
+        }));
+    };
+
+    const removeCategory = (id: string) => {
+        setData(prev => ({
+            ...prev,
+            categories: prev.categories.filter(x => x.id !== id),
+        }));
+    };
+
+
     return (
         <div className={styles.page}>
             <Header/>
@@ -147,18 +172,36 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
                         <h1 className={styles.adminCreateTitle}>Редактирование статьи</h1>
                         <div className={styles.adminCreateContent}>
                             <div className={styles.adminCreateSearchWrapper}>
-                                <div className={styles.adminCreateSearch}>
-                                    <RoundedInput className={styles.adminCreateInput} placeholder={'Найти категорию...'} value={valueCategory} setValue={setValueCategory}/>
-                                    {show && responseCategories && responseCategories.success &&
-                                        <SearchItems
-                                            data={responseCategories.data.content}
-                                            setItem={onUpdateData}
-                                            className={styles.adminCreateSearchItems}
-                                        />}
-                                </div>
-                                <Link className={styles.adminCreateAdd} href={'/admin/categories'}>
-                                    <Image src={PlusIcon} alt={'Добавить категорию'}/>
-                                </Link>
+                                <ul className={styles.adminArticlesCategories}>
+                                    {data.categories.map((category, id) =>
+                                        <li key={category.id}
+                                            className={styles.adminArticlesCategory}>
+                                            <CategorySearch
+                                                field={category}
+                                                onChange={field => {
+                                                    setData(prev => ({
+                                                        ...prev,
+                                                        categories: prev.categories.map(x =>
+                                                            x.id === field.id ? field : x
+                                                        ),
+                                                    }));
+                                                }}
+                                            />
+                                            <>
+                                                {id === data.categories.length -1 &&
+                                                    <button className={styles.adminCreateAdd} onClick={onClickAdd}>
+                                                        <Image src={PlusIcon} alt={'Добавить категорию'}/>
+                                                    </button>
+                                                }
+                                                {data.categories.length !== 1 &&
+                                                    <button onClick={() => removeCategory(category.id)} className={styles.adminCreateRemoveBtn}>
+                                                        <span className={styles.adminCreateRemove}></span>
+                                                    </button>
+                                                }
+                                            </>
+                                        </li>
+                                    )}
+                                </ul>
                             </div>
                             {responseArticle?.success &&
                                 <AdminArticleForm
