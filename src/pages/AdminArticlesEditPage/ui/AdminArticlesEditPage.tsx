@@ -1,10 +1,8 @@
 'use client'
 import styles from './AdminArticlesEditPage.module.css'
-import {Footer, Header, AdminSidebar, SearchItems, AdminArticleForm} from "@/widgets";
+import {Footer, Header, AdminSidebar, AdminArticleForm} from "@/widgets";
 
-import {RoundedInput} from "@/shared/ui";
-import {useEffect, useRef, useState} from "react";
-import Link from "next/link";
+import {useEffect, useState} from "react";
 import {PlusIcon} from "@/shared/assets";
 import Image from "next/image";
 import {useDebounce} from "@/shared/lib";
@@ -14,11 +12,9 @@ import {IArticle} from "@/widgets/Blog";
 import {ArticleUpdate, ArticleUploadImage} from "@/widgets/Blog/api/types";
 import {updateArticleApi, uploadImageArticleApi} from "@/widgets/Blog/api/articlesApi";
 import useSWR from "swr";
-import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 import {redirect} from "next/navigation";
 import {toInteger} from "es-toolkit/compat";
 import {getArticleApi} from "@/widgets/Article";
-import {getCategoryApi} from "@/pages/BlogAllPage";
 import {JSONContent} from "@tiptap/core";
 import {CategorySearch} from "@/features/CategorySearch";
 
