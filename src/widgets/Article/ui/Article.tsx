@@ -4,7 +4,6 @@ import styles from './Article.module.css'
 import Image from "next/image";
 import {EyeIcon, ShareIcon} from "@/shared/assets";
 import {BreadCrumbs} from "@/shared/ui";
-import {getCategoryApi} from "@/pages/BlogAllPage";
 import {ArticleReadTracker} from "@/widgets/Article/ui/ArticleReadTracker/ArticleReadTracker";
 import {cookies} from 'next/headers'
 import {ApiResult} from "@/shared/model";
@@ -16,6 +15,7 @@ import {getDate} from "@/shared/lib";
 import {redirect} from "next/navigation";
 import {renderArticle} from "@/shared/ui/Editor/lib/renderArticle";
 import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
+import {CopyCodeBlock} from "@/widgets/Article/ui/CopyCodeBlock/CopyCodeBlock";
 
 interface IArticle {
     id: string
@@ -105,6 +105,7 @@ export const Article = async ({id}: IArticle) => {
             <BreadCrumbs className={styles.articleBreadCrumbs} items={items}/>
             <article className={styles.article}>
                 <ArticleReadTracker articleId={response.data.id}/>
+                <CopyCodeBlock/>
                 {response.data.image &&
                     <Image unoptimized src={response.data.image} width={734} height={332}
                            className={styles.articlePreviewImage} alt={response.data.title}/>
