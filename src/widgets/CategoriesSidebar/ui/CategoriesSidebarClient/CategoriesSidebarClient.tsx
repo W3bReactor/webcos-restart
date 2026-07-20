@@ -14,7 +14,7 @@ interface ICategoriesSidebar {
     initialCategories: ICategory[];
 }
 
-const PAGE_SIZE = 1;
+const PAGE_SIZE = 5;
 
 export const CategoriesSidebarClient = ({className, initialCategories}: ICategoriesSidebar) => {
     const getKey = (

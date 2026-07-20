@@ -8,7 +8,7 @@ interface ICategoriesSidebar {
 }
 
 export const CategoriesSidebar = async ({className}: ICategoriesSidebar) => {
-    const response = await getCategoriesApi({size: 1, page: 0})
+    const response = await getCategoriesApi({size: 5, page: 0})
 
     return (
         <CategoriesSidebarClient
