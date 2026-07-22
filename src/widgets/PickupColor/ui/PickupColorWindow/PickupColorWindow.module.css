@@ -1,13 +1,35 @@
 .pickupWindow {
     margin: 0 auto;
     max-width: 860px;
-    min-height: 615px;
     width: 100%;
+    height: clamp(420px, 71vw, 615px);
     border: 1px solid rgba(var(--foregroundGlassRGBA), 0.15);
+    border-radius: 8px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 22% 18%, rgba(99, 102, 241, 0.12), transparent 26%),
+        linear-gradient(135deg, rgba(var(--foregroundGlassRGBA), 0.07), rgba(var(--foregroundGlassRGBA), 0.02));
+}
+
+.pickupWindowDragging {
+    border-color: rgba(99, 102, 241, 0.8);
+}
+
+.canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: none;
+}
+
+.canvas:active {
+    cursor: grabbing;
 }
 
 .pickupTop {
@@ -16,231 +38,373 @@
     left: 0;
     width: 100%;
     z-index: 10;
-    padding: 15px;
+    padding: 14px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.pickupColor,
+.pickupTopActions,
+.zoomControls,
+.recentColors,
+.helpBar {
+    pointer-events: auto;
 }
 
 .pickupColor {
     display: flex;
     align-items: center;
-
+    min-width: 0;
 }
 
 .pickupCurrentColor {
-    background-color: var(--white);
-    width: 50px;
-    height: 50px;
-    margin-right: 24px;
+    flex: 0 0 auto;
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.26);
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    border: 1px solid var(--card)
 }
 
 .pickupCopyColor {
-    padding: 12px 22px;
+    max-width: min(320px, 46vw);
+    padding: 12px 18px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 64px;
-    background: rgba(var(--foregroundGlassRGBA), 0.08);
-    backdrop-filter: blur(50px);
-
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.14);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--card) 76%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    color: var(--foreground);
+    outline: none;
 }
 
 .pickupCopyText {
-    margin-left: 15px;
+    margin-left: 12px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 100%;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     color: var(--foreground);
 }
 
-.pickupTooltip {
-    position: relative;
+.pickupTopActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.pickupTooltipIcon {
-    border: none;
-    padding: 10px 17px;
-    border-radius: 100%;
-    background-color: rgba(var(--foregroundGlassRGBA), 0.08);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 100%;
-    letter-spacing: 0.01em;
-    width: fit-content;
-    color: var(--foreground);
-    cursor: pointer;
+.pickupPillButton,
+.zoomButton {
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.14);
     outline: none;
-    backdrop-filter: blur(50px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--card) 76%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    color: var(--foreground);
+    transition: opacity 0.2s, background-color 0.2s;
 }
 
-.pickupTooltipIcon:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    display: block;
-}
-
-.pickupInfo {
-    position: absolute;
-    max-width: 464px;
-    padding: 18px 20px;
-    top: 50px;
-    right: 40px;
-    width: max-content;
-    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.15);
-    border-radius: 15px;
-    backdrop-filter: blur(50px);
-    background: rgba(var(--foregroundGlassRGBA), 0.08);
-}
-
-.pickupInfoList {
-    list-style: none;
-}
-
-.pickupInfoItem:not(:last-child) {
-    margin-bottom: 5px;
-}
-
-.pickupInfoDesc {
+.pickupPillButton {
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 8px;
     font-weight: 700;
     font-size: 16px;
-    line-height: 110%;
-    letter-spacing: 0.01em;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.pickupPillButton:hover,
+.zoomButton:hover {
+    background: rgba(var(--foregroundGlassRGBA), 0.14);
+}
+
+.pickupPillButton:disabled,
+.zoomButton:disabled {
+    cursor: default;
+    opacity: 0.42;
+}
+
+.zoomControls {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 38px minmax(62px, auto) 38px;
+    align-items: center;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.14);
+    border-radius: 8px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.zoomButton {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 0;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.zoomValue {
+    min-width: 62px;
+    padding: 0 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 38px;
     color: var(--foreground);
+    border-right: 1px solid rgba(var(--foregroundGlassRGBA), 0.12);
+    border-left: 1px solid rgba(var(--foregroundGlassRGBA), 0.12);
+}
+
+.recentColors {
+    position: absolute;
+    left: 14px;
+    bottom: 62px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: calc(100% - 28px);
+    padding: 8px;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.14);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--card) 78%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    overflow-x: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+}
+
+.recentColor {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.28);
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.helpBar {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    z-index: 9;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: calc(100% - 320px);
+    padding: 9px 12px;
+    border: 1px solid rgba(var(--foregroundGlassRGBA), 0.12);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--card) 66%, transparent);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    color: var(--foreground);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    white-space: nowrap;
+}
+
+.magnifier {
+    position: fixed;
+    z-index: 10000;
+    width: 132px;
+    height: 132px;
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+}
+
+.copyToast {
+    position: absolute;
+    top: 78px;
+    left: 15px;
+    z-index: 12;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: rgba(17, 24, 39, 0.86);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 100%;
+}
+
+.dropOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 24, 39, 0.62);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 22px;
+    text-align: center;
+    pointer-events: none;
 }
 
 .pickupUploadWrapper {
+    position: relative;
+    z-index: 5;
     margin: 15px;
-    max-width: 400px;
+    max-width: 430px;
     display: flex;
     flex-direction: column;
 }
 
 .pickupUploadIcon {
-    margin-right: 17px;
+    margin-right: 14px;
 }
 
 .pickupUploadBtn {
+    width: 100%;
+    border: 1px solid rgba(124, 58, 237, 0.16);
+    border-radius: 8px;
+    background-color: #6366f1;
+    padding: 17px 24px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    border: 1px solid rgba(124, 58, 237, 0.08);
-    border-radius: 15px;
-    background-color: #6366f1;
-    padding: 17px 25px;
-    margin-bottom: 10px;
     cursor: pointer;
 }
 
 .pickupUploadDesc {
     font-weight: 700;
-    font-size: 24px;
-    line-height: 158%;
-    letter-spacing: 0.01em;
+    font-size: 22px;
+    line-height: 140%;
+    letter-spacing: 0;
     color: var(--white);
-}
-
-.pickupUploadInput {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    opacity: 0;
-    cursor: pointer;
 }
 
 .pickupUploadInfo {
     font-weight: 700;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0.01em;
+    font-size: 15px;
+    line-height: 130%;
+    letter-spacing: 0;
     text-align: center;
     color: var(--foreground);
 }
 
-.canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    touch-action: none;
-}
-
-.pickupUploadHidden {
-    opacity: 0;
-}
-
-.pickupUploadTop {
-    display: flex;
-    align-items: center;
-}
-
-.pickupUploadTopBtn {
-    border: none;
-    outline: none;
-    padding: 12px 22px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 64px;
-    background: rgba(var(--foregroundGlassRGBA), 0.08);
-    -webkit-backdrop-filter: blur(50px);
-    backdrop-filter: blur(50px);
-    margin-right: 15px;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 100%;
-    letter-spacing: 0.01em;
-    color: var(--foreground);
-}
-
-.pickupUploadBtnMobile {
-    border: none;
-    outline: none;
-    padding: 12px 22px;
-    display: none;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 64px;
-    background: rgba(var(--foregroundGlassRGBA), 0.08);
-    -webkit-backdrop-filter: blur(50px);
-    backdrop-filter: blur(50px);
-    margin-right: 15px;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 100%;
-    letter-spacing: 0.01em;
-    color: var(--foreground);
-
-}
-
-
-
-@media (max-width: 564px) {
-    .pickupUploadBtnMobile {
-        display: flex;
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-
+@media (max-width: 768px) {
+    .pickupTop {
+        padding: 10px;
     }
 
-    .pickupUploadTopBtn {
+    .pickupCurrentColor {
+        width: 42px;
+        height: 42px;
+        margin-right: 8px;
+    }
+
+    .pickupCopyColor {
+        max-width: calc(100vw - 176px);
+        padding: 10px 12px;
+    }
+
+    .pickupCopyText {
+        font-size: 15px;
+    }
+
+    .pickupPillButton {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 14px;
+    }
+
+    .helpBar {
         display: none;
+    }
+
+    .recentColors {
+        max-width: calc(100% - 20px);
+        left: 10px;
+        bottom: 58px;
+    }
+
+    .zoomControls {
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 564px) {
+    .pickupWindow {
+        height: min(520px, 72vh);
+        min-height: 390px;
+        border-right: none;
+        border-left: none;
+        border-radius: 0;
+    }
+
+    .pickupTop {
+        align-items: stretch;
+    }
+
+    .pickupColor {
+        max-width: calc(100% - 94px);
+    }
+
+    .pickupCopyColor {
+        max-width: calc(100vw - 168px);
+    }
+
+    .pickupTopActions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .pickupPillButton {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+    .pickupUploadBtn {
+        padding: 15px 18px;
     }
 
     .pickupUploadDesc {
         font-size: 18px;
+    }
+
+    .pickupUploadInfo {
+        font-size: 14px;
+    }
+
+    .recentColor {
+        width: 26px;
+        height: 26px;
     }
 }

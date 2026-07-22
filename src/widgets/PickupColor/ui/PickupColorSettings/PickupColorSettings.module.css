@@ -7,13 +7,14 @@
     z-index: 20;
     transform: translate(-50%, -50%);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 15px;
-    width: 740px;
-    height: 445px;
-    backdrop-filter: blur(50px);
+    border-radius: 8px;
+    width: min(740px, calc(100vw - 30px));
+    min-height: 445px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
     padding: 15px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background: color-mix(in srgb, var(--card) 52%, transparent);
 }
 
 
@@ -74,6 +75,7 @@
 
 .pickupSettingsContent {
     position: relative;
+    min-height: 350px;
 }
 
 .pickupSettingsCurrent {
@@ -138,6 +140,7 @@
 .selected {
     margin: 0;
     border: none;
+    background: transparent;
     font-weight: 500;
     font-size: 16px;
     line-height: 143%;
@@ -158,6 +161,7 @@
     left: 0;
     z-index: 100;
     border-radius: 5px;
+    list-style: none;
 
 }
 
@@ -175,6 +179,7 @@
     color: var(--foreground);
     transition: all 0.3s;
     cursor: pointer;
+    text-align: left;
 }
 .option:first-child {
     border-top-left-radius: 5px;
@@ -187,4 +192,30 @@
 
 .option:hover {
     background-color: var(--hover);
+}
+
+@media (max-width: 640px) {
+    .pickupSettings {
+        min-height: auto;
+        max-height: calc(100vh - 30px);
+        overflow-y: auto;
+    }
+
+    .pickupSettingsContent {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .pickupSettingsCurrent {
+        position: static;
+        align-items: flex-start;
+        margin-bottom: 18px;
+    }
+
+    .pickupSettingsCurrentColor {
+        width: 100%;
+        height: 90px;
+        border-radius: 8px;
+    }
 }
