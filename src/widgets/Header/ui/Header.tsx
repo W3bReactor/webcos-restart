@@ -20,7 +20,7 @@ export const   Header = () => {
                         <Link href={'/projects'} className={styles.navLink} >Проекты</Link>
                     </li>
                     <li className={styles.navItem}>
-                        <Link href={'/developers'} className={styles.navLink}>Разработчики</Link>
+                        <Link href={'/about'} className={styles.navLink}>О нас</Link>
                     </li>
                     <li className={styles.navItem}>
                         <Link className={styles.navLink}  href={'/blog'}>Блог

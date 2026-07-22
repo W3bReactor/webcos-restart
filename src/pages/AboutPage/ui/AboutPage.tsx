@@ -1,13 +1,13 @@
-import styles from "./DevelopersPage.module.css";
-import {Header, RoadMap, Contacts, Footer, Who, BugReport, Why} from "@/widgets";
+import styles from "./AboutPage.module.css";
+import {Header, RoadMap, Contacts, Footer, BugReport, Why} from "@/widgets";
 
-export const DevelopersPage = () => {
+export const AboutPage = () => {
 
     return (
         <div className={styles.page}>
             <Header/>
             <main className={styles.app}>
-                <Who/>
+                {/*<Who/>*/}
                 <Why/>
                 <RoadMap/>
                 <BugReport/>

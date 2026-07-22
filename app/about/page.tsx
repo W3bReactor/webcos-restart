@@ -1,5 +1,5 @@
-import {DevelopersPage} from "@/pages/DevelopersPage";
 import { Metadata } from "next";
+import {AboutPage} from "@/pages";
 
 
 export const metadata: Metadata = {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     },
 };
 
-export default function Developers() {
+export default function About() {
     return (
-        <DevelopersPage/>
+        <AboutPage/>
     );
 }
