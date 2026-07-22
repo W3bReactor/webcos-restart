@@ -107,7 +107,7 @@ export const Article = async ({id}: IArticle) => {
                 <ArticleReadTracker articleId={response.data.id}/>
                 <CopyCodeBlock/>
                 {response.data.image &&
-                    <Image unoptimized src={response.data.image} width={734} height={332}
+                    <Image unoptimized src={response.data.image} width={800} height={411}
                            className={styles.articlePreviewImage} alt={response.data.title}/>
                 }
                 <div className={styles.articleTop}>
