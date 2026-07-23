@@ -297,6 +297,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: background-color 0.1s linear;
+}
+
+.pickupUploadBtn:hover {
+    background-color: #4d4fbc;
 }
 
 .pickupUploadDesc {
