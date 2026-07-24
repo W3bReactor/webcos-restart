@@ -39,14 +39,6 @@ export const CategorySearch = ({
             })
     );
 
-    // const onUpdateData = async (val: string, categoryId: number) => {
-    //     setValue(val)
-    //     setData({
-    //         ...data,
-    //         categoryIds: [...data.categoryIds.filter(categoryId => categoryId != -1 || categoryId != id), categoryId]
-    //     })
-    // }
-
     useEffect(() => {
         setValue(field.title);
     }, [field.title]);

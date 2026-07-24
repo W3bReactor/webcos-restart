@@ -17,6 +17,7 @@ import {toInteger} from "es-toolkit/compat";
 import {getArticleApi} from "@/widgets/Article";
 import {JSONContent} from "@tiptap/core";
 import {CategorySearch} from "@/features/CategorySearch";
+import {getCategoriesApi} from "@/widgets/CategoriesSidebar";
 
 
 interface IAdminArticlesEditPage {
@@ -84,6 +85,15 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
         }
     )
 
+    const { data: responseCategoriesInit } = useSWR(
+        () => (responseArticle && responseArticle.success
+            ? ["categories", responseArticle.data.category_ids]
+            : null),
+        ([url, ids]) => getCategoriesApi({ ids }),
+        { revalidateOnFocus: false }
+    );
+
+
     useEffect(() => {
         if (responseUpdate?.success && responseUpdate.data.id && image != null) {
             const FD = new FormData();
@@ -122,6 +132,12 @@ export const AdminArticlesEditPage = ({articleId}: IAdminArticlesEditPage) => {
         }
     }, [responseArticle, setValueContent]);
 
+
+    useEffect(() => {
+        if(responseCategoriesInit?.success) {
+            setData({...data, categories: responseCategoriesInit.data.content.map(cat => ({id: crypto.randomUUID(), categoryId: cat.id, title: cat.title}))})
+        }
+    }, [responseCategoriesInit])
 
     const onEdit = async () => {
         await updateArticle(
